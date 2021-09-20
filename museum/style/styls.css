@@ -6,6 +6,10 @@
     --font2: 32px;
 }
 
+/* * {
+    box-sizing: border-box;
+} */
+
 html {
     scroll-behavior: smooth;
 }
@@ -31,7 +35,7 @@ h2 {
 }
 
 h1 {
-    margin: 0px 0px 26px 0px;
+    margin: 0px 0px 25px 0px;
     color: #ffffff;
 }
 
@@ -48,7 +52,7 @@ h3 {
 }
 
 header {
-    padding: 75px 0px;
+    padding: 60px 0px 58px 0px;
     background-color: var(--bg-dark);
 }
 
@@ -64,14 +68,15 @@ li {
 nav ul {
     display: flex;
     justify-content: flex-end;
+    max-width: 775px;
     letter-spacing: 2px;
 }
 
 nav ul li {
-    margin-left: 75px;
+    padding-left: 55px;
     font-family: Roboto;
     font-size: 22px;
-    line-height: 50px;
+    line-height: 26px;
 }
 
 nav ul li a {
@@ -102,8 +107,8 @@ label {
 
 /* Header */
 .logo {
-    width: 195px;
-    height: 50px;
+    width: 199px;
+    height: 33px;
     background-image: url("../assets/img/header/logo.svg");
     transition: 0.5s;
     cursor: pointer;
@@ -121,13 +126,16 @@ label {
 /* Welcom section */
 
 .welcome {
-    background-image: url(../assets/img/welcome/welcom-background.png);
-    background-position: calc(50% + 352px) 100%;
-    background-repeat: no-repeat;
+    padding: 76px 0px 100px 0px;
+}
+.relative {
+    position: relative;
 }
 
 .greetings {
-    margin-top: 40px;
+    margin-top: 73px;
+    position: relative;
+    z-index: 1;
 }
 
 .greetings h2 {
@@ -140,7 +148,7 @@ label {
 }
 
 .greetings p {
-    margin-bottom: 76px;
+    margin-bottom: 75px;
     font-family: Roboto;
     font-size: 28px;
     font-weight: 300;
@@ -150,12 +158,12 @@ label {
 }
 
 .discover-btn {
-    margin-bottom: 171px;
+    margin-bottom: 172px;
     padding: 24px 66px;
     font-family: Roboto;
     font-size: 22px;
     font-weight: 200;
-    line-height: 26px;
+    line-height: 27px;
     letter-spacing: 2px;
     color: #ffffff;
     background-color: var(--dark-red);
@@ -187,11 +195,92 @@ label {
     background-color: var(--dark-red);
 }
 
-/* Visiting section */
-
-.visiting {
-    padding-bottom: 72px;
+.main-slider {
+    position: absolute;
+    top: -150px;
+    right: 20px;
 }
+
+.slides-control {
+    position: absolute;
+    right: 0;
+    bottom: -56px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 450px;
+    height: 120px;
+    font-size: 22px;
+    padding: 0 75px;
+    line-height: 40px;
+    color: #ffffff;
+    font-family: Roboto;
+    background: #000000;
+}
+
+.slides-nav-bar {
+    display: flex;
+}
+
+.square {
+    width: 16px;
+    height: 16px;
+    margin-left: 25px;
+    background-color: #ffffff;
+}
+
+.square:first-child {
+    margin-left: 0px;
+}
+
+.square-active {
+    background-color: #D2B183;
+}
+
+.slides-buttons {
+    max-width: 80px;
+}
+
+.slides-buttons {
+    display: flex;
+}
+
+.slides-buttons button {
+    display: block;
+    width: 30px;
+    height: 8px;
+    border-style: none;
+}
+
+.slides-count-block {
+    display: flex;
+    font-size: 22px;
+    line-height: 40px;
+    font-family: Roboto-reg;
+    width: 70px;
+
+}
+
+.prev-slide {
+
+    margin-right: 10px;
+    background: url(../assets/img/welcome/slider/arrow-prev.png);
+}
+
+.next-slide {
+    margin-left: 10px;
+    background: url(../assets/img/welcome/slider/arrow-next.png);
+}
+
+.active-slide {
+    margin-right: 10px;
+}
+
+.last-slide {
+    margin-left: 10px;
+}
+
+/* Visiting section */
 
 .contacts {
     padding-bottom: 71px;
@@ -207,7 +296,6 @@ label {
 .card {
     position: relative;
     display: block;
-    margin-bottom: 1px;
     text-decoration: none;
 }
 
@@ -223,13 +311,13 @@ label {
 }
 
 .subtitle {
-    margin-bottom: 21px;
+    margin-bottom: 23px;
 }
 
 .subtitle::after {
     content: "";
     position: absolute;
-    bottom: -11px;
+    bottom: -12px;
     right: 0;
     left: 0;
     width: 300px;
@@ -246,7 +334,7 @@ label {
 }
 
 .virtual-tour {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     font-size: 22px;
     line-height: 26px;
 }
@@ -288,6 +376,10 @@ label {
 
 .explore-figure {
     margin-top: 15px;
+}
+
+.explore-figure img {
+    max-width: 720px;
 }
 
 /* Video section */
