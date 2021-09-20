@@ -227,6 +227,7 @@ label {
     height: 16px;
     margin-left: 25px;
     background-color: #ffffff;
+    cursor: pointer;
 }
 
 .square:first-child {
@@ -250,6 +251,7 @@ label {
     width: 30px;
     height: 8px;
     border-style: none;
+    cursor: pointer;
 }
 
 .slides-count-block {
@@ -392,7 +394,6 @@ label {
 
 .video-player-block {
     position: relative;
-    margin-bottom: 40px;
 }
 
 .video {
@@ -404,6 +405,7 @@ label {
     align-items: center;
     height: 85px;
     padding: 0px 30px;
+    margin-bottom: 40px;
     background-color: #000000;
 }
 
@@ -440,7 +442,7 @@ label {
 
 .video-length-control {
     width: 929px;
-    background: linear-gradient(to right, #710707 0%, #710707 47%, #C4C4C4 40%, #C4C4C4 100%);
+    background: linear-gradient(to right, #710707 0%, #710707 54%, #C4C4C4 40%, #C4C4C4 100%);
 }
 
 .video-sound-control {
@@ -467,8 +469,8 @@ label {
 }
 
 .sound-button {
-    width: 37px;
-    height: 29px;
+    width: 38px;
+    height: 31px;
     margin: 0px 50px;
     background-image: url(../assets/img/video/control-panel/sound_button.svg);
 }
@@ -479,7 +481,7 @@ label {
 
 .main-play-button, .main-pause-button {
     position: absolute;
-    top: 44%;
+    top: 30%;
     left: 50%;
     width: 220px;
     height: 220px;
@@ -520,6 +522,63 @@ label {
 
 .control-input:hover {
     cursor: pointer;
+}
+
+.video-slides-block {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.video-slides-block iframe{
+    width: 452px;
+    height: 254px;
+}
+
+.video-slider-control {
+    display: flex;
+    justify-content: center;
+}
+
+.video-slider-control button {
+    display: block;
+    width: 10px;
+    height: 12px;
+    border-style: none;
+    cursor: pointer;
+}
+
+.prev-video {
+    background: url(../assets/img/video/video-slider/prev-video.svg);
+}
+
+.next-video {
+    background: url(../assets/img/video/video-slider/next-video.svg);
+}
+
+.dot {
+    height: 12px;
+    width: 12px;
+    margin: 0px 10px;
+    border-radius: 50%;
+    background-color: #999999;
+    cursor: pointer;
+}
+
+.video-nav-bar {
+    display: flex;
+}
+
+.dot:first-child {
+    margin-left: 20px;
+}
+
+.dot:last-child {
+    margin-right: 20px;
+}
+
+.active-video {
+    background-color: #333333;
 }
 
 /* Buy ticets section */
