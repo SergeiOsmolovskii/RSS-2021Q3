@@ -581,6 +581,40 @@ label {
     background-color: #333333;
 }
 
+/* Gallery */
+
+.gallery .title {
+    color: #ffffff;
+    margin-bottom: 75px;
+}
+
+.picture-container {
+    height: 3500px;
+    overflow: hidden;
+}
+
+.picture-inner-container {
+    width: 100%;
+    max-height: 3000px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    column-gap: 36px;
+    row-gap: 24px;
+}
+
+.picture-inner-container img:first-child {
+    padding-top: 50px;
+}
+
+.picture-inner-container img:nth-child(11) {
+    padding-top: 50px;
+}
+
+.picture-container img {
+    width: 456px;
+  }
+
 /* Buy ticets section */
 
 .send-block {
