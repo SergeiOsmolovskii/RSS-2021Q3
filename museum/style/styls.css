@@ -56,9 +56,12 @@ header {
     background-color: var(--bg-dark);
 }
 
-section,
-footer {
+section {
     padding: 75px 0px;
+}
+
+footer {
+    padding: 75px 0px 41px 0px;
 }
 
 li {
@@ -229,6 +232,9 @@ label {
     background-color: #ffffff;
     cursor: pointer;
 }
+.square:hover {
+    background-color: #9D8665;
+}
 
 .square:first-child {
     margin-left: 0px;
@@ -285,7 +291,7 @@ label {
 /* Visiting section */
 
 .contacts {
-    padding-bottom: 71px;
+    padding-bottom: 70px;
 }
 
 .cards {
@@ -533,6 +539,7 @@ label {
 .video-slides-block iframe{
     width: 452px;
     height: 254px;
+    border: none;
 }
 
 .video-slider-control {
@@ -556,6 +563,10 @@ label {
     background: url(../assets/img/video/video-slider/next-video.svg);
 }
 
+.next-video:hover, .prev-video:hover {
+    filter: invert(14%) sepia(35%) saturate(6136%) hue-rotate(346deg) brightness(73%) contrast(110%);
+}
+
 .dot {
     height: 12px;
     width: 12px;
@@ -563,6 +574,10 @@ label {
     border-radius: 50%;
     background-color: #999999;
     cursor: pointer;
+}
+
+.dot:hover {
+    background-color: var(--dark-red);
 }
 
 .video-nav-bar {
@@ -590,6 +605,10 @@ label {
     margin-bottom: 75px;
 }
 
+.gallery .title::after {
+    content: none;
+}
+
 .picture-container {
     height: 1960px;
     overflow: hidden;
@@ -597,7 +616,7 @@ label {
 
 .picture-inner-container {
     width: 100%;
-    max-height: 3000px;
+    max-height: 2850px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -631,7 +650,7 @@ label {
 
 
 .tickets {
-    padding-bottom: 60px;
+    padding-bottom: 71px;
 }
 
 .ticket-block {
@@ -782,6 +801,15 @@ input[type="number"]::-webkit-inner-spin-button {
     transition: 0.5s;
 }
 
+/* Parallax */
+.parallax {
+    width: 100%;
+    height: 400px;
+    background-image:url(../assets/img/parallax/parallax.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
 /* Contacts section */
 
 .contacts-info {
@@ -790,8 +818,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .musema-contacts h3 {
-    margin-top: 10px;
-    margin-bottom: 37px;
+    margin-bottom: 52px;
     font-family: Roboto-reg;
     font-size: 28px;
     font-style: normal;
@@ -802,7 +829,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .musema-contacts li {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     font-family: Roboto;
     font-size: 22px;
     line-height: 26px;
@@ -828,7 +855,11 @@ footer {
 footer ul {
     flex-direction: column;
     flex-wrap: wrap;
-    height: 150px;
+    column-gap: 160px;
+    row-gap: 25px;
+    display: flex;
+    height: 149px;
+    justify-content: center;
 }
 
 footer nav {
@@ -836,13 +867,17 @@ footer nav {
 }
 
 footer nav ul li {
-    margin-right: 155px;
-    margin-left: 0px;
+    padding: 0px;
 }
 
 .footer-block {
     display: flex;
     justify-content: space-between;
+
+}
+
+.footer-block .logo {
+    margin-top: 9px;
 }
 
 .sociall {
@@ -858,7 +893,7 @@ footer nav ul li {
     width: 46px;
     height: 46px;
     margin-bottom: 14px;
-    margin-left: 24px;
+    margin-left: 25px;
     border-radius: 50%;
     border: 1px solid #ffffff;
     transition: 0.5s;
@@ -874,4 +909,28 @@ footer nav ul li {
 .sociall a:hover {
     filter: invert(57%) sepia(11%) saturate(1001%) hue-rotate(356deg) brightness(93%) contrast(86%);
     transition: 0.5s;
+}
+
+.footer-info {
+
+    border-top: 3px solid #666666;
+    padding: 50px 0px;
+
+}
+
+.footer-info p, .footer-info a {
+    font-size: 22px;
+    font-family: Roboto;
+    letter-spacing: 2px;
+    color:#ffffff;
+}
+
+.footer-info a {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.footer-info .wrapper {
+    display: flex;
+    justify-content: space-between;
 }
