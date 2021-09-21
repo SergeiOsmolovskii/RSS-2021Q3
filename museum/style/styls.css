@@ -582,14 +582,16 @@ label {
 }
 
 /* Gallery */
-
+.gallery {
+    padding-bottom: 0;
+}
 .gallery .title {
     color: #ffffff;
     margin-bottom: 75px;
 }
 
 .picture-container {
-    height: 3500px;
+    height: 1960px;
     overflow: hidden;
 }
 
@@ -629,13 +631,7 @@ label {
 
 
 .tickets {
-    padding-bottom: 71px;
-}
-
-.tickets,
-.tickets .title,
-.tickets h3 {
-    color: #ffffff
+    padding-bottom: 60px;
 }
 
 .ticket-block {
@@ -650,7 +646,7 @@ label {
 
 .amount h3 {
     text-align: right;
-    margin-bottom: 13px;
+    margin-bottom: 27px;
 }
 
 .ticket-types {
@@ -666,11 +662,11 @@ input[type="number"] {
 }
 
 .ticket-types div {
-    margin-bottom: 49px;
+    margin-bottom: 25px;
 }
 
 .ticket-types h3 {
-    margin-bottom: 52px;
+    margin-bottom: 53px;
 }
 
 .buy h3,
@@ -686,11 +682,11 @@ input[type="number"] {
 .custom-radio-btn {
     display: inline-block;
     position: relative;
-    width: 12px;
-    height: 12px;
-    margin-right: 17px;
+    width: 13px;
+    height: 13px;
+    margin-right: 18px;
     background: transparent;
-    border: 2px solid #ffffff;
+    border: 2px solid #000000;
     border-radius: 50%;
 }
 
@@ -702,7 +698,7 @@ input[type="number"] {
     display: inline-block;
     width: 7px;
     height: 7px;
-    background: #ffffff;
+    background: #000000;
     border-radius: 50%;
     transform: translate(-50%, -50%) scale(0);
 }
@@ -742,8 +738,8 @@ input[type="number"]::-webkit-inner-spin-button {
     display: flex;
     justify-content: space-between;
     margin-top: 14px;
-    margin-bottom: 35px;
-    border: 3px solid #ffffff;
+    margin-bottom: 11px;
+    border: 3px solid #000000;
 }
 
 .amount-tickets button {
@@ -753,13 +749,13 @@ input[type="number"]::-webkit-inner-spin-button {
     font-size: 33px;
     line-height: 38px;
     border: 0;
-    color: #ffffff;
+    color: #000000;
     background: transparent;
     cursor: pointer;
 }
 
 .total-price {
-    margin: 15px 0px 50px 0px;
+    margin: 39px 0px 61px 0px;
     letter-spacing: 1.65px;
 }
 
@@ -773,8 +769,10 @@ input[type="number"]::-webkit-inner-spin-button {
     font-weight: 300;
     line-height: 26px;
     letter-spacing: 2px;
-    color: #000000;
+    color: #ffffff;
+    background-color: #000;
     border-style: none;
+    border-radius: 2px;
     cursor: pointer;
     transition: 0.5s;
 }
