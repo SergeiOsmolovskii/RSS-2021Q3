@@ -11,8 +11,6 @@ const pictureInnerContainer = document.querySelector('.picture-inner-container')
 let imgCount = 15;
 let imgArr = [...Array(+`${imgCount}`).keys()].map(item => item +1)
 
-console.log(imgArr)
-
 const shuffle = (arr) => {
   for (let i = arr.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
@@ -29,5 +27,3 @@ imgArr.map(item => {
   img.alt = `galery${item}`;
   pictureInnerContainer.append(img);
 })
-
-console.log(imgArr)
