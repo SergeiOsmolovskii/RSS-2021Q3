@@ -975,7 +975,7 @@ footer nav ul li {
 }
 
 .ticket-description {
-    margin-bottom: 74px;
+    margin-bottom: 72px;
     font-size: 18px;
     font-family: Roboto-reg;
     color: var(--dark-red);
@@ -990,7 +990,7 @@ footer nav ul li {
     width: 100%;
     height: 3px;
     background-color: var(--dark-red);
-    bottom: -14px;
+    bottom: -12px;
     left: 0;
 }
 
@@ -999,41 +999,81 @@ footer nav ul li {
     justify-content: space-between;
 }
 
-.booking-tickets input {
+.selected-date, .selekted-time {
+    width: 156px;
+    padding: 9px 15px;
     margin-bottom: 20px;
-    padding: 8px 15px;
     font-size: 18px;
     line-height: 21px;
     font-family: Roboto-reg;
     color: #000000;
 }
 
-.selected-date::-webkit-calendar-picker-indicator {
+.your-name, .your-email, .your-phone, .ticets-type  {
+    margin-bottom: 20px;
+    padding: 10px 15px;
+    font-size: 18px;
+    line-height: 21px;
+    font-family: Roboto-reg;
+    color: #000000;
+}
+
+
+
+
+.selected-date::-webkit-calendar-picker-indicator, .selekted-time::-webkit-calendar-picker-indicator {
     border-radius: 50%;
     width: 17px;
     height: 17px;
     background-image: url(../assets/img/pop_up/arrow.svg);
-}
-
-/* input[type=date]::-webkit-datetime-edit-text, ::-webkit-datetime-edit-year-field, ::-webkit-datetime-edit-day-field, ::-webkit-datetime-edit-month-field {
-    -webkit-appearance: none;
-    display: none;
-} */
-
-input[type="date"]:before, input[type="time"]:before {
-    width: 15px;
-    height: 15px;
-    margin-right: 15px;
-}
-
-input[type="date"]:before {
-    content: url(../assets/img/pop_up/date-icon.svg);
+    margin-right: -5px;
 }
 
 input[type="time"]:before {
+    width: 15px;
+    height: 15px;
     content: url(../assets/img/pop_up/time-icon.svg);
 }
 
-input[value="0000-00-00"]::-webkit-datetime-edit {
-    color: red; 
+.your-name::before {
+    width: 15px;
+    height: 15px;
+    margin-right: 15px;
+    content: url(../assets/img/pop_up/user-icon.svg);
+}
+
+input[type="date"], input[type="time"] {
+    color: transparent;
+}
+
+input[type="date"]:before {
+    width: 15px;
+    height: 15px;
+    content: url(../assets/img/pop_up/date-icon.svg);
+}
+
+input[type="date"]:invalid:after, input[type="time"]:invalid:after { 
+    position: absolute;
+    content: attr(placeholder);
+    margin-left: 28px;
+    pointer-events: none;
+    color: #000000;
+}
+
+input[type="date"]:valid,
+input[type="time"]:valid,
+input[type="date"]:invalid:focus,
+input[type="time"]:invalid:focus,
+input[type="date"]:invalid:active,
+input[type="time"]:invalid:active {
+    color: #000000;
+}
+
+input[type="date"]:invalid:active:after,
+input[type="time"]:invalid:active:after,
+input[type="date"]:invalid:valid::after,
+input[type="time"]:invalid:valid::after,
+input[type="date"]:invalid:focus:after,
+input[type="time"]:invalid:focus:after {
+    display: none;
 }
