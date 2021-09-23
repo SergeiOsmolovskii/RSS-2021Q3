@@ -414,26 +414,42 @@
                         </div>
                         
                         <div class="added-tickets">
-                            <div>
+                            <div class="added-ticket-block">
                                 <div class="count-ticket-type-price">
-                                    <span class="basic-tickets-count">2</span><span class="current-ticket-type">Basic (20 €)</span> 
+                                    <span class="current-ticket-type" id="basik-ticket">Basic (20 €)</span> 
                                 </div>
-                                <p><span>40</span>€</p>
+                                <span class="basik-ticket-total">40</span>
                             </div>
-                            <div>
+                            <div class="added-ticket-block">
                                 <div class="count-ticket-type-price">
-                                    <span class="senior-tickets-count">2</span><span class="current-ticket-type">Senior (20 €)</span> 
+                                    <span class="current-ticket-type" id="senior-ticket">Senior (10 €)</span> 
                                 </div>
-                                <p><span>20</span>€</p>
+                                <span class="senior-ticket-total">20</span>
                             </div>
                         </div>
                         <div class="total">
-                            <p>Total:</p>
-                            <p><span class="total-price">60</span> €</p>
+                            <p>Total:</p><span class="total-tickets-price">60</span>
                         </div>
 
                         <div class="pay-card">
+                            <div class="face-card">
+                                <label for="">Card number</label>
+                                <input type="number">
+                                <div>
+                                    <label for="">Expiration date</label>
+                                    <div>
+                                        <input type="number">
+                                        <input type="number">
+                                    </div>
+                                    <label for="">Cardholder name</label>
+                                    <input type="text">
+                                </div>
+                                <img src="" alt="">
 
+                            </div>
+                            <div class="reverse-card">
+                                
+                            </div>
                         </div>
 
                         <button>Book</button>

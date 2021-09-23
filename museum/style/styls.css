@@ -735,7 +735,7 @@ input[type="radio"]:checked+.custom-radio-btn::before {
 
 }
 
-input[type="number"] {
+#amount-basik, #amount-senior {
     padding: 9px 7px;
     text-align: center;
     color: #000000;
@@ -1206,7 +1206,7 @@ input[type="time"]:invalid:focus:after {
 }
 
 .pay-tickets p {
-    margin-bottom: 7px;
+    margin-bottom: 5px;
     line-height: 21px;
     letter-spacing: 0.5px;
     font-size: 18px;
@@ -1253,7 +1253,61 @@ input[type="time"]:invalid:focus:after {
     border-radius: 5px;
 }
 
-.current-ticket-type {
+.current-ticket-type, .basik-ticket-total, .senior-ticket-total {
     font-family: Roboto-reg;
     font-size: 22px;
+}
+
+.current-ticket-type::before {
+    content: '2';
+    margin-right: 10px;
+    padding: 1px 11px;
+    font-size: 16px;
+    background-color: #000000;
+    color: #A4A4A3;
+    border-radius: 5px;
+}
+
+.added-ticket-block {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.basik-ticket-total::after, .senior-ticket-total::after, .total-tickets-price::after {
+    content: ' €';
+}
+
+.added-tickets {
+    margin-bottom: 23px;
+}
+
+.total {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    font-size: 32px;
+    font-family: Roboto-reg;
+    align-items: center;
+}
+
+.total p {
+    margin-bottom: 0;
+    font-size: 32px;
+    font-family: Roboto-reg;
+}
+
+.total::before {
+    content: '';
+    position: absolute;
+    top: -13px;
+    height: 2px;
+    width: 100%;
+    background-color: var(--dark-red);
+}
+
+
+.face-card {
+    padding: 15px 20px;
+    background-color:#bcbcbc;
 }
