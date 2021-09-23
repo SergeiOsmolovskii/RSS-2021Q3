@@ -355,26 +355,45 @@
                         <input class="selected-date" type="date" placeholder="Date" required>
                         <input class="selekted-time" type="time" placeholder="Time" required>
                     </div>
-                    <input class="your-name" type="text" placeholder="Name">
-                    <input class="your-email" type="email" placeholder="E-mail">
-                    <input class="your-phone" type="tel" placeholder="Phone">
-                    <input class="ticets-type" type="text">
-                    <div>
-                        <h3>Entry Ticket</h3>
-                        <div>
-                            <label for="">Basic 18+ (20 €)</label>
-                            <div>
-                                <button></button>
-                                <input type="number">
-                                <button></button>
+                    <label class="your-name">
+                        <span></span>
+                        <input type="text" placeholder="Name">
+                    </label>
+                    <label class="your-email">
+                        <span></span>
+                        <input type="email" placeholder="E-mail">
+                    </label>
+                    <label class="your-phone">
+                        <span></span>
+                        <input type="tel" placeholder="Phone">
+                    </label>
+                    <label class="tickets-type">
+                        <span></span>
+                        <select onfocus='this.size=2;' onblur='this.size=0;' onchange='this.size=1; this.blur();' class="tickets-type-select" name="" id="">
+                            <option value="" disabled selected hidden>Ticket Type</option>
+                            <option value="">Permanent exhibition</option>
+                            <option value="">Temporary exhibition</option>
+                            <option value="">Combined Admission</option>
+                        </select>
+                        <span class="select-arrow"></span>
+                    </label>
+                    
+                    <div class="entry-ticket">
+                        <h3 class="entry-ticket-description">Entry Ticket</h3>
+                        <div class="basic-ticket">
+                            <label>Basic 18+ (20 €)</label>
+                            <div class="selected-tickets">
+                                <button type="button" onclick="this.nextElementSibling.stepDown()">&ndash;</button>
+                                <input  type="number" min="0" max="50" value="2">
+                                <button type="button" onclick="this.previousElementSibling.stepUp()">+</button>
                             </div>
                         </div>
-                        <div>
-                            <label for="">Senior 65+ (10 €)</label>
-                            <div>
-                                <button></button>
-                                <input type="number">
-                                <button></button>
+                        <div class="senior-ticket">
+                            <label>Senior 65+ (10 €)</label>
+                            <div class="selected-tickets">
+                                <button type="button" onclick="this.nextElementSibling.stepDown()">&ndash;</button>
+                                <input  type="number" min="0" max="50" value="2">
+                                <button type="button" onclick="this.previousElementSibling.stepUp()">+</button>
                             </div>
                         </div>
                     </div>
@@ -384,26 +403,26 @@
                 <div class="pay-tickets">
                     <div>
                         <div>
-                            <div>
-                                <h3>Overview</h3>
-                                <h3>Tour to Louvre</h3>
+                            <div class="added-tickets-info">
+                                <h3 class="ticket-goal">Overview</h3>
+                                <h3 class="pay-tickets-subtitle">Tour to Louvre</h3>
                                 <p class="added-date">Friday, August 19</p>
                                 <p class="added-time">16 : 30</p>
                                 <p class="pay-info">Temporary exhibition</p>
+                                <img src="./assets/img/pop_up/louvre-img.png" alt="ticket">
                             </div>
-                            <img src="" alt="">
                         </div>
                         
                         <div class="added-tickets">
                             <div>
-                                <div>
-                                    <p><span class="basic-tickets-count">2</span>Basic (20 €)</p>
+                                <div class="count-ticket-type-price">
+                                    <span class="basic-tickets-count">2</span><span class="current-ticket-type">Basic (20 €)</span> 
                                 </div>
                                 <p><span>40</span>€</p>
                             </div>
                             <div>
-                                <div>
-                                    <p><span class="basic-tickets-count">2</span>Senior (10 €)</p>
+                                <div class="count-ticket-type-price">
+                                    <span class="senior-tickets-count">2</span><span class="current-ticket-type">Senior (20 €)</span> 
                                 </div>
                                 <p><span>20</span>€</p>
                             </div>

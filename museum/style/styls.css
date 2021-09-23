@@ -937,6 +937,8 @@ footer nav ul li {
 
 /* Buy ticket pop-up*/
 
+/* Left side */
+
 .pop-up-inner {
     display: flex;
     flex-wrap: wrap;
@@ -974,8 +976,8 @@ footer nav ul li {
     content: none;
 }
 
-.ticket-description {
-    margin-bottom: 72px;
+.ticket-description, .entry-ticket-description {
+    margin-bottom: 74px;
     font-size: 18px;
     font-family: Roboto-reg;
     color: var(--dark-red);
@@ -984,13 +986,13 @@ footer nav ul li {
     line-height: 21px;
 }
 
-.ticket-description::after {
+.ticket-description::after, .entry-ticket-description::after {
     content: '';
     position: absolute;
     width: 100%;
     height: 3px;
     background-color: var(--dark-red);
-    bottom: -12px;
+    bottom: -14px;
     left: 0;
 }
 
@@ -1009,17 +1011,18 @@ footer nav ul li {
     color: #000000;
 }
 
-.your-name, .your-email, .your-phone, .ticets-type  {
+.your-name, .your-email, .your-phone, .tickets-type {
+    position: relative;
     margin-bottom: 20px;
-    padding: 10px 15px;
+}
+
+.your-name input, .your-email input, .your-phone input, .tickets-type input, .tickets-type-select {
+    padding: 10px 15px 10px 42px;
     font-size: 18px;
     line-height: 21px;
     font-family: Roboto-reg;
     color: #000000;
 }
-
-
-
 
 .selected-date::-webkit-calendar-picker-indicator, .selekted-time::-webkit-calendar-picker-indicator {
     border-radius: 50%;
@@ -1033,13 +1036,6 @@ input[type="time"]:before {
     width: 15px;
     height: 15px;
     content: url(../assets/img/pop_up/time-icon.svg);
-}
-
-.your-name::before {
-    width: 15px;
-    height: 15px;
-    margin-right: 15px;
-    content: url(../assets/img/pop_up/user-icon.svg);
 }
 
 input[type="date"], input[type="time"] {
@@ -1076,4 +1072,188 @@ input[type="time"]:invalid:valid::after,
 input[type="date"]:invalid:focus:after,
 input[type="time"]:invalid:focus:after {
     display: none;
+}
+
+.your-name > input::placeholder, .your-email > input::placeholder, .your-phone > input::placeholder, .ticket-type > input::placeholder {
+    color: #000000;
+}
+
+.your-name > input, .your-email > input, .your-phone > input, .tickets-type span {
+    width: 100%;
+    box-sizing:border-box;
+}
+
+.your-name span, .your-email span, .your-phone span, .tickets-type span {
+    position: absolute;
+    left: 14px;
+    bottom: 50%;
+    width: 15px;
+    height: 15px;
+    transform: translateY(50%);
+
+}
+
+.your-name span {
+    content: url(../assets/img/pop_up/user-icon.svg);
+}
+
+.your-email span {
+    height: 11px;
+    content: url(../assets/img/pop_up/email-icon.svg);
+}
+
+.your-phone span {
+    content: url(../assets/img/pop_up/tel-icon.svg);
+    height: 23px;
+    width: 14px;
+}
+
+.your-name {
+    color: #000;
+}
+
+.tickets-type-select {
+    width: 100%;
+    padding-bottom: 9px;
+    padding-left: 40px;
+}
+.tickets-type {
+    margin-bottom: 19px;
+}
+
+.tickets-type span {
+    content: url(../assets/img/pop_up/tickets-select-icon.svg);
+    height: 15px;
+    width: 15px;
+}
+
+.entry-ticket {
+    padding: 10px 15px 16px 15px;
+    border: 1px solid #000000;
+}
+
+.entry-ticket-description {
+    font-family: Forum;
+    margin-bottom: 15px;
+    line-height: 20px;
+}
+
+.entry-ticket-description::after {
+    bottom: -4px;
+    color:var(--font-gold);
+}
+
+.entry-ticket label {
+    font-size: 18px;
+    line-height: 21px;
+    font-family: Roboto-reg;
+}
+
+.selected-tickets {
+    border: 1px solid #000000;
+}
+.basic-ticket, .senior-ticket {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.selected-tickets button {
+    width: 36px;
+    height: 26px;
+    padding: 4px;
+    text-align: center;
+    font-family: Roboto;
+    font-size: 18px;
+    border: 0;
+    color: #ffffff;
+    background: #000000;
+    cursor: pointer;
+}
+
+.basic-ticket {
+    margin-bottom: 15px;
+}
+
+.selected-tickets input {
+    width: 29px;
+    height: 25px;
+    font-size: 18px;
+    padding: 0;
+    line-height: 21px;
+}
+
+
+/* Right side */
+
+.ticket-goal, .pay-tickets-subtitle {
+    font-family: Roboto-reg;
+    text-transform: none;
+    letter-spacing: 0px;
+}
+
+.ticket-goal {
+    margin-bottom: 3px;
+    font-size: 32px;
+    line-height: 37px;
+}
+
+.pay-tickets-subtitle{
+    font-size: 22px;
+    line-height: 27px;
+    color: var(--dark-red);
+    margin-bottom: 10px;
+}
+
+.pay-tickets p {
+    margin-bottom: 7px;
+    line-height: 21px;
+    letter-spacing: 0.5px;
+    font-size: 18px;
+}
+
+.added-date::before, .added-time::before, .pay-info::before {
+    height: 15px;
+    width: 15px;
+    margin-right: 15px;
+}
+
+.added-date::before {
+    content: url(../assets/img/pop_up/date-icon.svg);
+}
+
+.added-time::before {
+    content: url(../assets/img/pop_up/time-icon.svg);
+}
+
+.pay-info::before {
+    content: url(../assets/img/pop_up/accept.svg);
+}
+
+.added-tickets-info {
+    position: relative;
+    margin-bottom: 22px;
+}
+
+.added-tickets-info img {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.count-ticket-type-price {
+    display: flex;
+}
+
+.basic-tickets-count, .senior-tickets-count {
+    padding: 1px 11px;
+    margin-right: 10px;
+    color: #A4A4A3;
+    background-color: #000000;
+    border-radius: 5px;
+}
+
+.current-ticket-type {
+    font-family: Roboto-reg;
+    font-size: 22px;
 }
