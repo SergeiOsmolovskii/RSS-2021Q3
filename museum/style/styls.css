@@ -18,6 +18,7 @@ p,
 ul,
 h2,
 h3,
+h4,
 figure,
 button {
     margin: 0;
@@ -745,11 +746,12 @@ input[type="radio"]:checked+.custom-radio-btn::before {
 
 input[type="number"] {
     -webkit-appearance: textfield;
-    appearance: textfield;
 }
 
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
+#amount-basik::-webkit-outer-spin-button,
+#amount-senior::-webkit-outer-spin-button,
+#amount-basik::-webkit-inner-spin-button,
+#amount-senior::-webkit-inner-spin-button {
     display: none;
 }
 
@@ -1172,7 +1174,7 @@ input[type="time"]:invalid:focus:after {
 }
 
 .basic-ticket {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
 .selected-tickets input {
@@ -1206,9 +1208,10 @@ input[type="time"]:invalid:focus:after {
 }
 
 .pay-tickets p {
-    margin-bottom: 5px;
+    margin-bottom: 7px;
     line-height: 21px;
-    letter-spacing: 0.5px;
+    font-family: Roboto-reg;
+    letter-spacing: 0px;
     font-size: 18px;
 }
 
@@ -1232,7 +1235,7 @@ input[type="time"]:invalid:focus:after {
 
 .added-tickets-info {
     position: relative;
-    margin-bottom: 22px;
+    margin-bottom: 19px;
 }
 
 .added-tickets-info img {
@@ -1271,7 +1274,7 @@ input[type="time"]:invalid:focus:after {
 .added-ticket-block {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 
 .basik-ticket-total::after, .senior-ticket-total::after, .total-tickets-price::after {
@@ -1279,16 +1282,17 @@ input[type="time"]:invalid:focus:after {
 }
 
 .added-tickets {
-    margin-bottom: 23px;
+    margin-bottom: 21px;
 }
 
 .total {
     position: relative;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
     font-size: 32px;
     font-family: Roboto-reg;
-    align-items: center;
 }
 
 .total p {
@@ -1300,14 +1304,122 @@ input[type="time"]:invalid:focus:after {
 .total::before {
     content: '';
     position: absolute;
-    top: -13px;
+    top: -10px;
     height: 2px;
     width: 100%;
     background-color: var(--dark-red);
 }
 
+.card-info {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
 
 .face-card {
-    padding: 15px 20px;
+    padding: 13px 20px 19px 20px;
+    box-sizing: border-box;
+    width: 359px;
     background-color:#bcbcbc;
+    border-radius: 5px;
+}
+
+.face-card label {
+    margin-bottom: 3px;
+}
+
+.face-card label, .expiration-date p {
+    font-family: Roboto;
+    font-size: 12px;
+    color: #161615;
+}
+
+.face-card input {
+    height: 35px;
+    box-sizing: border-box;
+}
+
+.card-expiration-date {
+    display: flex;
+    column-gap: 15px;
+}
+
+.user-info-block {
+    width: 215px;
+}
+
+.card-expiration-date input {
+    width: 100%;
+}
+
+.cardholder-name {
+    display: flex;
+    flex-direction: column;
+}
+
+.face-card {
+    position: relative;
+}
+
+.face-card input {
+    border: none;
+}
+
+.face-card img {
+    position: absolute;
+    right: 20px;
+    top: 31px;
+}
+
+#card-month::-webkit-inner-spin-button, #card-year::-webkit-inner-spin-button {
+    /* opacity: 1; */
+    display: none;
+}
+
+.card-month, .card-year {
+    display: none;
+    width: 100%;
+    border: 1px solid #A4A4A3;
+}
+
+.change-month-buttons, .change-year-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.change-month-buttons button, .change-year-buttons button {
+    height: 100%;
+    width: 28px;
+    border: none;
+    border-left: 1px solid #A4A4A3;
+}
+
+.expiration-date input {
+    font-size: 12px;
+    padding-left: 10px;
+}
+
+.month {
+    border: none;
+}
+
+.next-month {
+    background: url(../assets/img/pop_up/arrow-next.svg) no-repeat center;
+    background-color: #ffffff;
+}
+
+.prev-month {
+    background: url(../assets/img/pop_up/arrow-prev.svg) no-repeat center;
+    background-color: #ffffff;
+}
+
+.date-card-block {
+    display: flex;
+}
+
+.expiration-date h4 {
+    margin-bottom: 7px;
+    font-family: Roboto;
+    font-size: 12px;
+    line-height: 14px;
 }

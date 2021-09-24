@@ -369,7 +369,7 @@
                     </label>
                     <label class="tickets-type">
                         <span></span>
-                        <select onfocus='this.size=2;' onblur='this.size=0;' onchange='this.size=1; this.blur();' class="tickets-type-select" name="" id="">
+                        <select class="tickets-type-select" id="exhibition">
                             <option value="" disabled selected hidden>Ticket Type</option>
                             <option value="">Permanent exhibition</option>
                             <option value="">Temporary exhibition</option>
@@ -433,18 +433,38 @@
 
                         <div class="pay-card">
                             <div class="face-card">
-                                <label for="">Card number</label>
-                                <input type="number">
-                                <div>
-                                    <label for="">Expiration date</label>
-                                    <div>
-                                        <input type="number">
-                                        <input type="number">
+                                <div class="user-info-block">
+                                    <div class="card-info">
+                                        <label for="card-number">Card number</label>
+                                        <input type="number" id="card-number">
                                     </div>
-                                    <label for="">Cardholder name</label>
-                                    <input type="text">
+                                    <div class="expiration-date">
+                                        <h4>Expiration date</h4>
+                                            <div class="card-expiration-date">
+                                                <label for="card-month" class="card-month"></label>
+                                                <div class="date-card-block">
+                                                    <input class="month" type="number" id="card-month" value="03">
+                                                    <span class="change-month-buttons">
+                                                        <button class="next-month"></button>
+                                                        <button class="prev-month"></button>
+                                                    </span>
+                                                </div>
+                                                <label for="card-year" class="card-year"></label>
+                                                <div class="date-card-block">
+                                                    <input class="year" type="number" id="card-year" value="2024">
+                                                    <span class="change-year-buttons">
+                                                        <button class="next-month"></button>
+                                                        <button class="prev-month"></button>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                    </div>
                                 </div>
-                                <img src="" alt="">
+                                <span class="cardholder-name">
+                                    <label for="cardholder-name">Cardholder name</label>
+                                    <input type="text" id="cardholder-name">
+                                </span>
+                                <img src="./assets/img/pop_up/cards-logo.png" alt="pay-cards">
 
                             </div>
                             <div class="reverse-card">
