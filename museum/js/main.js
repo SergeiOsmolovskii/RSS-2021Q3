@@ -27,3 +27,32 @@ imgArr.map(item => {
   img.alt = `galery${item}`;
   pictureInnerContainer.append(img);
 })
+
+/* Open form */
+
+
+const buyTicketsBtn = document.querySelector('#buy-tickets');
+const overlayMain = document.querySelector('.overlay-main');
+const popupOverlay = document.querySelector('.popup-overlay');
+const popup = document.querySelector('.popup');
+const popupClose = document.querySelector('.popup-close');
+
+
+const openPopup = () => {
+  popup.style.left = '50%';
+  overlayMain.style.left = '0';
+  popupOverlay.style.left = '0';
+}
+
+const closePopup = () => {
+  popup.style.left = '-100%';
+  overlayMain.style.left = '-100%';
+  popupOverlay.style.left = '-100%';
+}
+
+
+buyTicketsBtn.addEventListener('click', openPopup);
+popupClose.addEventListener('click', closePopup);
+overlayMain.addEventListener('click', closePopup);
+
+

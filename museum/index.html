@@ -253,7 +253,7 @@
                                 </div>
                             </div>
                             <p class="total-price">Total €<span class="price">220</span></p>
-                            <button class="buy-now">Buy Now</button>
+                            <button class="buy-now" id="buy-tickets">Buy Now</button>
                         </div>
                     </div>
                 </div>
@@ -342,10 +342,11 @@
             <a href="https://github.com/sergeiosmolovskii">SergeiOsmolovskii</a>
         </div>
     </footer>
+<div class="overlay-main">
+    <div class="popup-overlay">
 
-    <form action="" class="buy-tickets-popup">
-
-        <div class="wrapper">
+    <div class="popup">
+        <form action="" class="buy-tickets-popup">
             <div class="pop-up-inner">
                 <div class="booking-tickets">
                     <img src="./assets/img/pop_up/logo.svg" alt="logo">
@@ -377,14 +378,14 @@
                         </select>
                         <span class="select-arrow"></span>
                     </label>
-                    
+    
                     <div class="entry-ticket">
                         <h3 class="entry-ticket-description">Entry Ticket</h3>
                         <div class="basic-ticket">
                             <label>Basic 18+ (20 €)</label>
                             <div class="selected-tickets">
                                 <button type="button" onclick="this.nextElementSibling.stepDown()">&ndash;</button>
-                                <input  type="number" min="0" max="50" value="2">
+                                <input type="number" min="0" max="50" value="2">
                                 <button type="button" onclick="this.previousElementSibling.stepUp()">+</button>
                             </div>
                         </div>
@@ -392,14 +393,14 @@
                             <label>Senior 65+ (10 €)</label>
                             <div class="selected-tickets">
                                 <button type="button" onclick="this.nextElementSibling.stepDown()">&ndash;</button>
-                                <input  type="number" min="0" max="50" value="2">
+                                <input type="number" min="0" max="50" value="2">
                                 <button type="button" onclick="this.previousElementSibling.stepUp()">+</button>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
+    
+    
                 <div class="pay-tickets">
                     <div>
                         <div>
@@ -412,17 +413,17 @@
                                 <img src="./assets/img/pop_up/louvre-img.png" alt="ticket">
                             </div>
                         </div>
-                        
+    
                         <div class="added-tickets">
                             <div class="added-ticket-block">
                                 <div class="count-ticket-type-price">
-                                    <span class="current-ticket-type" id="basik-ticket">Basic (20 €)</span> 
+                                    <span class="current-ticket-type" id="basik-ticket">Basic (20 €)</span>
                                 </div>
                                 <span class="basik-ticket-total">40</span>
                             </div>
                             <div class="added-ticket-block">
                                 <div class="count-ticket-type-price">
-                                    <span class="current-ticket-type" id="senior-ticket">Senior (10 €)</span> 
+                                    <span class="current-ticket-type" id="senior-ticket">Senior (10 €)</span>
                                 </div>
                                 <span class="senior-ticket-total">20</span>
                             </div>
@@ -430,8 +431,18 @@
                         <div class="total">
                             <p>Total:</p><span class="total-tickets-price">60</span>
                         </div>
-
+    
                         <div class="pay-card">
+    
+                            <div class="reverse-card">
+                                <div class="cvv-block">
+                                    <label for="cvv">CVC/CVV</label>
+                                    <input type="number" id="cvv">
+                                    <p>The last
+                                        3 or 4 digits
+                                        on back&nbsp;&nbsp;&nbsp;&nbsp; of the card</p>
+                                </div>
+                            </div>
                             <div class="face-card">
                                 <div class="user-info-block">
                                     <div class="card-info">
@@ -440,47 +451,53 @@
                                     </div>
                                     <div class="expiration-date">
                                         <h4>Expiration date</h4>
-                                            <div class="card-expiration-date">
-                                                <label for="card-month" class="card-month"></label>
-                                                <div class="date-card-block">
-                                                    <input class="month" type="number" id="card-month" value="03">
-                                                    <span class="change-month-buttons">
-                                                        <button class="next-month"></button>
-                                                        <button class="prev-month"></button>
-                                                    </span>
-                                                </div>
-                                                <label for="card-year" class="card-year"></label>
-                                                <div class="date-card-block">
-                                                    <input class="year" type="number" id="card-year" value="2024">
-                                                    <span class="change-year-buttons">
-                                                        <button class="next-month"></button>
-                                                        <button class="prev-month"></button>
-                                                    </span>
+                                        <div class="card-expiration-date">
+                                            <div class="input-form-wrapper">
+                                                <label for="card-month"></label>
+                                                <div class="card-month">
+                                                    <input type="number" min="0" max="12" value="03" id="card-month">
+                                                    <div class="button-wrapper">
+                                                        <button class="one" type="button"
+                                                            onclick="this.parentElement.previousElementSibling.stepUp()"></button>
+                                                        <button class="two" type="button"
+                                                            onclick="this.parentElement.previousElementSibling.stepDown()"></button>
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <div class="input-form-wrapper">
+                                                <label for="card-year"></label>
+                                                <div class="card-year">
+                                                    <input type="number" min="2021" max="2030" value="2024" id="card-year">
+                                                    <div class="button-wrapper">
+                                                        <button class="one" type="button"
+                                                            onclick="this.parentElement.previousElementSibling.stepUp()"></button>
+                                                        <button class="two" type="button"
+                                                            onclick="this.parentElement.previousElementSibling.stepDown()"></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <span class="cardholder-name">
+                                <div class="cardholder-name">
                                     <label for="cardholder-name">Cardholder name</label>
                                     <input type="text" id="cardholder-name">
-                                </span>
+                                </div>
                                 <img src="./assets/img/pop_up/cards-logo.png" alt="pay-cards">
-
-                            </div>
-                            <div class="reverse-card">
-                                
+    
                             </div>
                         </div>
-
-                        <button>Book</button>
-
+    
+                        <button class="book-btn">Book</button>
+    
                     </div>
                 </div>
-
             </div>
-        </div>
-    </form>
-
+            <div class="popup-close"></div>
+        </form>
+    </div>
+</div>
+</div>
 
     <script src="./js/main.js"></script>
 </body>
