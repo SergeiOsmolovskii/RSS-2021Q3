@@ -778,6 +778,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .buy-now {
+    position: relative;
     width: 175px;
     height: 50px;
     padding: 10px 0px;
@@ -794,6 +795,24 @@ input[type="number"]::-webkit-inner-spin-button {
     cursor: pointer;
     transition: 0.5s;
 }
+
+.book-btn .circle {
+    position: absolute;
+    background-color: #fff;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    animation: scale 0.5s ease-out;
+}
+  
+@keyframes scale {
+    to {
+      transform: translate(-50%, -50%) scale(3);
+      opacity: 0;
+    }
+}
+
 
 /* Parallax */
 .parallax {
@@ -1048,6 +1067,13 @@ input[type="date"]:invalid:after, input[type="time"]:invalid:after {
     margin-left: 28px;
     pointer-events: none;
     color: #000000;
+}
+input[type="date"]::-webkit-datetime-edit-day-field {
+    padding-left: 18px;
+}
+
+input[type="time"]::-webkit-datetime-edit {
+    padding-left: 18px;
 }
 
 input[type="date"]:valid,
@@ -1479,6 +1505,7 @@ input[type="time"]:invalid:focus:after {
 }
 
 .book-btn {
+    position: relative;
     display: block;
     padding: 10px 82px;
     margin-left: auto;
@@ -1491,6 +1518,7 @@ input[type="time"]:invalid:focus:after {
     border-style: none;
     cursor: pointer;
     transition: 0.5s;
+    overflow: hidden;
 }
 
 .popup {

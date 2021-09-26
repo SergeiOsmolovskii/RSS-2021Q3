@@ -29,14 +29,12 @@ imgArr.map(item => {
 })
 
 /* Open form */
-
-
+const bookBtn = document.querySelector('.book-btn');
 const buyTicketsBtn = document.querySelector('#buy-tickets');
 const overlayMain = document.querySelector('.overlay-main');
 const popupOverlay = document.querySelector('.popup-overlay');
 const popup = document.querySelector('.popup');
 const popupClose = document.querySelector('.popup-close');
-
 
 const openPopup = () => {
   popup.style.left = '50%';
@@ -44,15 +42,32 @@ const openPopup = () => {
   popupOverlay.style.left = '0';
 }
 
-const closePopup = () => {
-  popup.style.left = '-100%';
-  overlayMain.style.left = '-100%';
-  popupOverlay.style.left = '-100%';
-}
+function closePopup (e) {
 
+  if (e.target === popupOverlay || e.target === popupClose) {
+    popup.style.left = '-100%';
+    overlayMain.style.left = '-100%';
+    popupOverlay.style.left = '-100%';
+  }
+}
 
 buyTicketsBtn.addEventListener('click', openPopup);
 popupClose.addEventListener('click', closePopup);
-overlayMain.addEventListener('click', closePopup);
+popupOverlay.addEventListener('click', closePopup);
 
 
+/* Ripple effect */
+
+bookBtn.addEventListener('click', function (e) {
+  let x = e.offsetX;
+  let y = e.offsetY;
+
+  const circle = document.createElement('span')
+  circle.classList.add('circle')
+  circle.style.left = x + 'px'
+  circle.style.top = y + 'px'
+
+  this.appendChild(circle)
+
+  setTimeout(() => circle.remove(), 50000)
+})
