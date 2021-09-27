@@ -993,7 +993,7 @@ footer nav ul li {
 }
 
 .booking-tickets input {
-    border: 1px solid ;
+    border: 1px solid #000000;
 }
 
 .booking-tickets .title {
@@ -1034,8 +1034,8 @@ footer nav ul li {
 
 .selected-date, .selekted-time {
     width: 156px;
-    padding: 9px 15px;
-    margin-bottom: 24px;
+    padding: 10px 15px;
+    margin-bottom: 20px;
     font-size: 18px;
     line-height: 21px;
     font-family: Roboto-reg;
@@ -1159,6 +1159,7 @@ input[type="time"]:invalid:focus:after {
     width: 100%;
     padding-bottom: 9px;
     padding-left: 40px;
+    border: 1px solid #000000;
 }
 .tickets-type {
     margin-bottom: 20px;
