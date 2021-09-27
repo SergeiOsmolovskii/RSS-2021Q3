@@ -271,10 +271,13 @@ label {
 }
 
 .prev-slide {
-
     margin-right: 10px;
     background: url(../assets/img/welcome/slider/arrow-prev.png);
 }
+
+.prev-slide:hover, .next-slide:hover {
+    filter: brightness(0) saturate(100%) invert(58%) sepia(42%) saturate(275%) hue-rotate(356deg) brightness(85%) contrast(91%);
+} 
 
 .next-slide {
     margin-left: 10px;
@@ -611,8 +614,17 @@ label {
 }
 
 .picture-container {
+    position: relative;
     height: 1960px;
     overflow: hidden;
+}
+
+.border-fill {
+    position: absolute;
+    width: 100%;
+    height: 360px;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%);
 }
 
 .picture-inner-container {
@@ -925,10 +937,8 @@ footer nav ul li {
 }
 
 .footer-info {
-
     border-top: 3px solid #666666;
     padding: 50px 0px;
-
 }
 
 .footer-info p, .footer-info a {
@@ -946,6 +956,10 @@ footer nav ul li {
 .footer-info .wrapper {
     display: flex;
     justify-content: space-between;
+}
+
+.footer-info a:hover {
+    color: var(--font-gold);
 }
 
 /* Buy ticket pop-up*/
@@ -976,6 +990,10 @@ footer nav ul li {
 .booking-tickets img {
     height: 41px;
     width: 85px;
+}
+
+.booking-tickets input {
+    border: 1px solid ;
 }
 
 .booking-tickets .title {
@@ -1017,7 +1035,7 @@ footer nav ul li {
 .selected-date, .selekted-time {
     width: 156px;
     padding: 9px 15px;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
     font-size: 18px;
     line-height: 21px;
     font-family: Roboto-reg;
@@ -1026,11 +1044,11 @@ footer nav ul li {
 
 .your-name, .your-email, .your-phone, .tickets-type {
     position: relative;
-    margin-bottom: 22px;
+    margin-bottom: 20px;
 }
 
 .your-name input, .your-email input, .your-phone input, .tickets-type input, .tickets-type-select {
-    padding: 10px 15px 10px 42px;
+    padding: 11px 15px 11px 42px;
     font-size: 18px;
     line-height: 21px;
     font-family: Roboto-reg;
@@ -1063,11 +1081,16 @@ input[type="date"]:before {
 
 input[type="date"]:invalid:after, input[type="time"]:invalid:after { 
     position: absolute;
-    content: attr(placeholder);
+    content: 'Date';
     margin-left: 28px;
     pointer-events: none;
     color: #000000;
 }
+
+input[type="time"]:invalid:after {
+    content: 'Time';
+}
+
 input[type="date"]::-webkit-datetime-edit-day-field {
     padding-left: 18px;
 }
@@ -1148,18 +1171,18 @@ input[type="time"]:invalid:focus:after {
 }
 
 .entry-ticket {
-    padding: 10px 15px 13px 15px;
+    padding: 10px 15px 17px 15px;
     border: 1px solid #000000;
 }
 
 .entry-ticket-description {
     font-family: Forum;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     line-height: 20px;
 }
 
 .entry-ticket-description::after {
-    bottom: -7px;
+    bottom: -3px;
     color:var(--font-gold);
 }
 
@@ -1179,16 +1202,16 @@ input[type="time"]:invalid:focus:after {
 }
 
 .selected-tickets button {
-        width: 32px;
-        height: 25px;
-        padding: 0;
-        border: 0;
-        font-size: 18px;
-        font-family: Roboto;
-        text-align: center;
-        color: #ffffff;
-        background: #000000;
-        cursor: pointer;
+    width: 35px;
+    height: 25px;
+    padding: 0;
+    border: 0;
+    font-size: 18px;
+    font-family: Roboto;
+    text-align: center;
+    color: #ffffff;
+    background: #000000;
+    cursor: pointer;
 }
 
 .basic-ticket {
@@ -1260,7 +1283,7 @@ input[type="time"]:invalid:focus:after {
 
 .pay-card {
     position: relative;
-    margin-bottom: 55px;
+    margin-bottom: 48px;
 }
 
 .added-tickets-info img {
@@ -1307,7 +1330,7 @@ input[type="time"]:invalid:focus:after {
 }
 
 .added-tickets {
-    margin-bottom: 24px;
+    margin-bottom: 18px;
 }
 
 .total {
@@ -1315,7 +1338,7 @@ input[type="time"]:invalid:focus:after {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 11px;
+    margin-bottom: 18px;
     font-size: 32px;
     font-family: Roboto-reg;
 }
@@ -1329,7 +1352,7 @@ input[type="time"]:invalid:focus:after {
 .total::before {
     content: '';
     position: absolute;
-    top: -13px;
+    top: -10px;
     height: 2px;
     width: 100%;
     background-color: var(--dark-red);
@@ -1352,7 +1375,7 @@ input[type="time"]:invalid:focus:after {
 .reverse-card {
     display: flex;
     position: absolute;
-    top: 30px;
+    top: 25px;
     right: 0px;
     padding: 85px 20px 12px 20px;
     flex-direction: column;
