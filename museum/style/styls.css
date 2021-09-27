@@ -123,6 +123,47 @@ label {
     background-color: var(--bg-dark);
 }
 
+.mobile-nav {
+    display: none;
+}
+
+.menu-link {
+    display: none;
+    align-items: center;
+    margin-right: 0px;
+    z-index: 12;
+}
+
+.menu-link-line {
+    position: relative;
+    display: block;
+    height: 2px;
+    width: 32px;
+    background-color: #ffffff;
+}
+
+.menu-link-line:before {
+    transition: 0.5s;
+    position: absolute;
+    content: '';
+    display: block;
+    height: 2px;
+    width: 32px;
+    background-color: #ffffff;
+    bottom: 9px;
+}
+
+.menu-link-line:after {
+    position: absolute;
+    content: '';
+    display: block;
+    height: 2px;
+    width: 32px;
+    background-color: #ffffff;
+    bottom: -7px;
+    transition: 0.5s;
+}
+
 /* Welcom section */
 
 .welcome {
@@ -1596,4 +1637,114 @@ input[type="time"]:invalid:focus:after {
     background: #000;
     transform: rotate(45deg);
     cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+    :root {
+        --title-font-size: 50px;
+    }
+
+    /* Header / welcome */
+
+    .desctop-nav {
+        display: none;
+    }
+
+    .menu-link {
+        display: block;
+    }
+
+    header {
+        padding: 49px 0px 49px 0px;
+    }
+
+    h1 {
+        margin: 0px 0px 22px 0px;
+    }
+
+    .welcome {
+        padding: 49px 0px 20px 0px;
+    }
+
+    .greetings {
+        margin: 0;
+    }
+
+    .greetings p {
+        margin-bottom: 48px;
+        font-family: Roboto;
+        font-size: 24px;
+    }
+
+    .discover-btn {
+        padding: 16px 46px 17px 45px;
+        letter-spacing: 1px;
+    }
+
+    .main-slider {
+        top: -50px;
+    }
+
+    .slide img {
+        max-width: 700px;
+    } 
+
+    .square {
+        width: 12px;
+        height: 12px;
+    }
+
+    .slides-count-block {
+        font-size: 20px;
+        max-width: 119px;
+        margin-left: 49px;
+    }
+
+    /* Virtual-tour */
+
+    section {
+        padding: 53px 0px;
+    }
+
+    .title {
+        margin-bottom: 75px;
+    }
+
+    .title::after {
+        bottom: -15px;
+    }
+
+    .cards {
+        justify-content: space-evenly;
+        column-gap: 0px;
+    }
+
+    .cards a img {
+        max-width: 330px;
+        max-height: 215px;
+        margin-bottom: 19px;
+    }
+    
+    h3 {
+        font-size: 28px;
+
+    }
+
+    .subtitle {
+        margin-bottom: 18px;
+    }
+
+    .subtitle::after {
+        bottom: -10px;
+        width: 150px;
+    }
+
+    .virtual-tour {
+        font-size: 20px;
+    }
+
+    .google-street-panorama {
+        font-size: 16px;
+    }
+
 }
