@@ -341,9 +341,10 @@ label {
 
 .cards {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
-    column-gap: 60px;
-    row-gap: 75px;
+    gap: 76px 60px;
+    max-width: 100%;
 }
 
 .card {
@@ -432,7 +433,7 @@ label {
 }
 
 .explore-figure img {
-    max-width: 720px;
+    max-width: 600px;
 }
 
 /* Video section */
@@ -578,6 +579,8 @@ label {
 .video-slides-block {
     display: flex;
     justify-content: space-between;
+    width: 100%;
+    gap: 40px;
     margin-bottom: 40px;
 }
 
@@ -1663,7 +1666,7 @@ input[type="time"]:invalid:focus:after {
     }
 
     .welcome {
-        padding: 49px 0px 20px 0px;
+        padding: 49px 0px 21px 0px;
     }
 
     .greetings {
@@ -1703,7 +1706,7 @@ input[type="time"]:invalid:focus:after {
     /* Virtual-tour */
 
     section {
-        padding: 53px 0px;
+        padding: 53px 0px 57px 0px;
     }
 
     .title {
@@ -1717,6 +1720,7 @@ input[type="time"]:invalid:focus:after {
     .cards {
         justify-content: space-evenly;
         column-gap: 0px;
+        row-gap: 58px;
     }
 
     .cards a img {
@@ -1727,7 +1731,10 @@ input[type="time"]:invalid:focus:after {
     
     h3 {
         font-size: 28px;
+    }
 
+    .cards a:nth-child(3) h3 {
+        letter-spacing: 3px;
     }
 
     .subtitle {
@@ -1746,5 +1753,118 @@ input[type="time"]:invalid:focus:after {
     .google-street-panorama {
         font-size: 16px;
     }
+
+    /* Picture explore */
+
+    .explore {
+        height: 100%;
+    }
+
+    .explore .wrapper {
+        flex-direction: column;
+    }
+
+    .explore p {
+        font-size: 20px;
+        margin-bottom: 0px;
+        line-height: 38px;
+    }
+
+    .explore p:nth-child(4) {
+        display: none;
+    }
+
+    .explore-discription {
+        padding-right: 0px;
+    }
+
+    .explore-figure {
+        margin-top: 57px;
+        text-align: center;
+    }
+
+    .explore-figure img {
+        max-width: 721px;
+    }
+
+    /* Video section */
+
+    .video {
+        padding: 51px 0px 59px 0px;
+    }
+
+    .video-discription .title {
+        width: 100%;
+        margin-bottom: 33px;
+    }
+
+    .video-player {
+        width: 100%;
+        height: 444px;
+    }
+
+    .control-panel {
+        height: 60px;
+        padding: 0px 40px;
+        justify-content: space-around;
+    }
+
+    .control-buttons {
+        margin-right: 30px;
+        background-size: cover;
+    }
+
+    .video-length-control, .video-sound-control {
+        height: 5px;
+    }
+
+    .sound-button {
+        width: 26px;
+        height: 20px;
+        margin: 0px 30px;
+    }
+
+    .full-screen-button {
+        width: 26px;
+        height: 26px;
+    }
+
+    .video-slides-block iframe {
+        height: 170px;
+    } 
+
+    .main-play-button, .main-pause-button {
+        width: 152px;
+        height: 152px;
+    }
+
+    /* Gallery */
+
+    .gallery .title {
+        margin-bottom: 54px;
+    }
+
+    .picture-container {
+        height: 1263px;
+    }
+
+    .picture-container img {
+        width: 304px;
+    }
+
+    .picture-inner-container {
+        max-height: 1900px;
+    }
+
+    /* Tickets */
+
+    .ticket-types {
+        display: none;
+    }
+
+    .tickets img {
+        max-width: 700px;
+    }
+
 
 }
