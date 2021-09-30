@@ -2324,4 +2324,40 @@ input[type="time"]:invalid:focus:after {
         border-top: 1px solid #666666;
         padding: 38px 0px;
     }
+
+    /* Pop-up  */
+
+    .pop-up-inner {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .popup {
+        position: static;
+        width: 590px;
+        height: 1479px;
+        transform: none;
+    }
+
+    .pop-up-inner {
+        padding-top: 80px;
+    }
+
+    .popup-close {
+        right: 112px;
+    }
+
+    .booking-tickets {
+        margin-bottom: 50px;
+        width: calc(100% - 60px);
+    }
+
+    .selected-date, .selekted-time {
+        width: 42%;
+    }
+
+    .ticket-description {
+        margin-bottom: 52px;
+    }
+
 }
