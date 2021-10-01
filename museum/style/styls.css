@@ -495,7 +495,7 @@ label {
 }
 
 .video-length-control {
-    width: 929px;
+    width: calc(100% - 442px);
     background: linear-gradient(to right, #710707 0%, #710707 54%, #C4C4C4 40%, #C4C4C4 100%);
 }
 
@@ -692,7 +692,7 @@ label {
 }
 
 .picture-container img {
-    max-width: 456px;
+    width: calc(33.3% - 24px);
   }
 
 /* Buy ticets section */
@@ -1860,7 +1860,7 @@ input[type="time"]:invalid:focus:after {
     }
 
     .video-length-control {
-        max-width: 560px;
+        width: calc(100% - 342px);
     }
 
     .video-length-control::-webkit-slider-thumb,
@@ -2200,7 +2200,7 @@ input[type="time"]:invalid:focus:after {
     }
 
     .video-sound-control {
-        width: 487px;
+        width: calc(100% - 184px);
         max-width: none;
     }
 
@@ -2239,7 +2239,12 @@ input[type="time"]:invalid:focus:after {
     }
 
     .picture-container img {
-        max-width: 352px;
+        width: calc(50% - 12px);
+        max-width: none;
+    }
+
+    .picture-inner-container img:nth-child(11) {
+        padding-top: 0px;
     }
 
     /* Tickets */
@@ -2412,6 +2417,344 @@ input[type="time"]:invalid:focus:after {
 
     .overlay-main {
         left: -200%;
+    }
+
+}
+
+@media (max-width: 420px) {
+    :root {
+        --title-font-size: 28px;
+    }
+
+    header {
+        padding: 35px 0px 40px 0px;
+    }
+
+    h1, .greetings h2 {
+        line-height: 40px;
+    }
+
+    .logo {
+        width: 131px;
+        height: 20px;
+        background: url(../assets/img/header/logo-mini.svg) no-repeat center;
+    }
+
+    .greetings p {
+        margin-bottom: 41px;
+        font-size: 16px;
+    }
+
+    .slides-control {
+        height: 72px;
+    }
+
+    .slides-nav-bar {
+        margin: 0px 26px;
+    }
+
+    .square {
+        width: 7px;
+        height: 7px;
+        margin-left: 10px;
+    }
+
+    .slides-count-block {
+        font-size: 16px;
+        width: auto;
+    }
+
+    .slides-buttons button {
+        width: 20px;
+    }
+
+    .prev-slide {
+        margin-right: 7px;
+    }
+
+    .next-slide {
+        margin-left: 7px;
+        background-size: cover;
+        background-position: right;
+        background-repeat: no-repeat;
+    }
+
+    .welcome {
+        padding: 0px 0px 4px 0px;
+    }
+
+    .active-slide {
+        margin-right: 4px;
+    }
+
+    .last-slide {
+        margin-left: 4px;
+    }
+
+    /* Visiting */
+
+    .visiting {
+        padding: 16px 0px 39px 0px;
+    }
+
+    .title {
+        margin-bottom: 37px;
+    }
+
+    .title::after {
+        bottom: 3px;
+    }
+
+    .virtual-tour {
+        letter-spacing: -1px;
+    }
+
+    .cards a img {
+        margin-bottom: 13px;
+    }
+
+    .cards a h3 {
+        font-size: 20px;
+        letter-spacing: 4px;
+    }
+
+    .subtitle {
+        margin-bottom: 10px;
+    }
+
+    .subtitle::after {
+        bottom: -5px;
+    }
+
+    /* Explore */
+
+    .explore {
+        padding: 16px 0px 34px 0px;
+    }
+
+    /* Video */
+
+    .video {
+        padding: 17px 0px 40px 0px;
+    }
+
+    .video-player {
+        height: 172px;
+    }
+    
+    .vidio-title {
+        line-height: 79px;
+    }
+
+    .video-discription .title {
+        margin-bottom: 0px;
+    }
+
+    .control-panel {
+        height: auto;
+        padding: 20px 20px 16px 20px;
+        margin-bottom: 40px 
+    }
+
+    .main-play-button, .main-pause-button {
+        top: -158%;
+        width: 50px;
+        height: 50px;
+    }
+
+    .video-length-control {
+        top: 0px;
+    }
+
+    .video-length-control, .video-sound-control {
+        height: 4px;
+    }
+
+    .video-length-control::-webkit-slider-thumb,
+    .video-sound-control::-webkit-slider-thumb {
+        height: 10px;
+        width: 10px;
+    }
+
+    .video-sound-control {
+        width: calc(100% - 140px);   
+    }
+
+    .play-button {
+        width: 14px;
+        height: 18px;
+    }
+
+    .sound-button {
+        width: 18px;
+        height: 14px;
+    }
+
+    .full-screen-button {
+        width: 18px;
+        height: 18px;
+    }
+
+    .video-frame {
+        height: 101px;
+        width: calc(50% - 10px);
+    }
+
+    .video-slides-block {
+        margin-bottom: 40px;
+    }
+
+    .video-slides-block div iframe {
+        height: 100%;
+        max-width: 180px;
+    }
+
+    .dot {
+        height: 8px;
+        width: 8px;
+        margin: 0px 10px;
+    }
+
+    .video-slider-control button {
+        height: 8px;
+        width: 7px;
+        background-size: cover;
+    }
+
+    /* Gallery */
+
+    .picture-container {
+        height: 626px;
+    }
+    
+    .gallery {
+        padding-top: 16px;
+    }
+
+    .picture-inner-container {
+        gap: 24px;
+    }
+
+    .picture-inner-container img:first-child {
+        padding-top: 39px;
+    }
+
+    /* Tickets */
+
+    .tickets {
+        padding-top: 16px;
+    }
+
+
+    .send-block-img {
+        width: 100%;
+        height: 160px;
+        margin-bottom: 34px;
+    }
+
+    .amount h3 {
+        margin-bottom: 10px;
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .tickets label {
+        font-size: 16px;
+    }
+
+    .ticket-block {
+        margin-bottom: 10px;
+    }
+
+    .total-price {
+        margin: 0px 0px 33px 0px;
+        font-size: 14px;
+        text-align-last: center;
+    }
+    
+    .buy-now {
+        font-size: 16px;
+    }
+
+    .last-ticket-block {
+        margin-bottom: 23px;
+    }
+
+    /* Contacts */
+
+    .contacts {
+        padding-top: 16px;
+        padding-bottom: 40px;
+    }
+
+    .musema-contacts h3 {
+        margin-bottom: 37px;
+        font-size: 16px;
+        line-height: 19px;
+    }
+
+    .musema-contacts li {
+        margin-bottom: 8px;
+        font-size: 16px;
+    }
+
+/* Footer */
+
+    footer {
+        padding: 40px 0px 26px 0px;
+    }
+
+    footer nav ul li {
+        font-size: 16px;
+        margin-bottom: 26px;
+    }
+
+    footer ul {
+        height: 96px;
+        gap: 0;
+        align-content: space-between;
+    }
+
+    footer nav {
+        max-width: none;
+    }
+
+    .footer-block .logo {
+        margin-top: 0px;
+        margin-bottom: 27px;
+    }
+
+    .footer-block {
+        align-items: baseline;
+    }
+
+    .footer-info-part {
+        width: 100%;
+    }
+
+    .sociall {
+        justify-content: center;
+        margin-top: 13px;
+    }
+
+    .sociall a {
+        margin-left: 5px;
+    }
+
+    .sociall a:first-child {
+        margin-left: 0px;
+    }
+
+    .navigation {
+        margin-bottom: 0px;
+    }
+
+    .footer-info p, .footer-info a {
+        font-size: 18px;
+    }
+
+    .footer-info {
+        padding: 42px 0px;
     }
 
 }
