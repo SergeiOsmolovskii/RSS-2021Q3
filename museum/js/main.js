@@ -82,6 +82,44 @@ discoverBtn.addEventListener('click', function() {
   window.open('./tours/tour1.html', '_blank');
 })
 
+
+/* Add mobile menu */
+
+let link = document.querySelector('.menu-link');
+let linkActive = document.querySelector('.menu-link-active');
+let mobileMenu = document.querySelector('.mobile-menu');
+let greetings = document.querySelector('.greetings');
+let relative = document.querySelector('.relative');
+
+
+function addMobileMenu() {
+  const screenWidth = window.screen.width;
+  mobileMenu.classList.toggle('mobile-menu_active');
+  link.classList.toggle('menu-link_active');
+  if (screenWidth <= 768) {
+    relative.classList.toggle('opacity');
+  } else if (screenWidth > 768) {
+    greetings.classList.toggle('opacity');
+  }
+
+
+}
+
+link.addEventListener('click', addMobileMenu);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 console.log(`
 Ваша оценка - 158 баллов 
 Отзыв по пунктам ТЗ:
