@@ -634,14 +634,82 @@ label {
 
 .video-slides-block {
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between;
+    position: relative;
+    height: 254px;
     width: 100%;
-    gap: 40px;
+    gap: 25px 0px;
     margin-bottom: 34px;
     overflow: hidden;
 }
 
-.video-frame {
+/* Video frame */
+
+.video-slide {
+    position: relative;
+    width: calc(32% - 9px);
+    height: 100%;
+}
+
+.video-slide img {
+    width: 100%;
+    border: none;
+}
+
+.video-slide iframe {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    border: none;
+}
+
+.video-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;
+    padding: 0;
+    width: 68px;
+    height: 48px;
+    border: none;
+    border-radius: 10px;
+    background-color: transparent;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+.video--enabled {
+    cursor: pointer;
+}
+
+.video--enabled .video__button {
+    display: block;
+}
+
+
+.video__button-shape {
+    fill: #212121;
+    fill-opacity: 0.8;
+}
+
+.video__button-icon {
+    fill: #ffffff;
+}
+
+.video__button:focus {
+    outline: none;
+}
+
+.video:hover .video__button-shape,
+.video__button:focus .video__button-shape {
+    fill: #ff0000;
+    fill-opacity: 1;
+}
+
+
+/* .video-frame {
     width: 452px;
 }
 
@@ -649,7 +717,7 @@ label {
     width: 100%;
     height: 254px;
     border: none;
-}
+} */
 
 .video-slider-control {
     display: flex;
@@ -1948,6 +2016,20 @@ input[type="time"]:invalid:focus:after {
         top: 29%  ;
     }
 
+    .video-slides-block {
+        height: 170px;
+        margin-bottom: 40px; 
+    }
+    
+    .video-slide {
+        width: calc(32% - 14px);
+        height: 100%;
+    }
+
+    .video-slide img {
+        height: 100%;
+    }
+
     /* Gallery */
 
     .gallery {
@@ -2333,6 +2415,19 @@ input[type="time"]:invalid:focus:after {
         height: 199px;
         width: 354px;
     }
+
+
+    .video-slides-block {
+        height: 199px;
+        margin-bottom: 20px;
+    }
+    
+    .video-slide {
+        width: calc(50% - 10px);
+        height: 100%;
+    }
+
+
 
     /* Gallery */
 
@@ -2786,6 +2881,13 @@ input[type="time"]:invalid:focus:after {
         background-size: cover;
     }
 
+
+    .video-slides-block {
+        height: 101px;
+        margin-bottom: 40px;
+    }
+    
+
     /* Gallery */
 
     .picture-container {
@@ -3008,12 +3110,6 @@ input[type="time"]:invalid:focus:after {
         bottom: 129px;
         top: auto;
     }
-
- 
-
-
-
-
 }
 
 @media (max-width: 370px) {
