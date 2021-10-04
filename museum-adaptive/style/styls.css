@@ -1753,7 +1753,8 @@ input[type="time"]:invalid:focus:after {
     position: fixed;
     top: 50%;
     left: -100%;
-    width: 1440px;
+    width: calc(100% - 40px);
+    max-width: 1440px;
     height: 845px;
     margin: 0 auto; 
     border: 1px solid #000000;
