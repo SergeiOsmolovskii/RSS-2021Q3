@@ -299,6 +299,9 @@ label {
     position: absolute;
     top: -150px;
     right: 20px;
+    max-width: 1000px;
+/*     overflow: hidden; */
+    overflow-x: clip;
 }
 
 .slide::before {
@@ -373,6 +376,10 @@ label {
     font-family: Roboto-reg;
     width: 70px;
 
+}
+
+.slides-inner {
+    display: flex;
 }
 
 .prev-slide {
