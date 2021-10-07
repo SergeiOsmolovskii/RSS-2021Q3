@@ -183,3 +183,132 @@ YouTube-видео в плейлисте в секции Video, маленьки
 
 `)
 
+
+
+
+/* Slider */
+
+function slider({
+  slide,
+  nextSlide,
+  prevSlide,
+  totalCounter,
+  currentCounter,
+  wrapper,
+  field
+}) {
+  let slides = document.querySelectorAll(slide);
+  let next = document.querySelector(nextSlide);
+  let prev = document.querySelector(prevSlide);
+  let totalSlides = document.querySelector(totalCounter);
+  let current = document.querySelector(currentCounter);
+  let slidesWrapper = document.querySelector(wrapper);
+  let slidesField = document.querySelector(field);
+  let width = window.getComputedStyle(slidesWrapper).maxWidth;
+/*   let dotIndicator = document.createElement('ol'); */
+  let dots = [];
+  let slideIndex = 1;
+  let offset = 0;
+
+/*   slidesField.style.width = 100 * slides.length + `%`; */
+
+  slidesField.style.display = 'flex';
+  slidesField.style.transition = '0.5s all';
+/*   slidesWrapper.style.overflow = 'hidden'; */
+  
+  console.log(wrapper)
+
+  if (slides.length < 10) {
+      totalSlides.textContent = `0${slides.length}`;
+      current.textContent = `0${slideIndex}`;
+  } else {
+      totalSlides.textContent = slides.length;
+      current.textContent = slideIndex;
+  }
+
+  slides.forEach(slide => slide.style.width = width);
+console.log(width)
+  let addZero = () => {
+      if (slides.length < 10) {
+          current.textContent = `0${slideIndex}`;
+      } else {
+          current.textContent = slideIndex;
+      }
+  };
+
+/*   let addOpacity = () => {
+      dots.forEach(dot => dot.style.opacity = '.5');
+      dots[slideIndex - 1].style.opacity = '1';
+  }; */
+
+  let toNumber = (param) => {
+      return +param.replace(/\D/g, "");
+  };
+
+/*   dotIndicator.classList.add('carousel-indicators');
+
+  slider.append(dotIndicator); */
+
+
+  next.addEventListener('click', () => {
+      if (offset == toNumber(width) * (slides.length - 1)) {
+          offset = 0;
+      } else {
+          offset += toNumber(width);
+      }
+
+      slidesField.style.transform = `translateX(-${offset}px)`;
+
+      if (slideIndex == slides.length) {
+          slideIndex = 1;
+      } else {
+          slideIndex++;
+      }
+      addZero();
+/*       addOpacity(); */
+
+  });
+
+  prev.addEventListener('click', () => {
+
+      if (offset == 0) {
+          offset = toNumber(width) * (slides.length - 1);
+      } else {
+          offset -= toNumber(width);
+      }
+
+      slidesField.style.transform = `translateX(-${offset}px)`;
+
+      if (slideIndex == 1) {
+          slideIndex = slides.length;
+      } else {
+          slideIndex--;
+      }
+      addZero();
+/*       addOpacity(); */
+  });
+
+  dots.forEach(dot => {
+      dot.addEventListener('click', (e) => {
+          let slideTo = e.target.getAttribute('data-slide-to');
+
+          slideIndex = slideTo;
+          offset = toNumber(width) * (slideTo - 1);
+          slidesField.style.transform = `translateX(-${offset}px)`;
+          addZero();
+/*           addOpacity(); */
+      });
+  });
+}
+
+
+
+slider({
+  nextSlide: '.next-slide',
+  prevSlide: '.prev-slide',
+  slide: '.slide',
+  totalCounter: '#total-slides',
+  currentCounter: '#current-slide',
+  wrapper: '.main-slider',
+  field: '.slides-inner'
+});
