@@ -159,35 +159,12 @@ function generateURL(id) {
 
 findVideos();
 
-console.log(`
-Ваша оценка - 155 баллов 
-Отзыв по пунктам ТЗ:
-Вёрстка соответствует макету. Ширина экрана 1024px +40
-Вёрстка соответствует макету. Ширина экрана 768px +40
-Вёрстка соответствует макету. Ширина экрана 420px +40
-Ни на одном из разрешений до 320px включительно не появляется горизонтальная полоса прокрутки,  элементы не должны скрываться, обрезаться, наезжать друг на друга, если это не предусмотрено макетом. +6
 
-Cлайдера в секции Welcome +2
-Cлайдера сравнения изображений в секции Explore +2
-Кастомного видеоплеера в секции Video +2
-Слайдера в секции Video +2
-YouTube-видео в плейлисте в секции Video, маленькие видео выровнены по краям большого +2
-Галереи изображений и изображений в ней (Размеры уменьшаются на некоторых больших разрешениях может нехватать картинок  в третей колонке, но в ТЗ об этом, вроде ничего не указано) +2 
-Карты +2
-При нажатии на бургер-иконку меню появляется, плавно выдвигаясь слева, бургер-иконка изменяется на крестик. При нажатии на крестик меню исчезает, плавно возвращаясь назад, иконка крестика превращается в бургер-иконку +2
-Ссылки в меню работают, обеспечивая плавную прокрутку по якорям +2
-Вёрстка меню соответствует макету на всех проверяемых разрешениях +6
-
-При клике по ссылке в адаптивном меню, или при клике по любому месту сайта, кроме самого адаптивного меню, меню закрывается +1 (не закрывается при клике по ссылке) 
-Результат проверки скорости сайта для мобильных устройств: 0 to 49 (red): Poor - не выполнено 0 ,баллов; 50 to 89 (orange): Needs Improvement - частично выполнено - 4 баллов; 90 to 100 (green): Good - выполнено полностью - 8 баллов (Это тот ещё рандом у меня получалось и 99 и 70) Есть скриншоты. Оценка, как проверите.
-
-`)
 
 
 
 
 /* Slider */
-
 function slider({
   slide,
   nextSlide,
@@ -195,7 +172,8 @@ function slider({
   totalCounter,
   currentCounter,
   wrapper,
-  field
+  field,
+  dot
 }) {
   let slides = document.querySelectorAll(slide);
   let next = document.querySelector(nextSlide);
@@ -205,102 +183,94 @@ function slider({
   let slidesWrapper = document.querySelector(wrapper);
   let slidesField = document.querySelector(field);
   let width = window.getComputedStyle(slidesWrapper).maxWidth;
-/*   let dotIndicator = document.createElement('ol'); */
-  let dots = [];
+  let dots = document.querySelectorAll(dot);
   let slideIndex = 1;
   let offset = 0;
 
-/*   slidesField.style.width = 100 * slides.length + `%`; */
 
-  slidesField.style.display = 'flex';
-  slidesField.style.transition = '0.5s all';
-/*   slidesWrapper.style.overflow = 'hidden'; */
-  
-  console.log(wrapper)
+
+//   slidesField.style.transition = `none`;
+//  slidesField.style.transform = `translateX(-${offset}px)`; 
+
 
   if (slides.length < 10) {
-      totalSlides.textContent = `0${slides.length}`;
-      current.textContent = `0${slideIndex}`;
+    totalSlides.textContent = `0${slides.length}`;
+    current.textContent = `0${slideIndex}`;
   } else {
-      totalSlides.textContent = slides.length;
-      current.textContent = slideIndex;
+    totalSlides.textContent = slides.length;
+    current.textContent = slideIndex;
   }
 
   slides.forEach(slide => slide.style.width = width);
-console.log(width)
+
   let addZero = () => {
-      if (slides.length < 10) {
-          current.textContent = `0${slideIndex}`;
-      } else {
-          current.textContent = slideIndex;
-      }
+    if (slides.length < 10) {
+      current.textContent = `0${slideIndex}`;
+    } else {
+      current.textContent = slideIndex;
+    }
   };
 
-/*   let addOpacity = () => {
-      dots.forEach(dot => dot.style.opacity = '.5');
-      dots[slideIndex - 1].style.opacity = '1';
-  }; */
+  let addCurrentDot = () => {
+    dots.forEach(dot => dot.classList.remove('square-active'));
+    dots[slideIndex - 1].classList.add('square-active');
+  };
 
   let toNumber = (param) => {
-      return +param.replace(/\D/g, "");
+    return +param.replace(/\D/g, "");
   };
 
-/*   dotIndicator.classList.add('carousel-indicators');
-
-  slider.append(dotIndicator); */
-
-
   next.addEventListener('click', () => {
-      if (offset == toNumber(width) * (slides.length - 1)) {
-          offset = 0;
-      } else {
-          offset += toNumber(width);
-      }
+    console.log(slideIndex)
+    if (offset == toNumber(width) * (slides.length - 1)) {
+      offset = 0;
+    } else {
+      offset += toNumber(width);
+    }
 
-      slidesField.style.transform = `translateX(-${offset}px)`;
+    slidesField.style.transform = `translateX(-${offset}px)`;
 
-      if (slideIndex == slides.length) {
-          slideIndex = 1;
-      } else {
-          slideIndex++;
-      }
-      addZero();
-/*       addOpacity(); */
-
+    if (slideIndex == slides.length) {
+      slideIndex = 1;
+    } else {
+      slideIndex++;
+    }
+    addZero();
+    addCurrentDot();
   });
 
   prev.addEventListener('click', () => {
+    console.log(slideIndex)
 
-      if (offset == 0) {
-          offset = toNumber(width) * (slides.length - 1);
-      } else {
-          offset -= toNumber(width);
-      }
+    if (offset == 0) {
+      offset = toNumber(width) * (slides.length - 1);
+    } else {
+      offset -= toNumber(width);
+    }
 
-      slidesField.style.transform = `translateX(-${offset}px)`;
+    slidesField.style.transform = `translateX(-${offset}px)`;
 
-      if (slideIndex == 1) {
-          slideIndex = slides.length;
-      } else {
-          slideIndex--;
-      }
-      addZero();
-/*       addOpacity(); */
+    if (slideIndex == 1) {
+      slideIndex = slides.length;
+    } else {
+      slideIndex--;
+    }
+    addZero();
+    addCurrentDot()
   });
 
   dots.forEach(dot => {
-      dot.addEventListener('click', (e) => {
-          let slideTo = e.target.getAttribute('data-slide-to');
+    dot.addEventListener('click', (e) => {
+      let slideTo = e.target.getAttribute('data-slide-to');
 
-          slideIndex = slideTo;
-          offset = toNumber(width) * (slideTo - 1);
-          slidesField.style.transform = `translateX(-${offset}px)`;
-          addZero();
-/*           addOpacity(); */
-      });
+      slideIndex = slideTo;
+      offset = toNumber(width) * (slideTo - 1);
+      slidesField.style.transform = `translateX(-${offset}px)`;
+      addZero();
+      addCurrentDot()
+    });
   });
 }
-
 
 
 slider({
@@ -310,5 +280,95 @@ slider({
   totalCounter: '#total-slides',
   currentCounter: '#current-slide',
   wrapper: '.main-slider',
-  field: '.slides-inner'
+  field: '.slides-inner',
+  dot: '.square'
 });
+
+
+
+/* Explore  comparison*/
+
+function comparisonImg() {
+  const container = document.querySelector('.explore-comparison-container');
+  const comparison = document.querySelector('.explore-comparison');
+  const before = document.querySelector('.left-img');
+  const beforeImage = before.querySelector('img');
+  const change = document.querySelector('.change');
+  const body = document.querySelector('.explore');
+
+  let isActive = false;
+
+  document.addEventListener('DOMContentLoaded', () => {
+    let width = window.getComputedStyle(container).maxWidth;
+    beforeImage.style.width = `${width}px`;
+  });
+
+  change.addEventListener('mousedown', () => {
+    isActive = true;
+  });
+
+  body.addEventListener('mouseup', () => {
+    isActive = false;
+  });
+
+  body.addEventListener('mouseleave', () => {
+    isActive = false;
+  });
+
+  const beforeAfterSlider = (x) => {
+    let shift = Math.max(0, Math.min(x, comparison.offsetWidth - 5));
+    before.style.width = `${shift}px`;
+    change.style.left = `${shift}px`;
+  };
+
+  const pauseEvents = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    return false;
+  };
+
+  body.addEventListener('mousemove', (e) => {
+    if (!isActive) {
+      return;
+    }
+
+    let x = e.pageX;
+    x -= comparison.getBoundingClientRect().left;
+    beforeAfterSlider(x);
+    pauseEvents(e);
+  });
+
+  /* For mobile */
+
+  change.addEventListener('touchstart', () => {
+    isActive = true;
+  });
+
+  body.addEventListener('touchend', () => {
+    isActive = false;
+  });
+
+  body.addEventListener('touchcancel', () => {
+    isActive = false;
+  });
+
+  body.addEventListener('touchmove', (e) => {
+    if (!isActive) {
+      return;
+    }
+
+    let x;
+    let i;
+    for (i = 0; i < e.changedTouches.length; i++) {
+      x = e.changedTouches[i].pageX;
+    }
+
+    x -= comparison.getBoundingClientRect().left;
+
+    beforeAfterSlider(x);
+    pauseEvents(e);
+  });
+
+}
+
+comparisonImg();
