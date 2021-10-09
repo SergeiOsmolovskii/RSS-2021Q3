@@ -25,8 +25,29 @@ imgArr.map(item => {
   const img = document.createElement('img');
   img.src = `./assets/img/gallery/galery${item}.jpg`;
   img.alt = `galery${item}`;
+  img.classList.add('gallery-img');
   pictureInnerContainer.append(img);
 })
+
+const gallerySection = document.querySelector('.gallery')
+const galleryImgs = document.querySelectorAll('.gallery-img');
+
+function checkSlide() {
+  galleryImgs.forEach(img => {
+    const slideInAt = (window.scrollY + window.innerHeight) - img.height / 2;
+    const imageBottom = gallerySection.offsetTop + img.offsetTop + img.height;
+    const isHalfShown = slideInAt > gallerySection.offsetTop + img.offsetTop;
+    const isNotScrolledPast = window.scrollY < imageBottom;
+
+    if (isHalfShown && isNotScrolledPast) {
+      img.classList.add('active');
+    } else {
+      img.classList.remove('active');
+    }
+  });
+}
+
+window.addEventListener('scroll', checkSlide);
 
 /* Open form */
 
@@ -372,3 +393,8 @@ function comparisonImg() {
 }
 
 comparisonImg();
+
+
+/* Gallery */
+
+
