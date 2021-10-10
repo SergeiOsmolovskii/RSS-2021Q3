@@ -474,6 +474,7 @@ function changeProgressBar(e) {
       togglePlayClases();
     }
 }  
+
 video.addEventListener('click', togglePlay);
 play.addEventListener('click', togglePlay);
 mainPlay.addEventListener('click', togglePlay);
@@ -553,3 +554,56 @@ document.addEventListener('keyup', (e) => {
 videoLengthControl.addEventListener('mousemove', (e) => mousedown && changeProgressBar(e));
 videoLengthControl.addEventListener('mousedown', () => mousedown = true); 
 videoLengthControl.addEventListener('mouseup', () => mousedown = false);  
+
+
+/* Ticket cost calc */
+
+const calcTotalPrice = () => {
+
+  const ticetTypes = document.getElementsByName('ticket-type');
+  const basickTicketsAmount = document.getElementById('amount-basic');
+  const seniorTicketAmount = document.getElementById('amount-senior');
+  const totalPrice = document.querySelector('.price');
+  const permanentTicetPrice = 20;
+
+  if (localStorage.getItem('selectedTicketType') === null) localStorage.setItem('selectedTicketType', permanentTicetPrice);
+  basickTicketsAmount.value = localStorage.getItem('basickTicketsAmount') || 1;
+  seniorTicketAmount.value = localStorage.getItem('seniorTicketAmount') || 1;
+
+  function selectTicketType() {
+    localStorage.setItem('selectedTicketType', this.value);
+    recalcPrice();
+  }
+
+  ticetTypes.forEach(item => {
+    item.onchange = selectTicketType;
+    if (localStorage.getItem('selectedTicketType') === item.value) item.checked = true;
+  })
+
+  const recalcPrice = () => {
+    totalPrice.textContent = (localStorage.getItem('selectedTicketType') * basickTicketsAmount.value + (localStorage.getItem('selectedTicketType') * seniorTicketAmount.value) / 2);
+  }
+
+  const ticketPlus = (ticketTypeID, ticketTypeName) => {
+    const ticket = document.getElementById(ticketTypeID);
+    ticket.previousElementSibling.stepUp();
+    localStorage.setItem(ticketTypeName, ticket.previousElementSibling.value);
+    recalcPrice();
+  }
+
+  const ticketMinus = (ticketTypeID, ticketTypeName) => {
+    const ticket = document.getElementById(ticketTypeID);
+    ticket.nextElementSibling.stepDown();
+    localStorage.setItem(ticketTypeName, ticket.nextElementSibling.value);
+    recalcPrice();
+  }
+
+  amountBasicPlus.addEventListener('click', () =>  ticketPlus('amountBasicPlus', 'basickTicketsAmount'));
+  amountSeniorPlus.addEventListener('click', () =>  ticketPlus('amountSeniorPlus', 'seniorTicketAmount'));
+  amountBasicMinus.addEventListener('click', () =>  ticketMinus('amountBasicMinus', 'basickTicketsAmount'));
+  amountSeniorMinus.addEventListener('click', () =>  ticketMinus('amountSeniorMinus', 'seniorTicketAmount'));
+  recalcPrice();
+}
+
+calcTotalPrice();
+

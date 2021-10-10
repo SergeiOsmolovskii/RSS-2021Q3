@@ -1051,7 +1051,7 @@ input[type="radio"]:checked+.custom-radio-btn::before {
 
 }
 
-#amount-basik, #amount-senior {
+#amount-basic, #amount-senior {
     padding: 9px 7px;
     text-align: center;
     color: #000000;
@@ -2241,7 +2241,7 @@ input[type="time"]:invalid:focus:after {
         margin-top: 9px;
     }
 
-    #amount-basik, #amount-senior {
+    #amount-basic, #amount-senior {
         padding: 9px 19px;
     }
 
