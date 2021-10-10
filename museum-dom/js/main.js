@@ -563,47 +563,133 @@ const calcTotalPrice = () => {
   const ticetTypes = document.getElementsByName('ticket-type');
   const basickTicketsAmount = document.getElementById('amount-basic');
   const seniorTicketAmount = document.getElementById('amount-senior');
-  const totalPrice = document.querySelector('.price');
+  const formBasickTicketsAmount = document.getElementById('form-amount-basic');
+  const formSeniorTicketAmount = document.getElementById('form-amount-senior');
+  const basicTicketsTotalPrice = document.querySelector('.basik-ticket-total');
+  const seniorTicketsTotalPrice = document.querySelector('.senior-ticket-total');
+  const ticketsTypeSelect = document.querySelector('.tickets-type-select'); 
+
+  let options = document.querySelectorAll('.tickets-type-select option');
+
+  const totalPrice = document.querySelectorAll('.price');
   const permanentTicetPrice = 20;
+  
+  let totalTicketsPrice = 0;
+  let totalBasicTicketsPrice = 0;
+  let totalSeniorTicketsPrice = 0;
 
   if (localStorage.getItem('selectedTicketType') === null) localStorage.setItem('selectedTicketType', permanentTicetPrice);
+  
   basickTicketsAmount.value = localStorage.getItem('basickTicketsAmount') || 1;
   seniorTicketAmount.value = localStorage.getItem('seniorTicketAmount') || 1;
+  formBasickTicketsAmount.value = localStorage.getItem('basickTicketsAmount') || 1;
+  formSeniorTicketAmount.value = localStorage.getItem('seniorTicketAmount') || 1;
 
   function selectTicketType() {
     localStorage.setItem('selectedTicketType', this.value);
+    localStorage.setItem('selectedTicketTypeName', this.id);
     recalcPrice();
+  } 
+  
+  const setTicketType = () => {
+    options.forEach(currentItem => {
+      if (currentItem.value === localStorage.getItem('selectedTicketTypeName')) {
+        currentItem.selected = true;
+      }
+    })
+    console.log(1);
   }
+
+    ticketsTypeSelect.addEventListener('change', setTicketType);
 
   ticetTypes.forEach(item => {
     item.onchange = selectTicketType;
     if (localStorage.getItem('selectedTicketType') === item.value) item.checked = true;
-  })
+  });
+
+ 
 
   const recalcPrice = () => {
-    totalPrice.textContent = (localStorage.getItem('selectedTicketType') * basickTicketsAmount.value + (localStorage.getItem('selectedTicketType') * seniorTicketAmount.value) / 2);
+    totalBasicTicketsPrice = localStorage.getItem('basickTicketsAmount') * localStorage.getItem('selectedTicketType');
+    totalSeniorTicketsPrice = localStorage.getItem('seniorTicketAmount') * (localStorage.getItem('selectedTicketType') / 2);
+    totalTicketsPrice = totalBasicTicketsPrice + totalSeniorTicketsPrice;
+
+    basicTicketsTotalPrice.textContent = totalBasicTicketsPrice;
+    seniorTicketsTotalPrice.textContent = totalSeniorTicketsPrice;
+    totalPrice.forEach(item => item.textContent = totalTicketsPrice); 
   }
 
-  const ticketPlus = (ticketTypeID, ticketTypeName) => {
+  const ticketPlus = (ticketTypeID, ticketTypeFormID, ticketTypeName) => {
     const ticket = document.getElementById(ticketTypeID);
+    const ticketForm = document.getElementById(ticketTypeFormID);
+
     ticket.previousElementSibling.stepUp();
+    ticketForm.previousElementSibling.stepUp();
+
     localStorage.setItem(ticketTypeName, ticket.previousElementSibling.value);
     recalcPrice();
   }
 
-  const ticketMinus = (ticketTypeID, ticketTypeName) => {
+  const ticketMinus = (ticketTypeID, ticketTypeFormID, ticketTypeName) => {
     const ticket = document.getElementById(ticketTypeID);
+    const ticketForm = document.getElementById(ticketTypeFormID);
+
     ticket.nextElementSibling.stepDown();
+    ticketForm.nextElementSibling.stepDown();
+
     localStorage.setItem(ticketTypeName, ticket.nextElementSibling.value);
     recalcPrice();
   }
+  
+  amountBasicPlus.addEventListener('click', () =>  ticketPlus('amountBasicPlus', 'formAmountBasicPlus', 'basickTicketsAmount'));
+  amountSeniorPlus.addEventListener('click', () =>  ticketPlus('amountSeniorPlus', 'formAmountSeniorPlus', 'seniorTicketAmount'));
 
-  amountBasicPlus.addEventListener('click', () =>  ticketPlus('amountBasicPlus', 'basickTicketsAmount'));
-  amountSeniorPlus.addEventListener('click', () =>  ticketPlus('amountSeniorPlus', 'seniorTicketAmount'));
-  amountBasicMinus.addEventListener('click', () =>  ticketMinus('amountBasicMinus', 'basickTicketsAmount'));
-  amountSeniorMinus.addEventListener('click', () =>  ticketMinus('amountSeniorMinus', 'seniorTicketAmount'));
+  formAmountBasicPlus.addEventListener('click', () =>  ticketPlus('amountBasicPlus', 'formAmountBasicPlus', 'basickTicketsAmount'));
+  formAmountSeniorPlus.addEventListener('click', () =>  ticketPlus('amountSeniorPlus', 'formAmountSeniorPlus', 'seniorTicketAmount'));
+
+  amountBasicMinus.addEventListener('click', () =>  ticketMinus('amountBasicMinus', 'formAmountBasicMinus' , 'basickTicketsAmount'));
+  amountSeniorMinus.addEventListener('click', () =>  ticketMinus('amountSeniorMinus', 'formAmountSeniorMinus', 'seniorTicketAmount'));
+
+  formAmountBasicMinus.addEventListener('click', () =>  ticketMinus('amountBasicMinus', 'formAmountBasicMinus' , 'basickTicketsAmount'));
+  formAmountSeniorMinus.addEventListener('click', () =>  ticketMinus('amountSeniorMinus', 'formAmountSeniorMinus', 'seniorTicketAmount'));
+
   recalcPrice();
+  setTicketType();
 }
 
+const setSelectedDate = () => {
+  const selectedDate = document.querySelector('.selected-date');
+  const addedDate = document.querySelector('.added-date');
+
+  const now = new Date;
+  const day = now.getDate();
+  const year = now.getFullYear();
+  const month = now.getMonth();
+  const currentDate = `${year}-${month + 1 < 10 ? `0${month + 1}` : month + 1}-${day < 10 ? `0${day}` : day}`; 
+
+  selectedDate.setAttribute('min', currentDate);
+
+  function showSelectedDate() {
+    const date = selectedDate.valueAsDate;
+    const options = {month: 'long', day: 'numeric', weekday:'long', timeZone: 'UTC'};
+    const currentDate = date.toLocaleDateString('en-Br', options);
+    addedDate.textContent = currentDate;
+  }
+  selectedDate.addEventListener('change', showSelectedDate);
+}
+
+const setSelectedTime = () => {
+  const selectedTime = document.querySelector('.selected-time');
+  const addedTime = document.querySelector('.added-time');
+  
+  function showSelectedTime() {
+    addedTime.textContent = selectedTime.value;
+  }
+  selectedTime.addEventListener('change', showSelectedTime);
+}
+
+
+setSelectedDate();
+setSelectedTime();
 calcTotalPrice();
 

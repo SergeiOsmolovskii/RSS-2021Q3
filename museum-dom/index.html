@@ -504,8 +504,8 @@
                             <h2 class="title">Booking tickets</h2>
                             <h3 class="ticket-description">Tour to Louvre</h3>
                             <div class="date-block">
-                                <input class="selected-date" type="date" required>
-                                <input class="selekted-time" type="time" required>
+                                <input class="selected-date" type="date" min="2022-01-22" required>
+                                <input class="selected-time" type="time" min="09:00" max="18:00" required>
                             </div>
                             <label class="your-name">
                                 <span></span>
@@ -523,9 +523,9 @@
                                 <span class="select-arrow"></span>
                                 <select class="tickets-type-select" id="exhibition" required>
                                     <option value="" disabled selected hidden>Ticket Type</option>
-                                    <option value="">Permanent exhibition</option>
-                                    <option value="">Temporary exhibition</option>
-                                    <option value="">Combined Admission</option>
+                                    <option value="permanent">Permanent exhibition</option>
+                                    <option value="temporary">Temporary exhibition</option>
+                                    <option value="combined">Combined Admission</option>
                                 </select>
                                 <span class="arrow-down"></span>
                             </label>
@@ -535,19 +535,17 @@
                                 <div class="basic-ticket">
                                     <label>Basic 18+ (20 €)</label>
                                     <div class="selected-tickets">
-                                        <button type="button"
-                                            onclick="this.nextElementSibling.stepDown()">&ndash;</button>
-                                        <input type="number" min="0" max="50" value="2">
-                                        <button type="button" onclick="this.previousElementSibling.stepUp()">+</button>
+                                        <button id="formAmountBasicMinus" type="button">&ndash;</button>
+                                        <input id="form-amount-basic" type="number" min="0" max="20" value="2">
+                                        <button id="formAmountBasicPlus" type="button">+</button>
                                     </div>
                                 </div>
                                 <div class="senior-ticket">
                                     <label>Senior 65+ (10 €)</label>
                                     <div class="selected-tickets">
-                                        <button type="button"
-                                            onclick="this.nextElementSibling.stepDown()">&ndash;</button>
-                                        <input type="number" min="0" max="50" value="2">
-                                        <button type="button" onclick="this.previousElementSibling.stepUp()">+</button>
+                                        <button id="formAmountSeniorMinus" type="button">&ndash;</button>
+                                        <input id="form-amount-senior" type="number" min="0" max="20" value="2">
+                                        <button id="formAmountSeniorPlus" type="button">+</button>
                                     </div>
                                 </div>
                             </div>
@@ -582,7 +580,7 @@
                                     </div>
                                 </div>
                                 <div class="total">
-                                    <p>Total:</p><span class="total-tickets-price">60</span>
+                                    <p>Total:</p><span class="total-tickets-price price">60</span>
                                 </div>
 
                                 <div class="pay-card">

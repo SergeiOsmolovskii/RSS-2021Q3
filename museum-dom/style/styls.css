@@ -1350,7 +1350,7 @@ footer nav ul li {
     justify-content: space-between;
 }
 
-.selected-date, .selekted-time {
+.selected-date, .selected-time {
     width: 156px;
     padding: 10px 15px;
     margin-bottom: 20px;
@@ -1373,7 +1373,7 @@ footer nav ul li {
     color: #000000;
 }
 
-.selected-date::-webkit-calendar-picker-indicator, .selekted-time::-webkit-calendar-picker-indicator {
+.selected-date::-webkit-calendar-picker-indicator, .selected-time::-webkit-calendar-picker-indicator {
     border-radius: 50%;
     width: 17px;
     height: 17px;
@@ -2766,7 +2766,7 @@ input[type="time"]:invalid:focus:after {
         width: calc(100% - 60px);
     }
 
-    .selected-date, .selekted-time {
+    .selected-date, .selected-time {
         width: 42%;
     }
 
@@ -3259,7 +3259,7 @@ input[type="time"]:invalid:focus:after {
         flex-direction: column;
     }
 
-    .selected-date, .selekted-time {
+    .selected-date, .selected-time {
         width: calc(100% - 32px);
     }
 
