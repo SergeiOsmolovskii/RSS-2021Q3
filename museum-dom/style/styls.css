@@ -1930,6 +1930,33 @@ input[type="time"]:invalid:focus:after {
     cursor: pointer;
 }
 
+/* Validation */
+
+.your-name > input.notValid, .your-email > input.notValid, .your-phone > input.notValid {
+    border: 1px solid #ff0000;
+}
+
+.your-name.notValid::before, .your-email.notValid::before, .your-phone.notValid::before {
+    position: absolute;
+    font-size: 18px;
+    color: #ff0000;
+    bottom: -18px;
+}
+
+.your-name.notValid::before {
+    content: 'Username not valid';
+}
+
+.your-email.notValid::before {
+    content: 'Email not valid';
+}
+
+.your-phone.notValid::before {
+    content: 'Phone number can only contain numbers';
+}
+
+
+
 @media (max-width: 1024px) {
     :root {
         --title-font-size: 50px;

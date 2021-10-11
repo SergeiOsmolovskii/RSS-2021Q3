@@ -509,7 +509,7 @@
                             </div>
                             <label class="your-name">
                                 <span></span>
-                                <input type="text" placeholder="Name" required>
+                                <input pattern="^[A-Za-zА-Яа-я0-9 *]{3,15}$" type="text" placeholder="Name" required>
                             </label>
                             <label class="your-email">
                                 <span></span>
@@ -652,7 +652,7 @@
         </div>
     </div>
 
-    <script src="./js/main.js"></script>
+    <script src="./js/main.js" type="module"></script>
 </body>
 
 </html>
