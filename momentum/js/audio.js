@@ -2,6 +2,7 @@
 
 import playList from './playList.js';
 
+const HTML = document.querySelector('html');
 const progress = document.querySelectorAll('.control-input');
 const playListBlock = document.querySelector('.play-list');
 const playPrevBtn = document.querySelector('.play-prev');
@@ -10,18 +11,42 @@ const playBtn = document.querySelector('.play');
 const soundButton = document.querySelector('.sound-button');
 const soundControl = document.querySelector('.sound-bar-progress');
 const audioLengthControl = document.querySelector('.audio-length-control');
+const trackDuration = document.querySelector('.track-duration');
+const seconds = document.querySelector('.seconds');
+const minutes = document.querySelector('.minutes');
+const playListUl = document.querySelector('.play-list');
+
+playListUl.onclick = function(e) {
+    let target = e.target;
+    if (target.tagName === 'BUTTON') {
+        e.target.classList.add('track-active');
+        currentAudio = e.target.dataset.index;
+        /* playCurrentAudio(); */
+/*         e.target.addEventListener('click', playAudio);
+        e.target.addEventListener('click', toggleBtn); */
+    }
+    console.log(e.target);
+}
+
 
 const audio = new Audio();
 let isPlay = false;
 let currentAudio = 0;
 
 audio.src = playList[currentAudio].src;
+trackDuration.textContent = playList[currentAudio].duration;
 
-playList.forEach(item => {
+playList.forEach((item, index )=> {
     const li = document.createElement('li');
+    const paragraph = document.createElement('p');
+    const button = document.createElement('button');
     li.classList.add('play-item');
-    li.textContent = item.title;
+    button.classList.add('play-current-track');
+    button.setAttribute('data-index', index);
+    paragraph.textContent = item.title;
     playListBlock.append(li); 
+    li.append(button);
+    li.append(paragraph);
 })
 
 progress.forEach(item => item.addEventListener('input', function () {
@@ -58,7 +83,12 @@ function playCurrentAudio() {
 
 function changePlayListItem(currentAudio) {
     playListLi.forEach((item, index) => {
-        if(index == currentAudio) item.classList.add('item-active');
+        if(index == currentAudio) {
+            item.classList.add('item-active');
+            HTML.style.setProperty('--current-track-name', `"${item.textContent}"`);
+            trackDuration.textContent = playList[index].duration;
+            console.log(item)
+        } 
         else item.classList.remove('item-active');
     }) 
 }
@@ -96,6 +126,15 @@ function mute() {
 
 function audioPprogress() {
     const percent = Math.floor((audio.currentTime / audio.duration) * 100);
+
+    if (audio.currentTime < 60) {
+        seconds.textContent = `${Math.floor(audio.currentTime) < 10 ? `0${Math.floor(audio.currentTime)}` : Math.floor(audio.currentTime)}`;
+        minutes.textContent = `${Math.floor(audio.currentTime / 60) < 10 ? `0${Math.floor(audio.currentTime / 60)}` : Math.floor(audio.currentTime / 60)}`;
+    } else {
+        seconds.textContent = `${Math.floor(audio.currentTime - 60) < 10 ? `0${Math.floor(audio.currentTime - 60)}` : Math.floor(audio.currentTime - 60)}`;
+        minutes.textContent = `${Math.floor(audio.currentTime / 60) < 10 ? `0${Math.floor(audio.currentTime / 60)}` : Math.floor(audio.currentTime / 60)}`;
+    } 
+
     audioLengthControl.value = percent;
     audioLengthControl.style.background = `linear-gradient(to right, #c5b358 0%, #c5b358 ${percent}%, #C4C4C4 ${percent}%, #C4C4C4)`;
     if (audio.ended) {

@@ -6,7 +6,7 @@ const greeting = document.querySelector('.greeting');
 
 let timesOfDay = {
     morning: 'Good morning',
-    day: 'Good day',
+    afternoon: 'Good afternoon',
     evening: 'Good evening',
     night: 'Good night'
 };
@@ -20,7 +20,7 @@ export function showTime() {
     time.textContent = `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
 
     if (hours >= 6 && hours < 12 ) currentTimeOfDay = 'morning';
-    if (hours >= 12 && hours < 18 ) currentTimeOfDay = 'day';
+    if (hours >= 12 && hours < 18 ) currentTimeOfDay = 'afternoon';
     if (hours >= 18 && hours < 24 ) currentTimeOfDay = 'evening';
     if (hours >= 0 && hours < 6 ) currentTimeOfDay = 'night';
 

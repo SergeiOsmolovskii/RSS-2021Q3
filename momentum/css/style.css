@@ -4,7 +4,7 @@
  }
 
 :root {
-  --first-track-name: 'Aqua Caelestis';
+  --current-track-name: 'Aqua Caelestis';
 }
 
 * {
@@ -58,6 +58,7 @@ input[type="range"] {
 
 .play-item {
   position: relative;
+  display: flex;
   padding: 5px;
   padding-left: 20px;
   list-style: none;
@@ -85,7 +86,8 @@ input[type="range"] {
 .player-icon,
 .slider-icon,
 .change-quote,
-.sound-button {
+.sound-button,
+.play-current-track {
   width: 32px;
   height: 32px;
   background-size: 32px 32px;
@@ -179,7 +181,7 @@ input[type="range"] {
 
 .audio-length-control::before {
   position: absolute;
-  content: var(--first-track-name);
+  content: var(--current-track-name);
   width: 100%;
   top: -25px;
   text-align: center;
@@ -191,6 +193,27 @@ input[type="range"] {
     -webkit-appearance: none;
     width: 1px;
     height: 1px;
+}
+
+.play-current-track, .track-active {
+  width: 20px;
+  height: 20px;
+  margin: 0 10px;
+  background-size: 20px 20px;
+}
+
+.play-current-track {
+  background-image: url("../assets/svg/play.svg");
+}
+
+.track-active {
+  opacity: 1;
+  background-image: url("../assets/svg/pause.svg");
+  filter: brightness(0) saturate(100%) invert(81%) sepia(39%) saturate(552%) hue-rotate(4deg) brightness(84%) contrast(86%);
+}
+
+.item-active {
+  color: #C5B358;
 }
 
 .weather {
