@@ -16,27 +16,13 @@ const seconds = document.querySelector('.seconds');
 const minutes = document.querySelector('.minutes');
 const playListUl = document.querySelector('.play-list');
 
-playListUl.onclick = function(e) {
-    let target = e.target;
-    if (target.tagName === 'BUTTON') {
-        e.target.classList.add('track-active');
-        currentAudio = e.target.dataset.index;
-        /* playCurrentAudio(); */
-/*         e.target.addEventListener('click', playAudio);
-        e.target.addEventListener('click', toggleBtn); */
-    }
-    console.log(e.target);
-}
-
-
 const audio = new Audio();
 let isPlay = false;
 let currentAudio = 0;
 
 audio.src = playList[currentAudio].src;
 trackDuration.textContent = playList[currentAudio].duration;
-
-playList.forEach((item, index )=> {
+playList.forEach((item, index ) => {
     const li = document.createElement('li');
     const paragraph = document.createElement('p');
     const button = document.createElement('button');
@@ -47,28 +33,14 @@ playList.forEach((item, index )=> {
     playListBlock.append(li); 
     li.append(button);
     li.append(paragraph);
-})
+});
 
 progress.forEach(item => item.addEventListener('input', function () {
     const value = this.value;
     this.style.background = `linear-gradient(to right, #c5b358 0%, #c5b358 ${value}%, #C4C4C4 ${value}%, #C4C4C4)`;
-}))
+}));
 
 let playListLi = document.querySelectorAll('.play-item');
-
-export function playAudio() {
-    if(!isPlay) {
-        audio.play();
-        isPlay = true;
-    } else {
-        audio.pause();
-        isPlay = false;
-    }
-    changePlayListItem(currentAudio);
-    audio.onended = function () {
-        playNext();
-    };
-}
 
 function toggleBtn() {
     playBtn.classList.toggle('pause');
@@ -76,21 +48,19 @@ function toggleBtn() {
 
 function playCurrentAudio() {
     audio.src = playList[currentAudio].src;
-    if(!isPlay) toggleBtn();
+    if (!isPlay) toggleBtn();
     isPlay = false;
     playAudio();
 }
 
 function changePlayListItem(currentAudio) {
     playListLi.forEach((item, index) => {
-        if(index == currentAudio) {
+        if (index == currentAudio) {
             item.classList.add('item-active');
             HTML.style.setProperty('--current-track-name', `"${item.textContent}"`);
             trackDuration.textContent = playList[index].duration;
-            console.log(item)
-        } 
-        else item.classList.remove('item-active');
-    }) 
+        } else item.classList.remove('item-active');
+    }); 
 }
 
 function playPrev() {
@@ -149,6 +119,39 @@ function changeProgressBar(e) {
     if (audio.ended) {
         audio.currentTime = 0;
         togglePlayClases();
+    }
+}
+
+export function playAudio() {
+    const controlButtons = document.querySelectorAll('.play-current-track');
+    if (!isPlay) {
+        audio.play();
+        isPlay = true;
+        controlButtons.forEach(item => item.classList.remove('track-active'));
+        controlButtons[currentAudio].classList.add('track-active');
+    } else {
+        audio.pause();
+        isPlay = false;
+        controlButtons[currentAudio].classList.remove('track-active');
+    }
+    changePlayListItem(currentAudio);
+    audio.onended = function () {
+        playNext();
+    }
+}
+
+playListUl.onclick = function(e) {
+    if (e.target.tagName === 'BUTTON') {
+        if (currentAudio === e.target.dataset.index) {
+            playAudio();
+            toggleBtn();
+            const controlButtons = document.querySelectorAll('.play-current-track');
+            if (isPlay === false) controlButtons[currentAudio].classList.remove('track-active');
+        } else {
+            e.target.classList.add('track-active');
+            currentAudio = e.target.dataset.index;
+            playCurrentAudio();
+        }
     }
 }
 

@@ -10,9 +10,9 @@ let currentSlideIndex = 0;
 
 function setBackgroundImage() {  
     const img = new Image();
-    img.src = `https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${currentTimeOfDay}/${currentSlideIndex < 10 ? `0${currentSlideIndex}` : currentSlideIndex}.jpg`;
+    img.src = `https://raw.githubusercontent.com/SergeiOsmolovskii/stage1-tasks/assets/images/${currentTimeOfDay}/${currentSlideIndex < 10 ? `0${currentSlideIndex}` : currentSlideIndex}.jpg`;
     img.onload = () => {      
-        backgroundImage.style.backgroundImage = `url(https://raw.githubusercontent.com/rolling-scopes-school/stage1-tasks/assets/images/${currentTimeOfDay}/${currentSlideIndex < 10 ? `0${currentSlideIndex}` : currentSlideIndex}.jpg)`;
+        backgroundImage.style.backgroundImage = `url(https://raw.githubusercontent.com/SergeiOsmolovskii/stage1-tasks/assets/images/${currentTimeOfDay}/${currentSlideIndex < 10 ? `0${currentSlideIndex}` : currentSlideIndex}.jpg)`;
     }; 
   }
 
