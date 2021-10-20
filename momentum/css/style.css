@@ -5,6 +5,9 @@
 
 :root {
   --current-track-name: 'Aqua Caelestis';
+  --setting-button-background-main: #311c1c;
+  --not-active-setting: red;
+  --active-setting: green;
 }
 
 * {
@@ -339,6 +342,7 @@ input[type="range"] {
 }
 
 footer {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -358,8 +362,7 @@ footer {
 }
 
 .rss-link:hover {
-  filter: opacity(0.54);
-  transition: 0.5s;
+  filter: opacity(0.8);
 }
 
 footer a, footer p {
@@ -371,6 +374,86 @@ footer a, footer p {
 
 footer a:hover {
   opacity: 0.5;
+}
+
+/* Settings */
+
+.settings {
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  width: 48px;
+  height: 48px;
+  background: url(../assets/svg/settings.svg);
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.settings:hover {
+  filter: opacity(0.8);
+}
+
+.checkbox-block {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 6em;
+  height: 3em;
+  padding: 0px 10px;
+  border: 2px solid #c5b358;
+  border-radius: 100px;
+  transition: 0.5s;
+}
+
+.checkbox-input {
+  display: none;
+}
+
+.checkbox-input:checked~.checkbox-block {
+  background-color: var(--color-dark);
+}
+
+.checkbox-input:checked~.checkbox-block::after {
+  left: 3.2em;
+  background-color: var(--active-setting);
+}
+
+.checkbox-block::after {
+  content: '';
+  position: absolute;
+  left: 12px;
+  width: 26px;
+  height: 26px;
+  background-color: var(--not-active-setting);
+  border-radius: 50%;
+  transition: 0.5s;
+}
+
+.setting-language .checkbox-block::after {
+  background-color: #ffffff;
+}
+
+.setting-language .checkbox-input:checked~.checkbox-block::after  {
+  background-color: #ffffff;
+}
+
+.settings-block {
+  position: absolute;
+  width: 300px;
+  height: 600px;
+  padding: 20px;
+  border: 2px solid #fff;
+  background: rgb(0 0 0 / 50%);
+  opacity: 1;
+  transition: 1s;
+  z-index: 10;
+}
+
+.setting {
+  margin: 1em 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .quote-day {
