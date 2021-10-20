@@ -338,15 +338,43 @@ input[type="range"] {
   opacity: .6;
 }
 
-.footer {
+footer {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
+  justify-content: space-between;
+  align-items: flex-end;
   width: 100%;
   height: 30vh;
   min-height: 160px;  
-  padding: 20px;
+  padding: 20px 50px;
+}
+
+.rss-link img {
+  width: 160px;
+  filter: invert();
+}
+
+.rss-link {
+  transition: 0.5s;
+}
+
+.rss-link:hover {
+  filter: opacity(0.54);
+  transition: 0.5s;
+}
+
+footer a, footer p {
+  text-decoration: none;
+  color: #fff;
+  font-size: 24px;
+  transition: 0.5s;
+}
+
+footer a:hover {
+  opacity: 0.5;
+}
+
+.quote-day {
+  margin-top: 30px;
 }
 
 .change-quote {
