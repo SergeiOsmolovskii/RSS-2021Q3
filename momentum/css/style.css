@@ -37,6 +37,14 @@ input[type="range"] {
   height: 5px;
 }
 
+input[type="radio"] {
+  position: absolute;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  z-index: -1;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -398,7 +406,7 @@ footer a:hover {
   display: flex;
   align-items: center;
   width: 6em;
-  height: 3em;
+  height: 2.5em;
   padding: 0px 10px;
   border: 2px solid #c5b358;
   border-radius: 100px;
@@ -414,7 +422,7 @@ footer a:hover {
 }
 
 .checkbox-input:checked~.checkbox-block::after {
-  left: 3.2em;
+  left: 3.5em;
   background-color: var(--active-setting);
 }
 
@@ -433,14 +441,15 @@ footer a:hover {
   background-color: #ffffff;
 }
 
-.setting-language .checkbox-input:checked~.checkbox-block::after  {
-  background-color: #ffffff;
+.setting-language .checkbox .checkbox-input:checked~.checkbox-block::after  {
+  background-color: red;
 }
 
 .settings-block {
   position: absolute;
+  bottom: 100%;
+  right: 100%;
   width: 300px;
-  height: 600px;
   padding: 20px;
   border: 2px solid #fff;
   background: rgb(0 0 0 / 50%);
@@ -449,11 +458,96 @@ footer a:hover {
   z-index: 10;
 }
 
+footer .pictue-setting {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.photos-select {
+  width: 100%;
+}
+
+.pictue-setting p {
+  display: block;
+  width: 100%;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.radio-select {
+  margin: 0.5em 0px;
+}
+
+.photos-select div {
+  width: 100%;
+  display: block;
+}
+
+.photos-select label, .photo-tags-label {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24px;
+}
+
+.custom-radio-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  background: green;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+}
+
+input[type="radio"]:checked+.custom-radio-btn::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+#tag {
+  border: 2px solid #c5b358;
+  height: 2.5em;
+  max-width: 150px;
+  padding: 0px 15px;
+  color: #ffffff;
+  font-size: 24px;
+  background: transparent;
+}
+
+.checkbox .custom-radio-btn {
+  display: inline-block;
+  position: relative;
+  width: 1.5em;
+  height: 1.5em;
+  background: transparent;
+  border: 2px solid #c5b358;
+  border-radius: 50%;
+}
+
 .setting {
   margin: 1em 0px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  transition: 1s;
+}
+
+.settings-block {
+  opacity: 0;
+}
+
+.setting-active {
+  opacity: 1;
+}
+
+.non-active-block {
+  opacity: 0;
 }
 
 .quote-day {

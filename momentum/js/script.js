@@ -1,8 +1,11 @@
 import {showTime, currentTimeOfDay} from './time.js';
 import getWeather from './wether.js';
+import settings from './settings.js';
 import getRandomQuote from './quote.js';
 import {playAudio} from './audio.js';
 import {addBackgroundImage, minSliderIndex, maxSliderIndex} from './slider.js';
+
+settings();
 
 let city = document.querySelector('.city');
 let userName = document.querySelector('.name');

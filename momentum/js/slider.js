@@ -23,7 +23,7 @@ export function addBackgroundImage(minSliderIndex, maxSliderIndex) {
         currentSlideIndex = Math.floor(Math.random() * (max - min + 1)) + min;
     }
     getRandomArbitrary(minSliderIndex, maxSliderIndex);
-    setBackgroundImage()
+    setBackgroundImage();
     backgroundImage.style.backgroundSize = 'cover';
 }
 
