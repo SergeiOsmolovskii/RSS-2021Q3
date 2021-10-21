@@ -9,10 +9,7 @@ const selectedWeather = document.getElementById('select-weather');
 const selectedAudio = document.getElementById('select-audio');
 const selectedToDoList = document.getElementById('select-to-do-list');
 
-
 if (localStorage.getItem('selectedTime')) selectedTime.checked = JSON.parse(localStorage.getItem('selectedTime'));
-if (localStorage.getItem('selectedDate')) selectedDate.checked = JSON.parse(localStorage.getItem('selectedDate'));
-
 if (localStorage.getItem('selectedDate')) selectedDate.checked = JSON.parse(localStorage.getItem('selectedDate'));
 if (localStorage.getItem('selectedGreeting')) selectedGreeting.checked = JSON.parse(localStorage.getItem('selectedGreeting'));
 if (localStorage.getItem('selectedQuote')) selectedQuote.checked = JSON.parse(localStorage.getItem('selectedQuote'));
@@ -20,29 +17,23 @@ if (localStorage.getItem('selectedWeather')) selectedWeather.checked = JSON.pars
 if (localStorage.getItem('selectedAudio')) selectedAudio.checked = JSON.parse(localStorage.getItem('selectedAudio'));
 if (localStorage.getItem('selectedToDoList')) selectedToDoList.checked = JSON.parse(localStorage.getItem('selectedToDoList'));
 
+if (localStorage.getItem('selectedTime') == 'false') setBlock('Time', selectedTime, '.time');
+if (localStorage.getItem('selectedDate') == 'false') setBlock('Date', selectedTime, '.date');
+if (localStorage.getItem('selectedGreeting') == 'false') setBlock('Date', selectedGreeting, '.greeting-container');
+if (localStorage.getItem('selectedQuote') == 'false') setBlock('Date', selectedQuote, '.quote-day');
+if (localStorage.getItem('selectedWeather') == 'false') setBlock('Date', selectedWeather, '.weather');
+if (localStorage.getItem('selectedAudio') == 'false') setBlock('Date', selectedAudio, '.player');
+//if (localStorage.getItem('selectedToDoList') == 'false') setBlock('Date', selectedToDoList, '.toDoList');
 
+    function setBlock(blockParam, blockName, selector) {
+        localStorage.setItem(`selected${blockParam}`, blockName.checked);
+        hideBlock(selector);
+    } 
 
-
-/*
-localStorage.setItem('selectedTime', selectedTime.checked);
-localStorage.setItem('selectedDate', selectedDate.checked);
-localStorage.setItem('selectedGreeting', selectedGreeting.checked);
-localStorage.setItem('selectedQuote', selectedQuote.checked);
-localStorage.setItem('selectedWeather', selectedWeather.checked);
-localStorage.setItem('selectedAudio', selectedAudio.checked);
-localStorage.setItem('selectedToDoList', selectedToDoList.checked); */
-
-
-let state = {
-    language: 'en',
-    photoSource: 'github',
-    blocks: ['time', 'date','greeting', 'quote', 'weather', 'audio', 'todolist']
-  }
-
-if (localStorage.getItem('city')) city.value = localStorage.getItem('city');
-
-
-
+    function hideBlock(selector) {
+        const blockName = document.querySelector(`${selector}`);
+        blockName.classList.toggle('non-active-block');
+    }
 
 export default function settings() {
 
@@ -50,22 +41,13 @@ export default function settings() {
         settingsBlock.classList.toggle('setting-active');
     }
 
-    function hideBlock(selector) {
-        selector.classList.toggle('non-active-block');
-    }
-    
-    function setBlock(blockParam, blockName) {
-        localStorage.setItem(`selected${blockParam}`, blockName.checked);
-    } 
-
     settingsButton.addEventListener('click', openSettings);
 
-selectedTime.addEventListener('change', () => setBlock('Time',selectedTime));
-selectedDate.addEventListener('change', () => setBlock('Date',selectedDate));
-selectedGreeting.addEventListener('change', () => setBlock('Greeting',selectedGreeting));
-selectedQuote.addEventListener('change', () => setBlock('Quote',selectedQuote));
-selectedWeather.addEventListener('change', () => setBlock('Weather',selectedWeather));
-selectedAudio.addEventListener('change', () => setBlock('Audio',selectedAudio));
-selectedToDoList.addEventListener('change', () => setBlock('ToDoList',selectedToDoList));
-
+    selectedTime.addEventListener('change', () => setBlock('Time', selectedTime, '.time'));
+    selectedDate.addEventListener('change', () => setBlock('Date', selectedDate, '.date'));
+    selectedGreeting.addEventListener('change', () => setBlock('Greeting', selectedGreeting, '.greeting-container'));
+    selectedQuote.addEventListener('change', () => setBlock('Quote', selectedQuote, '.quote-day'));
+    selectedWeather.addEventListener('change', () => setBlock('Weather', selectedWeather, '.weather'));
+    selectedAudio.addEventListener('change', () => setBlock('Audio', selectedAudio, '.player'));
+    //selectedToDoList.addEventListener('change', () => setBlock('ToDoList', selectedToDoList));
 }
