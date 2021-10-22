@@ -4,11 +4,15 @@ import settings from './settings.js';
 import getRandomQuote from './quote.js';
 import {playAudio} from './audio.js';
 import {addBackgroundImage, minSliderIndex, maxSliderIndex} from './slider.js';
+import flickr from './flickrAPI.js';
+import unsplash from './unsplashAPI.js';
 
 settings();
 
 let city = document.querySelector('.city');
 let userName = document.querySelector('.name');
+let tag = localStorage.getItem('selectedTag');
+
 
 
 if (localStorage.getItem('name')) userName.value = localStorage.getItem('name');
@@ -17,11 +21,17 @@ if (localStorage.getItem('city')) city.value = localStorage.getItem('city');
 
 /* Time */
 showTime();
+
 /* Slider */
-addBackgroundImage(minSliderIndex, maxSliderIndex);
+
+flickr(tag);
+/* unsplash(tag); */
+
+
+/* addBackgroundImage(minSliderIndex, maxSliderIndex); */
 /* Wether */
 
-if(localStorage.getItem('city') == null || localStorage.getItem('city') == '') {
+if (localStorage.getItem('city') == null || localStorage.getItem('city') == '') {
     getWeather('Minsk');
     city.value = 'Minsk';
 } else getWeather(city.value);

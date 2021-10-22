@@ -175,6 +175,7 @@ input[type="radio"] {
 
 .sound-control p {
   margin: auto 0px auto 20px;
+  opacity: 0.8;
 }
 
 .audio-length-control {
@@ -197,6 +198,7 @@ input[type="radio"] {
   top: -25px;
   text-align: center;
   color: #ffffff;
+  opacity: 0.8;
 }
 
 .audio-length-control::-webkit-slider-thumb,

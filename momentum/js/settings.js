@@ -8,6 +8,12 @@ const selectedQuote = document.getElementById('select-quote');
 const selectedWeather = document.getElementById('select-weather');
 const selectedAudio = document.getElementById('select-audio');
 const selectedToDoList = document.getElementById('select-to-do-list');
+const selectedPictureAPI = document.getElementsByName('picture');
+const pictureTags = document.getElementById('tag');
+
+if (localStorage.getItem('selectedTag') === '') localStorage.setItem('selectedTag', 'nature');
+
+
 
 if (localStorage.getItem('selectedTime')) selectedTime.checked = JSON.parse(localStorage.getItem('selectedTime'));
 if (localStorage.getItem('selectedDate')) selectedDate.checked = JSON.parse(localStorage.getItem('selectedDate'));
@@ -16,6 +22,8 @@ if (localStorage.getItem('selectedQuote')) selectedQuote.checked = JSON.parse(lo
 if (localStorage.getItem('selectedWeather')) selectedWeather.checked = JSON.parse(localStorage.getItem('selectedWeather'));
 if (localStorage.getItem('selectedAudio')) selectedAudio.checked = JSON.parse(localStorage.getItem('selectedAudio'));
 if (localStorage.getItem('selectedToDoList')) selectedToDoList.checked = JSON.parse(localStorage.getItem('selectedToDoList'));
+//if (localStorage.getItem('selectedToDoList')) selectedToDoList.checked = JSON.parse(localStorage.getItem('selectedToDoList'));
+//if (localStorage.getItem('selectedPictureAPI')) 
 
 if (localStorage.getItem('selectedTime') == 'false') setBlock('Time', selectedTime, '.time');
 if (localStorage.getItem('selectedDate') == 'false') setBlock('Date', selectedTime, '.date');
@@ -24,6 +32,11 @@ if (localStorage.getItem('selectedQuote') == 'false') setBlock('Date', selectedQ
 if (localStorage.getItem('selectedWeather') == 'false') setBlock('Date', selectedWeather, '.weather');
 if (localStorage.getItem('selectedAudio') == 'false') setBlock('Date', selectedAudio, '.player');
 //if (localStorage.getItem('selectedToDoList') == 'false') setBlock('Date', selectedToDoList, '.toDoList');
+
+
+    function setTags() {
+        localStorage.setItem('selectedTag', this.value);
+    } 
 
     function setBlock(blockParam, blockName, selector) {
         localStorage.setItem(`selected${blockParam}`, blockName.checked);
@@ -37,12 +50,26 @@ if (localStorage.getItem('selectedAudio') == 'false') setBlock('Date', selectedA
 
 export default function settings() {
 
-    function openSettings() {
-        settingsBlock.classList.toggle('setting-active');
+    function openSettings(e) {
+        if (e.target === settingsButton) settingsBlock.classList.toggle('setting-active');
     }
 
-    settingsButton.addEventListener('click', openSettings);
+    function selectedAPI() {
+        localStorage.setItem('selectedPictureAPI', this.value);
+    }
 
+    function selectPictureAPI() {
+        selectedPictureAPI.forEach(item => {
+          item.onchange = selectedAPI;
+          if (localStorage.getItem('selectedPictureAPI') === item.value) item.checked = true;
+        });
+      }
+
+      selectPictureAPI();
+
+      pictureTags.addEventListener('change', setTags);
+
+    settingsButton.addEventListener('click', openSettings);
     selectedTime.addEventListener('change', () => setBlock('Time', selectedTime, '.time'));
     selectedDate.addEventListener('change', () => setBlock('Date', selectedDate, '.date'));
     selectedGreeting.addEventListener('change', () => setBlock('Greeting', selectedGreeting, '.greeting-container'));
