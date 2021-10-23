@@ -1,46 +1,49 @@
-import {showTime, currentTimeOfDay} from './time.js';
+import {showTime} from './time.js';
 import getWeather from './wether.js';
 import settings from './settings.js';
 import getRandomQuote from './quote.js';
 import {playAudio} from './audio.js';
-import {addBackgroundImage, minSliderIndex, maxSliderIndex} from './slider.js';
+import {addBackgroundImageFromGitHub, minSliderIndex, maxSliderIndex} from './slider.js';
 import flickr from './flickrAPI.js';
 import unsplash from './unsplashAPI.js';
 
 settings();
 
-let city = document.querySelector('.city');
-let userName = document.querySelector('.name');
-let tag = localStorage.getItem('selectedTag');
-
-
+const playBtn = document.querySelector('.play');
+const city = document.querySelector('.city');
+const userName = document.querySelector('.name');
+let currentTimeOfDay = showTime();
 
 if (localStorage.getItem('name')) userName.value = localStorage.getItem('name');
 if (localStorage.getItem('city')) city.value = localStorage.getItem('city');
+if (localStorage.getItem('selectedTag') === '' || localStorage.getItem('selectedTag') === null) localStorage.setItem('selectedTag', currentTimeOfDay);
 
+let tag = localStorage.getItem('selectedTag');
 
 /* Time */
+
 showTime();
 
 /* Slider */
 
-flickr(tag);
-/* unsplash(tag); */
+if (localStorage.getItem('selectedPictureAPI') === 'Unsplash') {
+    unsplash(tag);
+} else if (localStorage.getItem('selectedPictureAPI') === 'Flickr') {
+    flickr(tag);
+} else addBackgroundImageFromGitHub(minSliderIndex, maxSliderIndex);
 
-
-/* addBackgroundImage(minSliderIndex, maxSliderIndex); */
 /* Wether */
 
-if (localStorage.getItem('city') == null || localStorage.getItem('city') == '') {
+if (localStorage.getItem('city') === '' || localStorage.getItem('city') === null) {
     getWeather('Minsk');
     city.value = 'Minsk';
 } else getWeather(city.value);
 
 /* Random quote */
-getRandomQuote();
-/* Audio  */
 
-const playBtn = document.querySelector('.play');
+getRandomQuote();
+
+/* Audio  */
 
 playBtn.addEventListener('click', playAudio);
 

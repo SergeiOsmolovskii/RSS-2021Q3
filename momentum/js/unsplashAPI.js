@@ -1,3 +1,5 @@
+"use strict"
+
 export default async function (tag) {
 const backgroundImage = document.body;
 

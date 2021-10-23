@@ -10,7 +10,8 @@ let timesOfDay = {
     evening: 'Good evening',
     night: 'Good night'
 };
-export let currentTimeOfDay = '';
+
+let currentTimeOfDay = '';
 
 export function showTime() {
     const date = new Date();
@@ -26,7 +27,8 @@ export function showTime() {
 
     userGreeting();
     showDate();
-    setTimeout(showTime, 1000);
+    setTimeout(showTime, 1000); 
+    return currentTimeOfDay;
   }
 
 function showDate() {

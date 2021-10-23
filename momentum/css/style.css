@@ -24,6 +24,7 @@ body {
   color: #fff;
   text-align: center;
   background: url(style.css) center center / cover, rgba(0, 0, 0, 0.5);
+  background-image: url(https://raw.githubusercontent.com/SergeiOsmolovskii/stage1-tasks/assets/images/afternoon/01.jpg);
   background-blend-mode: multiply;
   transition: background-image 1s ease-in-out;
 }

@@ -1,12 +1,16 @@
 "use strict"
 import {currentTimeOfDay} from './time.js';
+import flickr from './flickrAPI.js';
+import unsplash from './unsplashAPI.js';
 
-const slidePrev = document.querySelector('.slide-prev');
-const slideNext = document.querySelector('.slide-next');
-const backgroundImage = document.body;
+export const backgroundImage = document.body;
 export const minSliderIndex = 1;
 export const maxSliderIndex = 20;
-let currentSlideIndex = 0;
+    let currentSlideIndex = 0;
+    let tag = localStorage.getItem('selectedTag');
+
+    const slidePrev = document.querySelector('.slide-prev');
+    const slideNext = document.querySelector('.slide-next');
 
 function setBackgroundImage() {  
     const img = new Image();
@@ -15,9 +19,9 @@ function setBackgroundImage() {
     img.onload = () => {      
         backgroundImage.style.backgroundImage = `url(https://raw.githubusercontent.com/SergeiOsmolovskii/stage1-tasks/assets/images/${currentTimeOfDay}/${currentSlideIndex < 10 ? `0${currentSlideIndex}` : currentSlideIndex}.jpg)`;
     }; 
-  }
+}
 
-export function addBackgroundImage(minSliderIndex, maxSliderIndex) {
+export function addBackgroundImageFromGitHub(minSliderIndex, maxSliderIndex) {
     function getRandomArbitrary(minSliderIndex, maxSliderIndex) {
         let min = Math.ceil(minSliderIndex);
         let max = Math.floor(maxSliderIndex);
@@ -29,15 +33,29 @@ export function addBackgroundImage(minSliderIndex, maxSliderIndex) {
 }
 
 slidePrev.addEventListener('click', () => {
-    currentSlideIndex = currentSlideIndex - 1; 
-    if (currentSlideIndex < minSliderIndex) currentSlideIndex = maxSliderIndex; 
-    setBackgroundImage();
-    backgroundImage.style.backgroundSize = 'cover';
+
+    if (localStorage.getItem('selectedPictureAPI') === 'Unsplash') {
+        unsplash(tag);
+    } else if (localStorage.getItem('selectedPictureAPI') === 'Flickr') {
+        flickr(tag);
+    } else {
+        currentSlideIndex = currentSlideIndex - 1; 
+        if (currentSlideIndex < minSliderIndex) currentSlideIndex = maxSliderIndex; 
+        setBackgroundImage();
+        backgroundImage.style.backgroundSize = 'cover';
+    }
 })
 
 slideNext.addEventListener('click', () => {
-    currentSlideIndex = currentSlideIndex + 1; 
-    if (currentSlideIndex > maxSliderIndex) currentSlideIndex = minSliderIndex; 
-    setBackgroundImage();
-    backgroundImage.style.backgroundSize = 'cover';
+
+    if (localStorage.getItem('selectedPictureAPI') === 'Unsplash') {
+        unsplash(tag);
+    } else if (localStorage.getItem('selectedPictureAPI') === 'Flickr') {
+        flickr(tag);
+    } else {
+        currentSlideIndex = currentSlideIndex + 1; 
+        if (currentSlideIndex > maxSliderIndex) currentSlideIndex = minSliderIndex; 
+        setBackgroundImage();
+        backgroundImage.style.backgroundSize = 'cover';
+    }
 })

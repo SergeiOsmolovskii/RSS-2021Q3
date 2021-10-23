@@ -1,3 +1,8 @@
+"use strict"
+import flickr from './flickrAPI.js';
+import unsplash from './unsplashAPI.js';
+import {addBackgroundImageFromGitHub, minSliderIndex, maxSliderIndex} from './slider.js';
+
 const settingsButton = document.querySelector('.settings');
 const settingsBlock = document.querySelector('.settings-block');
 const selectedLanguage = document.getElementById('select-language');
@@ -10,10 +15,7 @@ const selectedAudio = document.getElementById('select-audio');
 const selectedToDoList = document.getElementById('select-to-do-list');
 const selectedPictureAPI = document.getElementsByName('picture');
 const pictureTags = document.getElementById('tag');
-
-if (localStorage.getItem('selectedTag') === '') localStorage.setItem('selectedTag', 'nature');
-
-
+let tag = localStorage.getItem('selectedTag');
 
 if (localStorage.getItem('selectedTime')) selectedTime.checked = JSON.parse(localStorage.getItem('selectedTime'));
 if (localStorage.getItem('selectedDate')) selectedDate.checked = JSON.parse(localStorage.getItem('selectedDate'));
@@ -56,6 +58,12 @@ export default function settings() {
 
     function selectedAPI() {
         localStorage.setItem('selectedPictureAPI', this.value);
+        if (localStorage.getItem('selectedPictureAPI') === 'Unsplash') {
+            unsplash(tag);
+        }
+        else if (localStorage.getItem('selectedPictureAPI') === 'Flickr') {
+            flickr(tag);
+        } else addBackgroundImageFromGitHub(minSliderIndex, maxSliderIndex);
     }
 
     function selectPictureAPI() {
@@ -67,7 +75,7 @@ export default function settings() {
 
       selectPictureAPI();
 
-      pictureTags.addEventListener('change', setTags);
+    pictureTags.addEventListener('change', setTags);
 
     settingsButton.addEventListener('click', openSettings);
     selectedTime.addEventListener('change', () => setBlock('Time', selectedTime, '.time'));
