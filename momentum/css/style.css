@@ -23,7 +23,7 @@ body {
   font-size: 16px;
   color: #fff;
   text-align: center;
-  background: url(style.css) center center / cover, rgba(0, 0, 0, 0.5);
+  background: url(style.css) center center / cover, rgba(0, 0, 0, 0.25);
   background-image: url(https://raw.githubusercontent.com/SergeiOsmolovskii/stage1-tasks/assets/images/afternoon/01.jpg);
   background-blend-mode: multiply;
   transition: background-image 1s ease-in-out;
@@ -513,7 +513,7 @@ input[type="radio"]:checked+.custom-radio-btn::before {
   transform: translate(-50%, -50%) scale(1);
 }
 
-#tag {
+#tag, #toDoInput {
   border: 2px solid #c5b358;
   height: 2.5em;
   max-width: 150px;
@@ -521,6 +521,84 @@ input[type="radio"]:checked+.custom-radio-btn::before {
   color: #ffffff;
   font-size: 24px;
   background: transparent;
+}
+
+#toDoInput, .list li {
+  max-width: 390px;
+  background: #ffffff;
+  color: #000000;
+}
+
+#to-do {
+  font-size: 24px;
+}
+
+.to-do-list {
+  position: absolute;
+  left: -1000%;
+  top: 50px;
+  transition: 1s;
+}
+
+.to-do-active {
+  left: 0;
+}
+
+.to-do-list-button {
+  position: absolute;
+  left: 50px;
+  top: 0px;
+  width: 50px;
+  height: 50px;
+  background-image: url("../assets/svg/to-do-arrow-open.svg");  
+  cursor: pointer;
+}
+
+.input-container {
+  display: flex;
+}
+
+.input-container button, .job-list-close {
+  width: 65px;
+  padding: 10px;
+  border: 2px solid #c5b358;
+  border-left: none;
+  font-family: 'Arial', sans-serif;
+  background-color: #ffffff;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 24px;
+  outline: none;
+  cursor: pointer;
+}
+
+.list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+}
+
+.list li:hover {
+  opacity: 0.8;
+}
+
+.to-do-list-active {
+  background-image: url("../assets/svg/to-do-arrow-close.svg");  
+}
+
+.job-list-close {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background-image: url("../assets/svg/remove-list.svg");  
+}
+
+.job-list-close:hover {
+  transform: scale(0.8);
+}
+
+ul li.done {
+  text-decoration: line-through;
 }
 
 .checkbox .custom-radio-btn {

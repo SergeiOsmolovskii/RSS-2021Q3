@@ -1,17 +1,13 @@
 "use strict"
+import translation from './language.js';
 
 const time = document.querySelector('.time');
 const currentVisibleDate = document.querySelector('.date');
 const greeting = document.querySelector('.greeting');
+/* let lang = localStorage.getItem('selectedLanguage');
+let langSetting = translation[lang]; */
 
-let timesOfDay = {
-    morning: 'Good morning',
-    afternoon: 'Good afternoon',
-    evening: 'Good evening',
-    night: 'Good night'
-};
-
-let currentTimeOfDay = '';
+export let currentTimeOfDay = '';
 
 export function showTime() {
     const date = new Date();
@@ -34,10 +30,12 @@ export function showTime() {
 function showDate() {
     const date = new Date();
     const options = {month: 'long', day: 'numeric', weekday:'long', timeZone: 'UTC'};
-    const currentDate = date.toLocaleDateString('en-Br', options);
+    const currentDate = date.toLocaleDateString(`${localStorage.getItem('selectedLanguage')}`, options);
     currentVisibleDate.textContent = currentDate;
 }
 
-function userGreeting() {
-    greeting.textContent = timesOfDay[`${currentTimeOfDay}`];
+export function userGreeting() {
+    let lang = localStorage.getItem('selectedLanguage');
+    let langSetting = translation[lang];
+    greeting.textContent = langSetting.greeting[currentTimeOfDay];
 }

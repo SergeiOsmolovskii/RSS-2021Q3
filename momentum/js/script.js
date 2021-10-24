@@ -6,17 +6,24 @@ import {playAudio} from './audio.js';
 import {addBackgroundImageFromGitHub, minSliderIndex, maxSliderIndex} from './slider.js';
 import flickr from './flickrAPI.js';
 import unsplash from './unsplashAPI.js';
+import {changeLanguage} from './language.js';
+import toDo from './toDoList.js';
 
+toDo();
+changeLanguage();
 settings();
 
 const playBtn = document.querySelector('.play');
 const city = document.querySelector('.city');
 const userName = document.querySelector('.name');
-let currentTimeOfDay = showTime();
 
 if (localStorage.getItem('name')) userName.value = localStorage.getItem('name');
 if (localStorage.getItem('city')) city.value = localStorage.getItem('city');
+if (localStorage.getItem('selectedLanguage') === '' || localStorage.getItem('selectedLanguage') === null) localStorage.setItem('selectedLanguage', 'eng');
+
+let currentTimeOfDay = showTime();
 if (localStorage.getItem('selectedTag') === '' || localStorage.getItem('selectedTag') === null) localStorage.setItem('selectedTag', currentTimeOfDay);
+
 
 let tag = localStorage.getItem('selectedTag');
 
@@ -33,6 +40,7 @@ if (localStorage.getItem('selectedPictureAPI') === 'Unsplash') {
 } else addBackgroundImageFromGitHub(minSliderIndex, maxSliderIndex);
 
 /* Wether */
+
 
 if (localStorage.getItem('city') === '' || localStorage.getItem('city') === null) {
     getWeather('Minsk');

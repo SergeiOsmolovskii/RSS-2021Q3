@@ -11,9 +11,17 @@ export default async function getRandomQuote() {
     const data = await res.json(); 
     quote.textContent = `"${data.quote.body}"`;
     author.textContent = data.quote.author;
-
 }
 
+//export default async function getRandomQuote() {
+//    const url = `https://api.forismatic.com/api/1.0/?method=getQuote&format=json&json=parseQuote?language=ru`;
+//   const res = await fetch(url);  
+
+//    const data = await res.json(); 
+//    quote.textContent = `"${data.quote.body}"`;
+//    author.textContent = data.quote.author;
+//    console.log(data)
+//}
 getRandomQuote();
 
 changeQuote.addEventListener('click', () => {
