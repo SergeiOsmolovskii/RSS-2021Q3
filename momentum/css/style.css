@@ -206,6 +206,11 @@ input[type="radio"] {
   opacity: 0.8;
 }
 
+.sound, .sound-level {
+  display: flex;
+  align-items: center;
+}
+
 .audio-length-control::-webkit-slider-thumb,
 .sound-bar-progress::-webkit-slider-thumb {
     -webkit-appearance: none;
@@ -416,8 +421,8 @@ footer a:hover {
   position: relative;
   display: flex;
   align-items: center;
-  width: 6em;
-  height: 2.5em;
+  width: 5em;
+  height: 2em;
   padding: 0px 10px;
   border: 2px solid #c5b358;
   border-radius: 100px;
@@ -433,16 +438,16 @@ footer a:hover {
 }
 
 .checkbox-input:checked~.checkbox-block::after {
-  left: 3.5em;
+  left: 3em;
   background-color: var(--active-setting);
 }
 
 .checkbox-block::after {
   content: '';
   position: absolute;
-  left: 12px;
-  width: 26px;
-  height: 26px;
+  left: 6px;
+  width: 22px;
+  height: 22px;
   background-color: var(--not-active-setting);
   border-radius: 50%;
   transition: 0.5s;
@@ -469,7 +474,7 @@ footer a:hover {
   border: 2px solid #fff;
   background: rgb(0 0 0 / 50%);
   opacity: 1;
-  transition: 1s;
+  transition: 0.5s;
   z-index: 10;
 }
 
@@ -487,7 +492,7 @@ footer .pictue-setting {
 .pictue-setting p {
   display: block;
   width: 100%;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   text-align: center;
 }
 
@@ -514,8 +519,8 @@ footer .pictue-setting {
   top: 50%;
   left: 50%;
   display: inline-block;
-  width: 1em;
-  height: 1em;
+  width: 0.9em;
+  height: 0.9em;
   background: green;
   border-radius: 50%;
   transform: translate(-50%, -50%) scale(0);
@@ -527,7 +532,7 @@ input[type="radio"]:checked+.custom-radio-btn::before {
 
 #tag, #toDoInput {
   border: 2px solid #c5b358;
-  height: 2.5em;
+  height: 2em;
   max-width: 150px;
   padding: 0px 15px;
   color: #ffffff;
@@ -547,13 +552,14 @@ input[type="radio"]:checked+.custom-radio-btn::before {
 
 .to-do-list {
   position: absolute;
-  left: -1000%;
+  left: -1300%;
   top: 50px;
   transition: 1s;
 }
 
 .to-do-active {
   left: 0;
+  z-index: 10;
 }
 
 .to-do-list-button {
@@ -573,7 +579,6 @@ input[type="radio"]:checked+.custom-radio-btn::before {
 
 .input-container button, .job-list-close {
   width: 65px;
-  padding: 10px;
   border: 2px solid #c5b358;
   border-left: none;
   font-family: 'Arial', sans-serif;
@@ -617,15 +622,15 @@ ul li.done {
 .checkbox .custom-radio-btn {
   display: inline-block;
   position: relative;
-  width: 1.5em;
-  height: 1.5em;
+  width: 1.25em;
+  height: 1.25em;
   background: transparent;
   border: 2px solid #c5b358;
   border-radius: 50%;
 }
 
 .setting {
-  margin: 1em 0px;
+  margin: 0.5em 0px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -634,13 +639,17 @@ ul li.done {
 
 .settings-block {
   opacity: 0;
+  visibility: hidden;
+
 }
 
 .setting-active {
   opacity: 1;
+  visibility: visible;
 }
 
 .non-active-block {
+  visibility: hidden;
   opacity: 0;
 }
 
@@ -656,16 +665,18 @@ ul li.done {
 
 .quote {
   min-height: 32px;
+  font-size: 24px;
 }
 
 .author {
   min-height: 20px;
+  font-size: 24px;
 }
 
 @media (max-width: 768px) {
   .time {
     min-height: 80px;
-    font-size: 72px;    
+    font-size: 60px;    
   }
 
   .greeting-container {
@@ -680,5 +691,176 @@ ul li.done {
   .name {
     font-size: 32px;
     padding: 5px;
+  }
+
+  .player-controls {
+    display: block;
+  }
+
+  .sound-control {
+    flex-direction: column;
+    margin-top: 25px;
+    padding: 0;
+  }
+
+  .to-do-list-button {
+    top: 45px;
+  }
+}
+
+@media (max-width: 768px) {
+  .audio-length-control {
+    width: auto;
+  }
+
+}
+
+@media (max-width:  768px) {
+
+  body {
+    min-width: auto;
+  }
+
+  .play-item {
+    padding: 2px;
+  }
+
+  .author, .quote, .play-item p, footer a, footer p {
+    font-size: 12px;
+  }
+
+  .greeting-container, .name {
+    font-size: 16px;
+  }
+  .sound-control {
+    align-items: flex-start;
+    margin-left: 0;
+  }
+
+  .play-item::before {
+    content: none;
+  }
+
+  .sound-control p:first-child {
+    margin: auto 10px auto 0px;
+    font-size: 12px;
+  }
+
+  .sound-control p {
+    margin: auto 0px auto 10px;
+    font-size: 12px;
+  }
+
+  .audio-length-control {
+    width: 111px;
+  }
+
+  .player-controls {
+    margin-bottom: 10px;
+  }
+
+  .header {
+    padding: 5px;
+  }
+
+  footer {
+    padding: 10px;
+  }
+
+  .rss-link img {
+    width: 60px;
+  }
+
+  .weather {
+    width: auto;
+    min-height: auto;
+    font-size: 12px;
+  }
+
+  .player-icon, .slider-icon, .change-quote, .sound-button, .play-current-track {
+    width: 24px;
+    height: 24px;
+    background-size: 24px 24px;
+  }
+
+  .play {
+    width: 32px;
+    height: 32px;
+  }
+
+  .time {
+    font-size: 40px;
+  }
+
+  .city {
+    width: 100px;
+  }
+
+  .to-do-list-button {
+    top: 15px;
+    left: 20px;
+    width: 25px;
+    height: 25px;
+  }
+
+  .input-container button, .job-list-close {
+    font-size: 12px;
+    background-size: cover;
+  }
+
+  .job-list-close {
+    width: 18px;
+    height: 18px;
+  }
+
+  #toDoInput {
+    font-size: 12px;
+    max-width: 190px;
+  }
+
+  #tag {
+    font-size: 12px;
+    width: 100px;
+  }
+
+  #to-do {
+    font-size: 16px;
+  }
+
+  .to-do-list {
+    top: 20px;
+  }
+
+  .settings {
+    width: 24px;
+    height: 24px;
+    background-size: cover;
+  }
+
+  .list li {
+    padding: 1px 5px;
+    font-size: 12px;
+  }
+
+  .checkbox-block {
+    width: 3em;
+    height: 1.5em;
+  }
+
+  .settings-block {
+    width: 200px;
+  }
+
+  .checkbox-block::after {
+    width: 16px;
+    height: 16px; 
+  }
+
+  .checkbox-input:checked~.checkbox-block::after {
+    left: 1.5em;
+  }
+
+  .photos-select label, .photo-tags-label {
+    font-size: 12px;
   }
 }

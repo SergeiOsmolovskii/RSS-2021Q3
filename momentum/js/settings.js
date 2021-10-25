@@ -5,6 +5,7 @@ import {addBackgroundImageFromGitHub, minSliderIndex, maxSliderIndex} from './sl
 import getWeather from './wether.js';
 import {userGreeting} from './time.js';
 import translation, {addActiveLanguage, changeLanguage} from './language.js';
+import getRandomQuote from './quote.js';
 
 
 const settingsButton = document.querySelector('.settings');
@@ -89,6 +90,7 @@ export default function settings() {
         } else getWeather(city.value);
 
         userGreeting();
+        getRandomQuote();
         changeLanguage();
     }
         

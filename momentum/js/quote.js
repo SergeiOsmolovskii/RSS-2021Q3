@@ -6,23 +6,31 @@ const changeQuote = document.querySelector('.change-quote');
 let rotateDeg = 0;
 
 export default async function getRandomQuote() {
-    const url = `https://favqs.com/api/qotd`;
-    const res = await fetch(url);  
-    const data = await res.json(); 
-    quote.textContent = `"${data.quote.body}"`;
-    author.textContent = data.quote.author;
+
+    function getRandom(minSliderIndex, maxSliderIndex) {
+        let min = Math.ceil(minSliderIndex);
+        let max = Math.floor(maxSliderIndex);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    const randomQuot = getRandom(1, 100)
+
+    let currentLangth = localStorage.getItem('selectedLanguage');
+    if (currentLangth === 'ru') {
+        const url = `./js/quotes_ru.json`;
+        const res = await fetch(url);  
+        const data = await res.json();
+        quote.textContent = data[randomQuot].text;
+        author.textContent = data[randomQuot].author; 
+
+    } else {
+        const url = `https://favqs.com/api/qotd`;
+        const res = await fetch(url);  
+        const data = await res.json(); 
+        quote.textContent = `"${data.quote.body}"`;
+        author.textContent = data.quote.author;
+    }
 }
-
-//export default async function getRandomQuote() {
-//    const url = `https://api.forismatic.com/api/1.0/?method=getQuote&format=json&json=parseQuote?language=ru`;
-//   const res = await fetch(url);  
-
-//    const data = await res.json(); 
-//    quote.textContent = `"${data.quote.body}"`;
-//    author.textContent = data.quote.author;
-//    console.log(data)
-//}
-getRandomQuote();
 
 changeQuote.addEventListener('click', () => {
     rotateDeg += 180;

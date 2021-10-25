@@ -7,7 +7,6 @@ export const backgroundImage = document.body;
 export const minSliderIndex = 1;
 export const maxSliderIndex = 20;
     let currentSlideIndex = 0;
-    let tag = localStorage.getItem('selectedTag');
 
     const slidePrev = document.querySelector('.slide-prev');
     const slideNext = document.querySelector('.slide-next');
@@ -32,7 +31,7 @@ export function addBackgroundImageFromGitHub(minSliderIndex, maxSliderIndex) {
 }
 
 slidePrev.addEventListener('click', () => {
-
+    let tag = localStorage.getItem('selectedTag');
     if (localStorage.getItem('selectedPictureAPI') === 'Unsplash') {
         unsplash(tag);
     } else if (localStorage.getItem('selectedPictureAPI') === 'Flickr') {
@@ -46,7 +45,7 @@ slidePrev.addEventListener('click', () => {
 })
 
 slideNext.addEventListener('click', () => {
-
+    let tag = localStorage.getItem('selectedTag');
     if (localStorage.getItem('selectedPictureAPI') === 'Unsplash') {
         unsplash(tag);
     } else if (localStorage.getItem('selectedPictureAPI') === 'Flickr') {

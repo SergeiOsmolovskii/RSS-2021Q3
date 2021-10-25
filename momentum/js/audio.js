@@ -109,7 +109,6 @@ function audioPprogress() {
     audioLengthControl.style.background = `linear-gradient(to right, #c5b358 0%, #c5b358 ${percent}%, #C4C4C4 ${percent}%, #C4C4C4)`;
     if (audio.ended) {
         audio.currentTime = 0;
-        togglePlayClases();
     }
 }
 
@@ -118,7 +117,6 @@ function changeProgressBar(e) {
     audio.currentTime = time;
     if (audio.ended) {
         audio.currentTime = 0;
-        togglePlayClases();
     }
 }
 

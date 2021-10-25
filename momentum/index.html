@@ -12,15 +12,21 @@
   <header class="header">
     <div class="player">
       <div class="player-controls">
-        <button class="play-prev player-icon"></button>
-        <button class="play player-icon"></button>
-        <button class="play-next player-icon"></button>
+        <div>
+          <button class="play-prev player-icon"></button>
+          <button class="play player-icon"></button>
+          <button class="play-next player-icon"></button>
+        </div>
         <div class="sound-control">
-          <p class="current-time-play"><span class="minutes">00</span>:<span class="seconds">00</span></p>
-          <input class="audio-length-control control-input" min="0" max="100" type="range">  
-          <p class="track-duration">00:00</p>
-          <button class="sound-button"></button>
-          <input class="sound-bar-progress control-input" min="0" max="100" type="range">  
+          <div class="sound">
+            <p class="current-time-play"><span class="minutes">00</span>:<span class="seconds">00</span></p>
+            <input class="audio-length-control control-input" min="0" max="100" type="range">  
+            <p class="track-duration">00:00</p>
+          </div>
+          <div class="sound-level">
+            <button class="sound-button"></button>
+            <input class="sound-bar-progress control-input" min="0" max="100" type="range">  
+          </div>
         </div> 
       </div>
       <ul class="play-list"></ul>
