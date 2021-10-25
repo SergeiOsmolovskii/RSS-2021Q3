@@ -21,7 +21,7 @@ export default async function getWeather(city) {
     } else if (res.status == 404) {
         errorBlock.textContent = `Error! City not found for "${city}"`;
         clearWeather();
-    } else if(res.status == 400) {
+    } else if (res.status == 400) {
         errorBlock.textContent = `Error! Nothing to geocode for`;
         clearWeather();
     } else errorBlock.textContent = ``;

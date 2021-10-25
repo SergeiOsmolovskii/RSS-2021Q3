@@ -22,7 +22,7 @@ let currentAudio = 0;
 
 audio.src = playList[currentAudio].src;
 trackDuration.textContent = playList[currentAudio].duration;
-playList.forEach((item, index ) => {
+playList.forEach((item, index) => {
     const li = document.createElement('li');
     const paragraph = document.createElement('p');
     const button = document.createElement('button');
@@ -30,7 +30,7 @@ playList.forEach((item, index ) => {
     button.classList.add('play-current-track');
     button.setAttribute('data-index', index);
     paragraph.textContent = item.title;
-    playListBlock.append(li); 
+    playListBlock.append(li);
     li.append(button);
     li.append(paragraph);
 });
@@ -60,18 +60,18 @@ function changePlayListItem(currentAudio) {
             HTML.style.setProperty('--current-track-name', `"${item.textContent}"`);
             trackDuration.textContent = playList[index].duration;
         } else item.classList.remove('item-active');
-    }); 
+    });
 }
 
 function playPrev() {
     currentAudio--;
-    if(currentAudio < 0) currentAudio = playList.length - 1; 
+    if (currentAudio < 0) currentAudio = playList.length - 1;
     playCurrentAudio();
 }
 
 function playNext() {
     currentAudio++;
-    if(currentAudio > playList.length - 1) currentAudio = 0;
+    if (currentAudio > playList.length - 1) currentAudio = 0;
     playCurrentAudio();
 }
 
@@ -103,7 +103,7 @@ function audioPprogress() {
     } else {
         seconds.textContent = `${Math.floor(audio.currentTime - 60) < 10 ? `0${Math.floor(audio.currentTime - 60)}` : Math.floor(audio.currentTime - 60)}`;
         minutes.textContent = `${Math.floor(audio.currentTime / 60) < 10 ? `0${Math.floor(audio.currentTime / 60)}` : Math.floor(audio.currentTime / 60)}`;
-    } 
+    }
 
     audioLengthControl.value = percent;
     audioLengthControl.style.background = `linear-gradient(to right, #c5b358 0%, #c5b358 ${percent}%, #C4C4C4 ${percent}%, #C4C4C4)`;
@@ -138,7 +138,7 @@ export function playAudio() {
     }
 }
 
-playListUl.onclick = function(e) {
+playListUl.onclick = function (e) {
     if (e.target.tagName === 'BUTTON') {
         if (currentAudio === e.target.dataset.index) {
             playAudio();
@@ -157,7 +157,6 @@ playBtn.addEventListener('click', playAudio);
 playBtn.addEventListener('click', toggleBtn);
 playPrevBtn.addEventListener('click', playPrev);
 playNextBtn.addEventListener('click', playNext);
-
 soundButton.addEventListener('click', mute);
 soundControl.addEventListener('change', changeVolume);
 audioLengthControl.addEventListener('click', changeProgressBar);

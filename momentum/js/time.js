@@ -1,14 +1,12 @@
 "use strict"
+
 import translation from './language.js';
 
 const time = document.querySelector('.time');
 const currentVisibleDate = document.querySelector('.date');
 const greeting = document.querySelector('.greeting');
-/* let lang = localStorage.getItem('selectedLanguage');
-let langSetting = translation[lang]; */
 
 export let currentTimeOfDay = '';
-
 export function showTime() {
     const date = new Date();
     const seconds = date.getSeconds();

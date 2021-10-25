@@ -1,12 +1,12 @@
 "use strict"
+
 import flickr from './flickrAPI.js';
 import unsplash from './unsplashAPI.js';
 import {addBackgroundImageFromGitHub, minSliderIndex, maxSliderIndex} from './slider.js';
 import getWeather from './wether.js';
 import {userGreeting} from './time.js';
-import translation, {addActiveLanguage, changeLanguage} from './language.js';
+import {addActiveLanguage, changeLanguage} from './language.js';
 import getRandomQuote from './quote.js';
-
 
 const settingsButton = document.querySelector('.settings');
 const settingsBlock = document.querySelector('.settings-block');
@@ -18,11 +18,9 @@ const selectedQuote = document.getElementById('select-quote');
 const selectedWeather = document.getElementById('select-weather');
 const selectedAudio = document.getElementById('select-audio');
 const selectedToDoList = document.getElementById('select-to-do-list');
-
 const selectedPictureAPI = document.getElementsByName('picture');
 const pictureTags = document.getElementById('tag');
 const city = document.querySelector('.city');
-
 let tag = localStorage.getItem('selectedTag');
 
 if (localStorage.getItem('selectedTime')) selectedTime.checked = JSON.parse(localStorage.getItem('selectedTime'));

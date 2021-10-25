@@ -1,15 +1,16 @@
 "use strict"
 
+ export function getRandom(minSliderIndex, maxSliderIndex) {
+    let min = Math.ceil(minSliderIndex);
+    let max = Math.floor(maxSliderIndex);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 export default async function flickr(tag) {
     const backgroundImage = document.body;
     const METHOD = 'flickr.photos.search'
     const API_KEY = '76e32d3b0dacc597019bd1f2c3167170';
 
-    function getRandom(minSliderIndex, maxSliderIndex) {
-        let min = Math.ceil(minSliderIndex);
-        let max = Math.floor(maxSliderIndex);
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
     let randomImg = getRandom(1, 100);
     let randomPage = getRandom(1, 100);
 

@@ -20,12 +20,12 @@ function setBackgroundImage() {
 }
 
 export function addBackgroundImageFromGitHub(minSliderIndex, maxSliderIndex) {
-    function getRandomArbitrary(minSliderIndex, maxSliderIndex) {
+    function getRandom(minSliderIndex, maxSliderIndex) {
         let min = Math.ceil(minSliderIndex);
         let max = Math.floor(maxSliderIndex);
         currentSlideIndex = Math.floor(Math.random() * (max - min + 1)) + min;
     }
-    getRandomArbitrary(minSliderIndex, maxSliderIndex);
+    getRandom(minSliderIndex, maxSliderIndex);
     setBackgroundImage();
     backgroundImage.style.backgroundSize = 'cover';
 }

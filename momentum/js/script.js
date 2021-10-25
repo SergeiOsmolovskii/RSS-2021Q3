@@ -9,8 +9,6 @@ import unsplash from './unsplashAPI.js';
 import {changeLanguage} from './language.js';
 import toDo from './toDoList.js';
 
-
-
 const playBtn = document.querySelector('.play');
 const city = document.querySelector('.city');
 const userName = document.querySelector('.name');
@@ -26,6 +24,7 @@ let tag = localStorage.getItem('selectedTag');
 toDo();
 changeLanguage();
 settings();
+
 /* Time */
 
 showTime();
@@ -39,7 +38,6 @@ if (localStorage.getItem('selectedPictureAPI') === 'Unsplash') {
 } else addBackgroundImageFromGitHub(minSliderIndex, maxSliderIndex);
 
 /* Wether */
-
 
 if (localStorage.getItem('city') === '' || localStorage.getItem('city') === null) {
     getWeather('Minsk');
@@ -58,9 +56,9 @@ city.addEventListener ( 'change', e => {
     city.textContent = e.target.value;
     localStorage.setItem('city', city.value);
     getWeather(city.value);
-})
+});
 
 userName.addEventListener ( 'change', e => {
     userName.textContent = e.target.value;
     localStorage.setItem('name', userName.value);
-})
+});

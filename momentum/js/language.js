@@ -77,9 +77,7 @@ export function changeLanguage() {
 
     for (let key in langSetting.settings) {
         let item = document.getElementById(key);
-        if (item != null) {
-            item.textContent = langSetting.settings[key]; 
-        }
+        if (item != null) item.textContent = langSetting.settings[key]; 
     }
 
     addActiveLanguage();
@@ -89,10 +87,6 @@ export function changeLanguage() {
     document.getElementById('toDoInput').setAttribute('placeholder', langSetting.toDoInput); 
     document.getElementById('add-job').textContent = langSetting.addJob; 
     document.getElementById('to-do').textContent = langSetting.toDo; 
-
-
-
-
 }
 
 export default translation;

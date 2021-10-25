@@ -1,21 +1,16 @@
 "use strict"
 
+import {getRandom} from './flickrAPI.js';
+
 const quote = document.querySelector('.quote');
 const author = document.querySelector('.author');
 const changeQuote = document.querySelector('.change-quote');
 let rotateDeg = 0;
 
 export default async function getRandomQuote() {
-
-    function getRandom(minSliderIndex, maxSliderIndex) {
-        let min = Math.ceil(minSliderIndex);
-        let max = Math.floor(maxSliderIndex);
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-
     const randomQuot = getRandom(1, 100)
-
     let currentLangth = localStorage.getItem('selectedLanguage');
+
     if (currentLangth === 'ru') {
         const url = `./js/quotes_ru.json`;
         const res = await fetch(url);  
