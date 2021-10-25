@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="assets/favicon.ico" rel="shortcut icon" />
+  <link rel="stylesheet" href="css/owfont-regular.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <title>momentum</title>
+</head>
+<body>
+  <header class="header">
+    <div class="player">
+      <div class="player-controls">
+        <div>
+          <button class="play-prev player-icon"></button>
+          <button class="play player-icon"></button>
+          <button class="play-next player-icon"></button>
+        </div>
+        <div class="sound-control">
+          <div class="sound">
+            <p class="current-time-play"><span class="minutes">00</span>:<span class="seconds">00</span></p>
+            <input class="audio-length-control control-input" min="0" max="100" type="range">  
+            <p class="track-duration">00:00</p>
+          </div>
+          <div class="sound-level">
+            <button class="sound-button"></button>
+            <input class="sound-bar-progress control-input" min="0" max="100" type="range">  
+          </div>
+        </div> 
+      </div>
+      <ul class="play-list"></ul>
+    </div>
+    <div class="weather">
+      <input id="cityPlaceholder" type="text" class="city" placeholder="[Enter city]" />
+      <i class="weather-icon owf"></i>
+      <div class="weather-error"></div>
+      <div class="description-container">
+        <span class="temperature"></span>
+        <span class="weather-description"></span>
+      </div>
+      <div class="wind"></div>
+      <div class="humidity"></div>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="to-do-list-button">
+      <div class="to-do-list">
+        <p id="to-do">To-do list</p>
+        <div class="input-container">
+          <input type="text" placeholder="[Add a new job]" id="toDoInput">
+          <button id="add-job" class="add-new-job">Add</button>
+        </div>
+        <ul class="list">
+          
+        </ul>
+      </div>
+    </div>
+
+    <div class="slider-icons">
+      <button class="slide-prev slider-icon"></button>
+      <button class="slide-next slider-icon"></button>
+    </div>
+    <time class="time"></time>
+    <date class="date"></date>
+    <div class="greeting-container">
+      <span class="greeting"></span>
+      <input id="namePlaceholder" type="text" class="name" placeholder="[Enter name]">
+    </div>
+
+    <div class="quote-day">
+      <button class="change-quote"></button>
+      <div>
+        <div class="quote"></div>
+        <div class="author"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer-info">
+    <div class="settings">
+      <div class="settings-block ">  
+
+        <div class="setting setting-language">
+          <p id="eng" class="english-language">ENG</p>
+          <label class="checkbox">
+            <input id="select-language" type="checkbox" class="checkbox-input">
+            <div class="checkbox-block"></div>
+          </label>
+          <p id="ru" class="russian-language">RU</p>
+  
+        </div>
+  
+        <div class="setting"> 
+          <p id="time">Time</p>
+          <label class="checkbox">
+            <input id="select-time" type="checkbox" class="checkbox-input" checked>
+            <div class="checkbox-block"></div>
+          </label>
+        </div>
+  
+        <div class="setting"> 
+          <p id="date">Date</p>
+          <label class="checkbox">
+            <input id="select-date" type="checkbox" class="checkbox-input" checked>
+            <div class="checkbox-block"></div>
+          </label>
+        </div>
+  
+        <div class="setting"> 
+          <p id="greeting">Greeting</p>
+          <label class="checkbox">
+            <input id="select-greeting" type="checkbox" class="checkbox-input" checked>
+            <div class="checkbox-block"></div>
+          </label>
+        </div>
+  
+        <div class="setting"> 
+          <p id="quote">Quote</p>
+          <label class="checkbox">
+            <input id="select-quote" type="checkbox" class="checkbox-input" checked>
+            <div class="checkbox-block"></div>
+          </label>
+        </div>
+  
+        <div class="setting"> 
+          <p id="weather">Weather</p>
+          <label class="checkbox">
+            <input id="select-weather" type="checkbox" class="checkbox-input" checked>
+            <div class="checkbox-block"></div>
+          </label>
+        </div>
+  
+        <div class="setting"> 
+          <p id="audio">Audio</p>
+          <label class="checkbox">
+            <input id="select-audio" type="checkbox" class="checkbox-input" checked>
+            <div class="checkbox-block"></div>
+          </label>
+        </div>
+  
+        <div class="setting"> 
+          <p id="toDoList">To-Do list</p>
+          <label class="checkbox">
+            <input id="select-to-do-list" type="checkbox" class="checkbox-input" checked>
+            <div class="checkbox-block"></div>
+          </label>
+        </div>
+
+        <div class="setting pictue-setting"> 
+          <p id="photos">Photos</p>
+          <div class="photos-select">
+              <div class="radio-select">
+                <label class="checkbox">GitHub
+                  <input id="" type="radio" name="picture" class="checkbox-radio" value="github" checked>
+                  <span class="custom-radio-btn"></span>
+                </label>
+              </div>
+
+              <div class="radio-select">
+                <label class="checkbox">Unsplash
+                  <input id="" type="radio" name="picture" class="checkbox-radio" value="Unsplash">
+                  <span class="custom-radio-btn"></span>
+                </label>
+              </div>
+
+              <div class="radio-select">
+                <label class="checkbox">Flickr
+                  <input id="" type="radio" name="picture" class="checkbox-radio" value="Flickr">
+                  <span class="custom-radio-btn"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="photo-tags">
+            <label class="photo-tags-label">
+              <span id="tags">Tags:</span>
+              <input id="tag" type="text">
+            </label>
+          </div>
+
+    </div>
+  </div>
+    
+    
+    <a class="rss-link" href="https://rs.school/">
+      <img src="./assets/svg/rsschool.svg" alt="rss-icon">
+    </a>
+    <p>© 2021</p>
+    <a href="https://github.com/sergeiosmolovskii">SergeiOsmolovskii</a>
+  </footer>
+  <script type="module" src="js/script.js"></script>
+</body>
+</html>
