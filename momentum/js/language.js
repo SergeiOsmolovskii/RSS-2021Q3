@@ -55,6 +55,22 @@ const translation = {
     }
 }
 
+export function addActiveLanguage() {
+    const languageRU = document.getElementById('ru');
+    const languageENG = document.getElementById('eng');
+    const selectedLanguage = document.getElementById('select-language');
+
+    if (localStorage.getItem('selectedLanguage') === 'ru') {
+        selectedLanguage.checked = true;
+        languageRU.classList.add('active-language');
+        languageENG.classList.remove('active-language');
+    } else {
+        selectedLanguage.checked = false;
+        languageENG.classList.add('active-language');
+        languageRU.classList.remove('active-language');
+    } 
+}
+
 export function changeLanguage() {
     let lang = localStorage.getItem('selectedLanguage');
     let langSetting = translation[lang];
@@ -65,6 +81,9 @@ export function changeLanguage() {
             item.textContent = langSetting.settings[key]; 
         }
     }
+
+    addActiveLanguage();
+
     document.getElementById('namePlaceholder').setAttribute('placeholder', langSetting.namePlaceholder); 
     document.getElementById('cityPlaceholder').setAttribute('placeholder', langSetting.cityPlaceholder); 
     document.getElementById('toDoInput').setAttribute('placeholder', langSetting.toDoInput); 

@@ -1,7 +1,6 @@
 "use strict"
 
 import translation from './language.js';
-console.log(translation)
 
 const weatherIcon = document.querySelector('.weather-icon');
 const temperature = document.querySelector('.temperature');

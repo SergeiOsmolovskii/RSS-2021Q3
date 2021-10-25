@@ -9,9 +9,7 @@ import unsplash from './unsplashAPI.js';
 import {changeLanguage} from './language.js';
 import toDo from './toDoList.js';
 
-toDo();
-changeLanguage();
-settings();
+
 
 const playBtn = document.querySelector('.play');
 const city = document.querySelector('.city');
@@ -23,10 +21,11 @@ if (localStorage.getItem('selectedLanguage') === '' || localStorage.getItem('sel
 
 let currentTimeOfDay = showTime();
 if (localStorage.getItem('selectedTag') === '' || localStorage.getItem('selectedTag') === null) localStorage.setItem('selectedTag', currentTimeOfDay);
-
-
 let tag = localStorage.getItem('selectedTag');
 
+toDo();
+changeLanguage();
+settings();
 /* Time */
 
 showTime();

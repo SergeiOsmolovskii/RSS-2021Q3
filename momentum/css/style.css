@@ -56,6 +56,10 @@ input[type="radio"] {
   padding: 20px;
 }
 
+.player {
+  transition: 1s;
+}
+
 .player-controls {
   display: flex;
   align-items: center;
@@ -239,6 +243,7 @@ input[type="radio"] {
   width: 180px;
   min-height: 180px;  
   text-align: left;
+  transition: 1s;
 }
 
 .weather-error {
@@ -311,12 +316,14 @@ input[type="radio"] {
   font-family: 'Arial-MT';
   font-size: 100px;
   letter-spacing: -4px;  
+  transition: 1s;
 }
 
 .date {
   min-height: 28px;
   font-size: 24px;
   margin-bottom: 20px;
+  transition: 1s;
 }
 
 .greeting-container {
@@ -327,6 +334,7 @@ input[type="radio"] {
   min-height: 48px;
   width: 100vw;
   font-size: 40px;
+  transition: 1s;
 }
 
 .greeting {
@@ -441,11 +449,15 @@ footer a:hover {
 }
 
 .setting-language .checkbox-block::after {
-  background-color: #ffffff;
+  background-color: #c5b358;
+}
+
+.active-language {
+  color: #c5b358;
 }
 
 .setting-language .checkbox .checkbox-input:checked~.checkbox-block::after  {
-  background-color: red;
+  background-color: #c5b358;
 }
 
 .settings-block {
@@ -552,6 +564,7 @@ input[type="radio"]:checked+.custom-radio-btn::before {
   height: 50px;
   background-image: url("../assets/svg/to-do-arrow-open.svg");  
   cursor: pointer;
+  transition: 1s;
 }
 
 .input-container {
@@ -633,6 +646,7 @@ ul li.done {
 
 .quote-day {
   margin-top: 30px;
+  transition: 1s;
 }
 
 .change-quote {

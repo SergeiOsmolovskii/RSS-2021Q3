@@ -1,9 +1,7 @@
 "use strict"
 
 export default async function flickr(tag) {
-    console.log(tag)
     const backgroundImage = document.body;
-
     const METHOD = 'flickr.photos.search'
     const API_KEY = '76e32d3b0dacc597019bd1f2c3167170';
 
