@@ -2,7 +2,27 @@ import {TOTAL_CATEGORIS, TOTAL_ROUNDS, TOTAL_QUESTIONS_IN_ROUND} from './variabl
 
 const main = document.querySelector('.main');
 
-const generateQuestion = (questionIndex) => {
+const getData = async () => {
+    const url = `./js/data.json`;
+    const res = await fetch(url);  
+    const data = await res.json();
+    return data;
+}
+
+const getUniqueArtist = async () => {
+    const uniqueArtist = new Set;
+    const data = await getData();
+    data.forEach(item => {
+        uniqueArtist.add(item.author);
+    })
+    return uniqueArtist;
+}
+
+
+
+const generateQuestion = async (questionIndex) => {
+/*     const a = await getData();
+    console.log(await getUniqueArtist()) */
 
     let sessionStorage = JSON.parse(localStorage.getItem('sessionStorage'));
 
