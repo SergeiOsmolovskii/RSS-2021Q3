@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/main.css">
+    <title>Art Quiz</title>
+</head>
+<body>
+    <header>
+        <div class="wrapper">
+            <div class="header">
+                <div class="score">
+                    <img src="../assets/icons/score.svg" alt="score">
+                </div>
+                <div class="logo">
+                    <img src="../assets/img/logo.png" alt="logo">
+                </div>
+                <div class="settings">
+                    <img src="../assets/icons/setting.svg" alt="settings">
+                </div>
+                <div class="settings-block hide-settings">
+                    <div class="sound-block">
+                        <p>Volume</p>
+                        <button class="sound-button"></button>
+                        <label>
+                            <input class="sound-bar-progress progress" type="range" min="0" max="100" value="50">
+                        </label>
+                    </div>      
+                    <div class="time-block">
+                        <p>Time game</p>
+                        <img src="../assets/icons/stopwatch.svg" alt="stopwatch">
+                            <label class="time-game">
+                                <input type="checkbox">
+                                <span></span>
+                            </label>
+                            <label class="progress-time-label" >
+                                <input class="progress-time" type="range" min="5" max="30" value="10" step="5">
+                            </label>
+                            <span class="selected-time">10</span>
+                    </div>     
+                </div>
+            </div>
+        </div>
+
+    </header>
+    <main>
+
+        <div class="wrapper">
+            <div class="main">
+                <div id="artist" class="category">
+                    <h2>Artist</h2>
+                </div>
+                <div id="pictures" class="category">
+                    <h2>Pictures</h2>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <footer>
+        <div class="wrapper">
+            <div class="footer">
+                <a href="https://rs.school/">RSS</a>
+                <p>© 2021</p>
+                <a href="https://github.com/sergeiosmolovskii">SergeiOsmolovskii</a>
+            </div>
+        </div>
+    </footer>    
+
+    <script src="/js/main.js"></script>
+</body>
+</html>

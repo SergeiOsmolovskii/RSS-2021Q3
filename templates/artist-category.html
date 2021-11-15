@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/main.css">
+    <title>Art Quiz</title>
+</head>
+<body>
+    <header>
+        <div class="wrapper">
+            <div class="header">
+                <div class="home">
+                    <img src="../assets/icons/home.svg" alt="home">
+                </div>
+                <div class="logo">
+                    <img src="../assets/img/logo.png" alt="logo">
+                </div>
+                <div class="settings">
+                    <img src="../assets/icons/setting.svg" alt="settings">
+                </div>
+                <div class="settings-block hide-settings">
+                    <div class="sound-block">
+                        <p>Volume</p>
+                        <button class="sound-button"></button>
+                        <label>
+                            <input class="sound-bar-progress progress" type="range" min="0" max="100" value="50">
+                        </label>
+                    </div>      
+                    <div class="time-block">
+                        <p>Time game</p>
+                        <img src="../assets/icons/stopwatch.svg" alt="stopwatch">
+                            <label class="time-game">
+                                <input type="checkbox">
+                                <span></span>
+                            </label>
+                            <label class="progress-time-label" >
+                                <input class="progress-time" type="range" min="5" max="30" value="10" step="5">
+                            </label>
+                            <span class="selected-time">10</span>
+                    </div>     
+                </div>
+            </div>
+        </div>
+
+    </header>
+    <main>
+
+        <div class="wrapper">
+            <div class="main">
+                <div class="question-block">
+                    <p class="qestion">Who is the author of this picture?</p>
+                    <div class="question-img"></div>
+                    <div class="indicators">
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                        <div class="dot"></div>
+                    </div>
+                    <div class="answers-buttons">
+                        <button class="answer-button">Text 1</button>
+                        <button class="answer-button">Text 2</button>
+                        <button class="answer-button">Text 3</button>
+                        <button class="answer-button">Text 4</button>
+                    </div>
+                </div>
+                <div class="result-answer">
+                    <div class="question-img"></div>
+                    <p class="picture-name"> Some name </p>
+                    <p class="picture-year"> 1888 </p>
+                    <p class="artist-info"> Painter</p>
+                    <div class="isCorrect"></div>
+                    <button>Next</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <footer>
+        <div class="wrapper">
+            <div class="footer">
+                <a href="https://rs.school/">RSS</a>
+                <p>© 2021</p>
+                <a href="https://github.com/sergeiosmolovskii">SergeiOsmolovskii</a>
+            </div>
+        </div>
+    </footer>    
+
+    <script src="/js/main.js"></script>
+</body>
+</html>
