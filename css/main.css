@@ -350,11 +350,11 @@ input[type="range"] {
     margin: 2px;
 }
 
-.correct-dot {
+.correct-dot, .correct {
     background-color: green;
 }
 
-.wrong-dot {
+.wrong-dot, .wrong {
     background-color: red;
 }
 
@@ -386,6 +386,10 @@ input[type="range"] {
 
 .result-answer .question-img {
     margin-bottom: 10px;
+}
+
+.next-button {
+    background-color:yellow;
 }
 
 /* Statistic-block */
@@ -468,7 +472,8 @@ input[type="range"] {
     }
 
     .answer-button {
-        height: 2em;
+        height: 2.5em;
+        font-size: 0.8em;
     }
 
     .question-img {

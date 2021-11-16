@@ -9,9 +9,10 @@ const getData = async () => {
     return data;
 }
 
+const data = await getData();
+
 const getUniqueArtist = async () => {
     const uniqueArtist = new Set;
-    const data = await getData();
     data.forEach(item => {
         uniqueArtist.add(item.author);
     })
@@ -38,13 +39,35 @@ const shuffle = (arr) => {
 }
 
 
+export const isTrueAnswer = (userAnswer, currentQuestion) => {
+    let sessionStorage = JSON.parse(localStorage.getItem('sessionStorage'));
+    const pictureIndex = currentQuestion + (sessionStorage.questionGroup * TOTAL_QUESTIONS_IN_ROUND);
+    const questionData = data[pictureIndex];
+    const author = questionData.author;
+    if (userAnswer.textContent === author) {
+        userAnswer.classList.add('correct');
+        sessionStorage.questionAnswers[currentQuestion] = 'correct';
+        localStorage.setItem('sessionStorage', JSON.stringify(sessionStorage));
+    } else {
+        const answerButton = document.querySelectorAll('.answer-button');
+        answerButton.forEach(item => {
+            if (item.textContent === author) {
+                item.classList.add('correct');
+            }
+        })
+        userAnswer.classList.add('wrong');
+        sessionStorage.questionAnswers[currentQuestion] = 'wrong';
+        localStorage.setItem('sessionStorage', JSON.stringify(sessionStorage));
+    }
+}
+
+
 const generateQuestion = async (questionIndex) => {
 
     let sessionStorage = JSON.parse(localStorage.getItem('sessionStorage'));
     sessionStorage.currentQuestion = questionIndex + 1;
     localStorage.setItem('sessionStorage', JSON.stringify(sessionStorage));
 
-    const data = await getData();
     const uniqueArtist = await getUniqueArtist();
     const pictureIndex = questionIndex + (sessionStorage.questionGroup * TOTAL_QUESTIONS_IN_ROUND);
     const questionData = data[pictureIndex];
@@ -74,7 +97,7 @@ const generateQuestion = async (questionIndex) => {
     question.textContent = 'Who is the author of this picture?';
     questionImg.classList.add('question-img');
 
-    await setImage(pictureIndex, questionImg)
+    await setImage(pictureIndex, questionImg);
 
     indicators.classList.add('indicators');
     answersButtons.classList.add('answers-buttons');
@@ -86,17 +109,13 @@ const generateQuestion = async (questionIndex) => {
             for (let i = 0; i < TOTAL_QUESTIONS_IN_ROUND; i++) {
                 const dot = document.createElement('DIV');
                 dot.classList.add('dot');
-                if (sessionStorage.questionAnswers[i] === 'correct') {
-                    dot.classList.add('correct-dot');
-                } 
-                
-                if (sessionStorage.questionAnswers[i] === 'wrong') {
-                    dot.classList.add('wrong-dot');
-                } 
+                if (sessionStorage.questionAnswers[i] === 'correct') dot.classList.add('correct-dot');
+                if (sessionStorage.questionAnswers[i] === 'wrong') dot.classList.add('wrong-dot'); 
+
                 indicators.append(dot);
             }
         questionBlock.append(answersButtons);
-            for (let i = 0; i < 4; i++) {
+            for (let i = 0; i < TOTAL_QUESTION_BUTTONS; i++) {
                 const answersButton = document.createElement('BUTTON');
                 answersButton.classList.add('answer-button');
                 answersButton.textContent = authorArr[i];
@@ -106,6 +125,30 @@ const generateQuestion = async (questionIndex) => {
 
 
 
+
+}
+
+export const generateAnswerInfo = (currentQuestion, questionGroup) => {
+    const questionData = data[currentQuestion + (questionGroup * TOTAL_QUESTIONS_IN_ROUND)];
+    
+    const resultAnswerDiv = document.createElement('DIV');
+    const questionImg = document.createElement('DIV');
+    const pictureName = document.createElement('P');
+    const pictureYear = document.createElement('P');
+    const artistInfo = document.createElement('P');
+    const isCorrectImg = document.createElement('DIV');
+    const buttonNext = document.createElement('BUTTON');
+    
+    
+    resultAnswerDiv.classList.add('result-answer');
+    questionImg.classList.add('question-img');
+    pictureName.classList.add('picture-name');
+    pictureYear.classList.add('picture-year');
+    artistInfo.classList.add('artist-info');
+    isCorrectImg.classList.add('is-correct');
+    buttonNext.classList.add('next-button');
+    
+    main.append(resultAnswerDiv);
 
 }
 

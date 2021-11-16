@@ -1,6 +1,6 @@
 import createCategory, {fixHeader, removeMain} from './createCategory.js';
 import goHome from './home.js';
-import generateQuestion from './addQuiz.js';
+import generateQuestion, {isTrueAnswer, generateAnswerInfo} from './addQuiz.js';
 
 const main = document.querySelector('.main');
 const score = document.querySelector('.score');
@@ -13,65 +13,64 @@ const settings = document.querySelector('.settings');
 const settingsBlock = document.querySelector('.settings-block');
 
 const handler = () => {
-
-
     settings.addEventListener('click', () => {
         settingsBlock.classList.toggle('hide-settings');
     })
 
-    main.addEventListener('click', (e) => {
-
+    const createCategoriesRounds = (e) => {
         let sessionStorage = JSON.parse(localStorage.getItem('sessionStorage'));
-
         if (e.target.classList.contains('category')) {
             const categoryName = e.target.dataset.name;
             const categoryGroup = e.target.dataset.group;
             sessionStorage.category = categoryName;
             localStorage.setItem('sessionStorage', JSON.stringify(sessionStorage));
-
             removeMain('home', 'score');
             setTimeout(() => {
                 createCategory(categoryName, categoryGroup);
                 main.style.opacity = 1;
                 score.style.opacity = 1;
             }, 1200);
+            main.removeEventListener('click', createCategoriesRounds);
         }
+    }
 
+    const createQuestion = (e) => {
+        let sessionStorage = JSON.parse(localStorage.getItem('sessionStorage'));
         if (e.target.closest('.category-item')) {
             sessionStorage.questionGroup = e.target.closest('.category-item').dataset.round;
             const currentQuestion = sessionStorage.currentQuestion;
             console.log(sessionStorage);
             console.log(currentQuestion);
-
-
             localStorage.setItem('sessionStorage', JSON.stringify(sessionStorage));
-
-            //localStorage.setItem('sessionStorage', e.target.closest('.category-item').dataset.round);
             removeMain('home', 'home');
             setTimeout(() => {
                 generateQuestion(currentQuestion); 
                 main.style.opacity = 1;
                 score.style.opacity = 1;
             }, 1200);
+            main.removeEventListener('click', createQuestion);
         }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    })
+    }
+
+    const checkAnswer = (e) => {
+        if (e.target.classList.contains('answer-button')) {
+            let sessionStorage = JSON.parse(localStorage.getItem('sessionStorage'));
+            const currentQuestionNumber = sessionStorage.currentQuestion - 1;
+            const questionGroup = sessionStorage.questionGroup;
+
+            isTrueAnswer(e.target, currentQuestionNumber);
+            
+            generateAnswerInfo(currentQuestionNumber, questionGroup);
+            main.removeEventListener('click', checkAnswer);
+        }
+    }
+
+
+
+    main.addEventListener('click', createCategoriesRounds);
+    main.addEventListener('click', createQuestion);
+    main.addEventListener('click', checkAnswer);
+
 
     header.addEventListener('click', (e) => {
         const homeImg = document.querySelector(`.home img`);
