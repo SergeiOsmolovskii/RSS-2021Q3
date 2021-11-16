@@ -39,14 +39,17 @@ const handler = () => {
 
         if (e.target.closest('.category-item')) {
             sessionStorage.questionGroup = e.target.closest('.category-item').dataset.round;
+            const currentQuestion = sessionStorage.currentQuestion;
             console.log(sessionStorage);
+            console.log(currentQuestion);
+
 
             localStorage.setItem('sessionStorage', JSON.stringify(sessionStorage));
 
             //localStorage.setItem('sessionStorage', e.target.closest('.category-item').dataset.round);
             removeMain('home', 'home');
             setTimeout(() => {
-                generateQuestion(); 
+                generateQuestion(currentQuestion); 
                 main.style.opacity = 1;
                 score.style.opacity = 1;
             }, 1200);

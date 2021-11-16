@@ -299,7 +299,8 @@ input[type="range"] {
 }
 
 .question-img {
-    background: url(../assets/img/test-img.jpg) no-repeat;
+    /* background: url(../assets/img/test-img.jpg) no-repeat; */
+    background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     margin: 0 auto;

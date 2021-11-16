@@ -3,7 +3,7 @@ import handler from './handler.js';
 let sessionStorage = {
     category: null,
     questionGroup: null,
-    currentQuestion: null,
+    currentQuestion: 0,
     questionAnswers: [null, null, null, null, null, null, null, null, null, null]
 };
 

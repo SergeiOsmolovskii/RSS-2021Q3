@@ -18,13 +18,27 @@ const getUniqueArtist = async () => {
     return uniqueArtist;
 }
 
+const setImage = async (number, item) => {  
+    const img = new Image();
+    img.src = `https://raw.githubusercontent.com/SergeiOsmolovskii/image-data/master/img/${number}.jpg`;
+    img.onload = () => {      
+        item.style.backgroundImage = `url(https://raw.githubusercontent.com/SergeiOsmolovskii/image-data/master/img/${number}.jpg)`;
+    }; 
+}
+
 
 
 const generateQuestion = async (questionIndex) => {
-/*     const a = await getData();
-    console.log(await getUniqueArtist()) */
 
     let sessionStorage = JSON.parse(localStorage.getItem('sessionStorage'));
+    sessionStorage.currentQuestion = questionIndex + 1;
+    localStorage.setItem('sessionStorage', JSON.stringify(sessionStorage));
+
+    const a = await getData();
+    const uniqueArtist = await getUniqueArtist();
+    console.log(a[5]);
+    
+    console.log(uniqueArtist);
 
     const questionBlock = document.createElement('DIV');
     const question = document.createElement('P');
@@ -36,7 +50,11 @@ const generateQuestion = async (questionIndex) => {
     question.classList.add('question');
     question.textContent = 'Who is the author of this picture?';
     questionImg.classList.add('question-img');
-    questionImg.setAttribute('url', '');
+
+
+    const pictureIndex = questionIndex + (sessionStorage.questionGroup * TOTAL_QUESTIONS_IN_ROUND);
+    await setImage(pictureIndex, questionImg)
+
     indicators.classList.add('indicators');
 
     answersButtons.classList.add('answers-buttons');
