@@ -1,4 +1,4 @@
-import {TOTAL_CATEGORIS, TOTAL_ROUNDS, TOTAL_QUESTIONS_IN_ROUND} from './variables.js';
+import {TOTAL_CATEGORIS, TOTAL_ROUNDS, TOTAL_QUESTIONS_IN_ROUND, TOTAL_QUESTION_BUTTONS} from './variables.js';
 
 const main = document.querySelector('.main');
 
@@ -26,6 +26,16 @@ const setImage = async (number, item) => {
     }; 
 }
 
+const pushRandomItem = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+const shuffle = (arr) => {
+    for (let i = arr.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+}
 
 
 const generateQuestion = async (questionIndex) => {
@@ -34,11 +44,24 @@ const generateQuestion = async (questionIndex) => {
     sessionStorage.currentQuestion = questionIndex + 1;
     localStorage.setItem('sessionStorage', JSON.stringify(sessionStorage));
 
-    const a = await getData();
+    const data = await getData();
     const uniqueArtist = await getUniqueArtist();
-    console.log(a[5]);
+    const pictureIndex = questionIndex + (sessionStorage.questionGroup * TOTAL_QUESTIONS_IN_ROUND);
+    const questionData = data[pictureIndex];
+
+    const min = 1;
+    const max = uniqueArtist.size;
+
+    let authorArr = [];
+
+    authorArr.push(questionData.author);
     
-    console.log(uniqueArtist);
+    for (let i = 0; i < TOTAL_QUESTION_BUTTONS - 1; i++) {
+        if (authorArr.some(item => item === data[pushRandomItem(min, max)].author)) i--; 
+        else authorArr.push(data[pushRandomItem(min, max)].author);
+    }
+
+    shuffle(authorArr);
 
     const questionBlock = document.createElement('DIV');
     const question = document.createElement('P');
@@ -51,12 +74,9 @@ const generateQuestion = async (questionIndex) => {
     question.textContent = 'Who is the author of this picture?';
     questionImg.classList.add('question-img');
 
-
-    const pictureIndex = questionIndex + (sessionStorage.questionGroup * TOTAL_QUESTIONS_IN_ROUND);
     await setImage(pictureIndex, questionImg)
 
     indicators.classList.add('indicators');
-
     answersButtons.classList.add('answers-buttons');
     
     main.append(questionBlock);
@@ -79,7 +99,7 @@ const generateQuestion = async (questionIndex) => {
             for (let i = 0; i < 4; i++) {
                 const answersButton = document.createElement('BUTTON');
                 answersButton.classList.add('answer-button');
-                answersButton.textContent = i;
+                answersButton.textContent = authorArr[i];
                 answersButtons.append(answersButton);
             }
         
