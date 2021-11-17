@@ -128,27 +128,50 @@ const generateQuestion = async (questionIndex) => {
 
 }
 
-export const generateAnswerInfo = (currentQuestion, questionGroup) => {
-    const questionData = data[currentQuestion + (questionGroup * TOTAL_QUESTIONS_IN_ROUND)];
+export const generateAnswerInfo = async (currentQuestion, questionGroup) => {
+    const questionIndex = currentQuestion + (questionGroup * TOTAL_QUESTIONS_IN_ROUND);
+    let sessionStorage = JSON.parse(localStorage.getItem('sessionStorage'));
+    const questionData = data[questionIndex];
+    console.log(sessionStorage);
     
     const resultAnswerDiv = document.createElement('DIV');
     const questionImg = document.createElement('DIV');
     const pictureName = document.createElement('P');
     const pictureYear = document.createElement('P');
     const artistInfo = document.createElement('P');
-    const isCorrectImg = document.createElement('DIV');
+    const isCorrectAnswer = document.createElement('DIV');
     const buttonNext = document.createElement('BUTTON');
     
+    await setImage(questionIndex, questionImg);
     
+    pictureName.textContent = questionData.name;
+    pictureYear.textContent = questionData.year;
+    artistInfo.textContent = questionData.author;
+    buttonNext.textContent = 'Next';
+
     resultAnswerDiv.classList.add('result-answer');
     questionImg.classList.add('question-img');
     pictureName.classList.add('picture-name');
     pictureYear.classList.add('picture-year');
     artistInfo.classList.add('artist-info');
-    isCorrectImg.classList.add('is-correct');
+    isCorrectAnswer.classList.add('is-correct');
     buttonNext.classList.add('next-button');
+
+    if (sessionStorage.questionAnswers[currentQuestion] === 'correct') {
+        isCorrectAnswer.style.backgroundImage = `url(./assets/icons/correct_icon.svg)`
+    }
+    if (sessionStorage.questionAnswers[currentQuestion] === 'wrong') {
+        isCorrectAnswer.style.backgroundImage = `url(./assets/icons/wrong_icon.svg)`
+    }
+
     
     main.append(resultAnswerDiv);
+        resultAnswerDiv.append(questionImg);
+        resultAnswerDiv.append(pictureName);
+        resultAnswerDiv.append(pictureYear);
+        resultAnswerDiv.append(artistInfo);
+        resultAnswerDiv.append(isCorrectAnswer);
+        resultAnswerDiv.append(buttonNext);
 
 }
 

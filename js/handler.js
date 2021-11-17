@@ -52,7 +52,7 @@ const handler = () => {
         }
     }
 
-    const checkAnswer = (e) => {
+    const checkAnswer = async(e) => {
         if (e.target.classList.contains('answer-button')) {
             let sessionStorage = JSON.parse(localStorage.getItem('sessionStorage'));
             const currentQuestionNumber = sessionStorage.currentQuestion - 1;
@@ -60,7 +60,14 @@ const handler = () => {
 
             isTrueAnswer(e.target, currentQuestionNumber);
             
-            generateAnswerInfo(currentQuestionNumber, questionGroup);
+            await generateAnswerInfo(currentQuestionNumber, questionGroup);
+            const roundResult = document.querySelector('.result-answer');
+            console.log(roundResult);
+            setTimeout(() => {
+                roundResult.style.opacity = 1;
+                roundResult.style.top = 0;
+            }, 100);
+
             main.removeEventListener('click', checkAnswer);
         }
     }
