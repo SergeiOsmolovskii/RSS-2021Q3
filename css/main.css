@@ -364,7 +364,7 @@ input[type="range"] {
     position: absolute;
     top: -150%;
     opacity: 0;
-    /* left: -150%; */
+    padding: 10px 0px;
     width: 100%;
     height: calc(80vh);
     background-color: #8a8a8a;
@@ -386,12 +386,13 @@ input[type="range"] {
 }
 
 .next-button {
-    background-color: #00c500;
-    margin: 20px auto 0px;
     display: block;
+    margin: 20px auto 0px;
+    padding: 10px 50px;
     padding: 10px;
     border-radius: 20px;
     font-size: 1.5em;
+    background-color: #00c500;
 }
 
 .is-correct {

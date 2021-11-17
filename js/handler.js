@@ -1,6 +1,9 @@
 import createCategory, {fixHeader, removeMain} from './createCategory.js';
+import {TOTAL_QUESTIONS_IN_ROUND} from './variables.js';
 import goHome from './home.js';
 import generateQuestion, {isTrueAnswer, generateAnswerInfo} from './addQuiz.js';
+import saveSessionResult from './saveSessionResult.js';
+
 
 const main = document.querySelector('.main');
 const score = document.querySelector('.score');
@@ -13,6 +16,7 @@ const settings = document.querySelector('.settings');
 const settingsBlock = document.querySelector('.settings-block');
 
 const handler = () => {
+    
     settings.addEventListener('click', () => {
         settingsBlock.classList.toggle('hide-settings');
     })
@@ -39,8 +43,6 @@ const handler = () => {
         if (e.target.closest('.category-item')) {
             sessionStorage.questionGroup = e.target.closest('.category-item').dataset.round;
             const currentQuestion = sessionStorage.currentQuestion;
-            console.log(sessionStorage);
-            console.log(currentQuestion);
             localStorage.setItem('sessionStorage', JSON.stringify(sessionStorage));
             removeMain('home', 'home');
             setTimeout(() => {
@@ -72,11 +74,35 @@ const handler = () => {
         }
     }
 
+    const nextQuestion = (e) => {
+        let sessionStorage = JSON.parse(localStorage.getItem('sessionStorage'));
+        const currentQuestion = sessionStorage.currentQuestion;
+
+
+        if (e.target.closest('.next-button')) {
+            if (currentQuestion > TOTAL_QUESTIONS_IN_ROUND - 1) {
+                console.log('end');
+                main.textContent = '';
+                saveSessionResult();
+            } else {
+                main.style.opacity = 0;
+                setTimeout(() => {
+                    main.textContent = '';
+                    main.style.opacity = 1;
+                    generateQuestion(currentQuestion);
+                }, 1200)
+            }
+        }
+        main.addEventListener('click', checkAnswer);
+    }
+
 
 
     main.addEventListener('click', createCategoriesRounds);
     main.addEventListener('click', createQuestion);
     main.addEventListener('click', checkAnswer);
+    main.addEventListener('click', nextQuestion);
+
 
 
     header.addEventListener('click', (e) => {
