@@ -13,10 +13,12 @@ const goHome = () => {
     categoryDivArtict.setAttribute('id', 'artist');
     categoryDivArtict.dataset.group = 0;
     categoryDivArtict.dataset.name = 'Artist';
+
     categoryDivPictures.classList.add('category');
     categoryDivPictures.setAttribute('id', 'pictures');
     categoryDivPictures.dataset.group = 1;
     categoryDivPictures.dataset.name = 'Pictures';
+    
     artistTitle.textContent = 'Artist';
     picturesTitle.textContent = 'Pictures';
 

@@ -74,16 +74,18 @@ const generateQuestion = async (questionIndex) => {
 
     const min = 1;
     const max = uniqueArtist.size;
+    const uniqueArtistArr = [...uniqueArtist];
 
     let authorArr = [];
 
     authorArr.push(questionData.author);
     
     for (let i = 0; i < TOTAL_QUESTION_BUTTONS - 1; i++) {
-        if (authorArr.some(item => item === data[pushRandomItem(min, max)].author)) i--; 
-        else authorArr.push(data[pushRandomItem(min, max)].author);
+        const randomNum = pushRandomItem(min, max);
+        if (authorArr.every(item => item != uniqueArtistArr[randomNum])) {       
+            authorArr.push(uniqueArtistArr[randomNum]);
+        } else i--;
     }
-
     shuffle(authorArr);
 
     const questionBlock = document.createElement('DIV');

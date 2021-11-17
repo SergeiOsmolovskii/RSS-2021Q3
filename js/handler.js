@@ -1,13 +1,8 @@
 import createCategory, {fixHeader, removeMain} from './createCategory.js';
-import {TOTAL_QUESTIONS_IN_ROUND} from './variables.js';
+import {TOTAL_QUESTIONS_IN_ROUND, sessionStorage as sessionData, main, score, header} from './variables.js';
 import goHome from './home.js';
 import generateQuestion, {isTrueAnswer, generateAnswerInfo} from './addQuiz.js';
 import saveSessionResult from './saveSessionResult.js';
-
-
-const main = document.querySelector('.main');
-const score = document.querySelector('.score');
-const header = document.querySelector('.header');
 
 const progress = document.querySelectorAll('.progress');
 const progressTime = document.querySelector('.progress-time');
@@ -78,7 +73,6 @@ const handler = () => {
         let sessionStorage = JSON.parse(localStorage.getItem('sessionStorage'));
         const currentQuestion = sessionStorage.currentQuestion;
 
-
         if (e.target.closest('.next-button')) {
             if (currentQuestion > TOTAL_QUESTIONS_IN_ROUND - 1) {
                 console.log('end');
@@ -96,16 +90,7 @@ const handler = () => {
         main.addEventListener('click', checkAnswer);
     }
 
-
-
-    main.addEventListener('click', createCategoriesRounds);
-    main.addEventListener('click', createQuestion);
-    main.addEventListener('click', checkAnswer);
-    main.addEventListener('click', nextQuestion);
-
-
-
-    header.addEventListener('click', (e) => {
+    const addHomeIcon = (e) => {
         const homeImg = document.querySelector(`.home img`);
         const home = document.querySelector(`.home`);
 
@@ -119,8 +104,22 @@ const handler = () => {
                 main.style.opacity = 1;
                 home.style.opacity = 1;
             }, 1200);
+            
+            let sessionStorage = JSON.parse(localStorage.getItem('sessionStorage'));
+            sessionStorage = sessionData;
+            localStorage.setItem('sessionStorage', JSON.stringify(sessionStorage));
+            
+            main.addEventListener('click', createCategoriesRounds);
+            main.addEventListener('click', createQuestion);
+            main.addEventListener('click', checkAnswer);
         }
-    })
+    }
+
+    main.addEventListener('click', createCategoriesRounds);
+    main.addEventListener('click', createQuestion);
+    main.addEventListener('click', checkAnswer);
+    main.addEventListener('click', nextQuestion);
+    header.addEventListener('click', addHomeIcon);
 
     progressTime.addEventListener('input', function () {
         const value = this.value;
