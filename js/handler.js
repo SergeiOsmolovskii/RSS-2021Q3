@@ -3,6 +3,7 @@ import {TOTAL_QUESTIONS_IN_ROUND, sessionStorage as sessionData, main, score, he
 import goHome from './home.js';
 import generateQuestion, {isTrueAnswer, generateAnswerInfo} from './addQuiz.js';
 import saveSessionResult from './saveSessionResult.js';
+import congratulations from './congratulations.js';
 
 const progress = document.querySelectorAll('.progress');
 const progressTime = document.querySelector('.progress-time');
@@ -76,6 +77,9 @@ const handler = () => {
         if (e.target.closest('.next-button')) {
             if (currentQuestion > TOTAL_QUESTIONS_IN_ROUND - 1) {
                 console.log('end');
+                
+                congratulations()
+
                 main.textContent = '';
                 saveSessionResult();
             } else {
