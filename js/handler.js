@@ -78,9 +78,9 @@ const handler = () => {
             if (currentQuestion > TOTAL_QUESTIONS_IN_ROUND - 1) {
                 console.log('end');
                 
-                congratulations()
-
                 main.textContent = '';
+                
+                congratulations();
                 saveSessionResult();
             } else {
                 main.style.opacity = 0;
