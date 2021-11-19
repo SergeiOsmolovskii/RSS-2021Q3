@@ -40,10 +40,11 @@ const handler = () => {
         if (e.target.closest('.category-item')) {
             sessionStorage.questionGroup = e.target.closest('.category-item').dataset.round;
             const currentQuestion = sessionStorage.currentQuestion;
+            const currentCategory = sessionStorage.category;
             localStorage.setItem('sessionStorage', JSON.stringify(sessionStorage));
             removeMain('home', 'home');
             setTimeout(() => {
-                generateQuestion(currentQuestion); 
+                generateQuestion(currentQuestion, currentCategory); 
                 main.style.opacity = 1;
                 score.style.opacity = 1;
             }, 1200);
@@ -74,21 +75,25 @@ const handler = () => {
     const nextQuestion = (e) => {
         let sessionStorage = JSON.parse(localStorage.getItem('sessionStorage'));
         const currentQuestion = sessionStorage.currentQuestion;
+        const currentCategory = sessionStorage.category;
+
 
         if (e.target.closest('.next-button')) {
             if (currentQuestion > TOTAL_QUESTIONS_IN_ROUND - 1) {
-                console.log('end');
+                main.style.opacity = 0;
                 
-                main.textContent = '';
-                
-                congratulations();
+                setTimeout(() => {
+                    main.textContent = '';
+                    main.style.opacity = 1;
+                    congratulations();            
+                }, 1200);
                 saveSessionResult();
             } else {
                 main.style.opacity = 0;
                 setTimeout(() => {
                     main.textContent = '';
                     main.style.opacity = 1;
-                    generateQuestion(currentQuestion);
+                    generateQuestion(currentQuestion, currentCategory);
                 }, 1200)
             }
         }
@@ -127,16 +132,28 @@ const handler = () => {
         const categoryGroup = sessionStorage.categoryGroup;
 
         if (e.target === back) {
-            console.log(categoryName);
-            console.log(categoryGroup);
-
-            createCategory(categoryName, categoryGroup);
-
-        }
         
+            main.style.opacity = 0;
+            setTimeout(() => {
+                main.textContent = '';                
+                createCategory(categoryName, categoryGroup);
+                main.style.opacity = 1;
+            }, 1200);
+        }
+    }
 
+    const nextRound = (e) => {
+        const setNextRound = document.querySelector('.main .next-round');
+        let sessionStorage = JSON.parse(localStorage.getItem('sessionStorage'));
+        const questionGroup = sessionStorage.questionGroup;
+
+        if (e.target === setNextRound) {
+            
+        
+        }
 
     }
+
 
     main.addEventListener('click', createCategoriesRounds);
     main.addEventListener('click', createQuestion);

@@ -62,68 +62,78 @@ export const isTrueAnswer = (userAnswer, currentQuestion) => {
 }
 
 
-const generateQuestion = async (questionIndex) => {
+const generateQuestion = async (questionIndex, currentCategory) => {
 
     let sessionStorage = JSON.parse(localStorage.getItem('sessionStorage'));
     sessionStorage.currentQuestion = questionIndex + 1;
     localStorage.setItem('sessionStorage', JSON.stringify(sessionStorage));
 
-    const uniqueArtist = await getUniqueArtist();
-    const pictureIndex = questionIndex + (sessionStorage.questionGroup * TOTAL_QUESTIONS_IN_ROUND);
-    const questionData = data[pictureIndex];
 
-    const min = 1;
-    const max = uniqueArtist.size;
-    const uniqueArtistArr = [...uniqueArtist];
-
-    let authorArr = [];
-
-    authorArr.push(questionData.author);
+    const generateArtistQuestion = async () => {
+        const uniqueArtist = await getUniqueArtist();
+        const pictureIndex = questionIndex + (sessionStorage.questionGroup * TOTAL_QUESTIONS_IN_ROUND);
+        const questionData = data[pictureIndex];
     
-    for (let i = 0; i < TOTAL_QUESTION_BUTTONS - 1; i++) {
-        const randomNum = pushRandomItem(min, max);
-        if (authorArr.every(item => item != uniqueArtistArr[randomNum])) {       
-            authorArr.push(uniqueArtistArr[randomNum]);
-        } else i--;
-    }
-    shuffle(authorArr);
-
-    const questionBlock = document.createElement('DIV');
-    const question = document.createElement('P');
-    const questionImg = document.createElement('DIV');
-    const indicators = document.createElement('DIV');
-    const answersButtons = document.createElement('DIV');
-
-    questionBlock.classList.add('question-block');
-    question.classList.add('question');
-    question.textContent = 'Who is the author of this picture?';
-    questionImg.classList.add('question-img');
-
-    await setImage(pictureIndex, questionImg);
-
-    indicators.classList.add('indicators');
-    answersButtons.classList.add('answers-buttons');
+        const min = 1;
+        const max = uniqueArtist.size;
+        const uniqueArtistArr = [...uniqueArtist];
     
-    main.append(questionBlock);
-        questionBlock.append(question);
-        questionBlock.append(questionImg);
-        questionBlock.append(indicators);
-            for (let i = 0; i < TOTAL_QUESTIONS_IN_ROUND; i++) {
-                const dot = document.createElement('DIV');
-                dot.classList.add('dot');
-                if (sessionStorage.questionAnswers[i] === 'correct') dot.classList.add('correct-dot');
-                if (sessionStorage.questionAnswers[i] === 'wrong') dot.classList.add('wrong-dot'); 
-
-                indicators.append(dot);
-            }
-        questionBlock.append(answersButtons);
-            for (let i = 0; i < TOTAL_QUESTION_BUTTONS; i++) {
-                const answersButton = document.createElement('BUTTON');
-                answersButton.classList.add('answer-button');
-                answersButton.textContent = authorArr[i];
-                answersButtons.append(answersButton);
-            }
+        let authorArr = [];
+    
+        authorArr.push(questionData.author);
         
+        for (let i = 0; i < TOTAL_QUESTION_BUTTONS - 1; i++) {
+            const randomNum = pushRandomItem(min, max);
+            if (authorArr.every(item => item != uniqueArtistArr[randomNum])) {       
+                authorArr.push(uniqueArtistArr[randomNum]);
+            } else i--;
+        }
+        shuffle(authorArr);
+    
+        const questionBlock = document.createElement('DIV');
+        const question = document.createElement('P');
+        const questionImg = document.createElement('DIV');
+        const indicators = document.createElement('DIV');
+        const answersButtons = document.createElement('DIV');
+    
+        questionBlock.classList.add('question-block');
+        question.classList.add('question');
+        question.textContent = 'Who is the author of this picture?';
+        questionImg.classList.add('question-img');
+    
+        await setImage(pictureIndex, questionImg);
+    
+        indicators.classList.add('indicators');
+        answersButtons.classList.add('answers-buttons');
+        
+        main.append(questionBlock);
+            questionBlock.append(question);
+            questionBlock.append(questionImg);
+            questionBlock.append(indicators);
+                for (let i = 0; i < TOTAL_QUESTIONS_IN_ROUND; i++) {
+                    const dot = document.createElement('DIV');
+                    dot.classList.add('dot');
+                    if (sessionStorage.questionAnswers[i] === 'correct') dot.classList.add('correct-dot');
+                    if (sessionStorage.questionAnswers[i] === 'wrong') dot.classList.add('wrong-dot'); 
+    
+                    indicators.append(dot);
+                }
+            questionBlock.append(answersButtons);
+                for (let i = 0; i < TOTAL_QUESTION_BUTTONS; i++) {
+                    const answersButton = document.createElement('BUTTON');
+                    answersButton.classList.add('answer-button');
+                    answersButton.textContent = authorArr[i];
+                    answersButtons.append(answersButton);
+                }
+    }
+
+    const generatePictureQuestion = async () => {
+        console.log(1)
+    }
+
+    if (currentCategory === 'Artist') generateArtistQuestion();
+    if (currentCategory === 'Pictures') generatePictureQuestion();
+    
 
 
 

@@ -436,10 +436,14 @@ input[type="range"] {
 /* Congratulations */
 
 .congratulations {
+    position: absolute;
+    top: 0;
     height: calc(80vh - 80px);
-    background-color: #666;
     padding: 20px 0px;
+    background-color: #666;
+    transition: 1s;
 }
+
 
 .congratulations-text, .current-round-result {
     margin-top: 40px;
