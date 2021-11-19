@@ -4,6 +4,7 @@ export const TOTAL_QUESTIONS_IN_ROUND = 10;
 export const TOTAL_QUESTION_BUTTONS = 4;
 export const sessionStorage = {
     category: null,
+    categoryGroup: null,
     questionGroup: null,
     currentQuestion: 0,
     questionAnswers: [null, null, null, null, null, null, null, null, null, null]

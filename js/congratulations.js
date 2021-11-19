@@ -41,7 +41,7 @@ const congratulations = () => {
         for (let i = 0; i < STARS_COUNT; i++) {
             const star = document.createElement('DIV');
             star.classList.add('round-star');
-            if (correctAnswers / 2 >= i) star.classList.add('all-true');
+            if (correctAnswers / 2 >= i + 1) star.classList.add('all-true');
             starsDiv.append(star);
         }
 

@@ -23,6 +23,7 @@ const handler = () => {
             const categoryName = e.target.dataset.name;
             const categoryGroup = e.target.dataset.group;
             sessionStorage.category = categoryName;
+            sessionStorage.categoryGroup = categoryGroup;
             localStorage.setItem('sessionStorage', JSON.stringify(sessionStorage));
             removeMain('home', 'score');
             setTimeout(() => {
@@ -119,11 +120,31 @@ const handler = () => {
         }
     }
 
+    const backToCategory = (e) => {
+        const back = document.querySelector('.main .back');
+        let sessionStorage = JSON.parse(localStorage.getItem('sessionStorage'));
+        const categoryName = sessionStorage.category;
+        const categoryGroup = sessionStorage.categoryGroup;
+
+        if (e.target === back) {
+            console.log(categoryName);
+            console.log(categoryGroup);
+
+            createCategory(categoryName, categoryGroup);
+
+        }
+        
+
+
+    }
+
     main.addEventListener('click', createCategoriesRounds);
     main.addEventListener('click', createQuestion);
     main.addEventListener('click', checkAnswer);
     main.addEventListener('click', nextQuestion);
     header.addEventListener('click', addHomeIcon);
+    
+    main.addEventListener('click', backToCategory);
 
     progressTime.addEventListener('input', function () {
         const value = this.value;
