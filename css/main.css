@@ -439,6 +439,7 @@ input[type="range"] {
     position: absolute;
     top: 0;
     height: calc(80vh - 80px);
+    width: 100%;
     padding: 20px 0px;
     background-color: #666;
     transition: 1s;

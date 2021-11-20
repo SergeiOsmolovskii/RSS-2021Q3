@@ -68,34 +68,46 @@ const generateQuestion = async (questionIndex, currentCategory) => {
     sessionStorage.currentQuestion = questionIndex + 1;
     localStorage.setItem('sessionStorage', JSON.stringify(sessionStorage));
 
+    const createIndicators = (indicators) => {
+
+        for (let i = 0; i < TOTAL_QUESTIONS_IN_ROUND; i++) {
+            const dot = document.createElement('DIV');
+            dot.classList.add('dot');
+            if (sessionStorage.questionAnswers[i] === 'correct') dot.classList.add('correct-dot');
+            if (sessionStorage.questionAnswers[i] === 'wrong') dot.classList.add('wrong-dot'); 
+
+            indicators.append(dot);
+        }
+
+    }
 
     const generateArtistQuestion = async () => {
         const uniqueArtist = await getUniqueArtist();
         const pictureIndex = questionIndex + (sessionStorage.questionGroup * TOTAL_QUESTIONS_IN_ROUND);
         const questionData = data[pictureIndex];
-    
-        const min = 1;
-        const max = uniqueArtist.size;
         const uniqueArtistArr = [...uniqueArtist];
-    
+        const falseUniqueAnswers = uniqueArtistArr.filter(item => item != questionData.author);
+        
+        const min = 1;
+        const max = falseUniqueAnswers.length;
+
         let authorArr = [];
-    
         authorArr.push(questionData.author);
         
         for (let i = 0; i < TOTAL_QUESTION_BUTTONS - 1; i++) {
             const randomNum = pushRandomItem(min, max);
-            if (authorArr.every(item => item != uniqueArtistArr[randomNum])) {       
-                authorArr.push(uniqueArtistArr[randomNum]);
-            } else i--;
+            authorArr.push(falseUniqueAnswers[randomNum]);
         }
+
         shuffle(authorArr);
     
         const questionBlock = document.createElement('DIV');
         const question = document.createElement('P');
         const questionImg = document.createElement('DIV');
-        const indicators = document.createElement('DIV');
         const answersButtons = document.createElement('DIV');
-    
+        const indicators = document.createElement('DIV');
+        
+        indicators.classList.add('indicators');
         questionBlock.classList.add('question-block');
         question.classList.add('question');
         question.textContent = 'Who is the author of this picture?';
@@ -103,21 +115,14 @@ const generateQuestion = async (questionIndex, currentCategory) => {
     
         await setImage(pictureIndex, questionImg);
     
-        indicators.classList.add('indicators');
         answersButtons.classList.add('answers-buttons');
         
         main.append(questionBlock);
             questionBlock.append(question);
             questionBlock.append(questionImg);
             questionBlock.append(indicators);
-                for (let i = 0; i < TOTAL_QUESTIONS_IN_ROUND; i++) {
-                    const dot = document.createElement('DIV');
-                    dot.classList.add('dot');
-                    if (sessionStorage.questionAnswers[i] === 'correct') dot.classList.add('correct-dot');
-                    if (sessionStorage.questionAnswers[i] === 'wrong') dot.classList.add('wrong-dot'); 
-    
-                    indicators.append(dot);
-                }
+
+            createIndicators(indicators);
             questionBlock.append(answersButtons);
                 for (let i = 0; i < TOTAL_QUESTION_BUTTONS; i++) {
                     const answersButton = document.createElement('BUTTON');
@@ -128,7 +133,57 @@ const generateQuestion = async (questionIndex, currentCategory) => {
     }
 
     const generatePictureQuestion = async () => {
-        console.log(1)
+        const questionBlock = document.createElement('DIV');
+        const question = document.createElement('P');
+        const answerButtons = document.createElement('DIV');
+        const indicators = document.createElement('DIV');
+        
+        questionBlock.classList.add('question-block');
+        question.classList.add('qestion');
+        answerButtons.classList.add('answers-buttons');
+        indicators.classList.add('indicators');       
+        createIndicators(indicators);
+ 
+        const pictureIndex = questionIndex + (sessionStorage.questionGroup * TOTAL_QUESTIONS_IN_ROUND);
+        const questionData = data[pictureIndex];
+
+        question.textContent = `Which of these pictures did ${data[pictureIndex].author} paint`;
+        const currentAuthorData = data.filter(item => item.author === data[pictureIndex].author);
+        const falseAuthorData = data.filter(item => item.author != data[pictureIndex].author);
+
+        const minCurrentAuthorPicturesCount = 0;
+        const maxCurrentAuthorPicturesCount = currentAuthorData.length;
+
+        const minAnotherPicturesCount = 0;
+        const maxAnotherPicturesCount = falseAuthorData.length;
+
+        const randomCurrentAuthorPictureIndex = pushRandomItem(minCurrentAuthorPicturesCount, maxCurrentAuthorPicturesCount);
+        const pictureArr = [];
+
+        const randomCurrentAuthorPictureNumber = currentAuthorData[randomCurrentAuthorPictureIndex].imageNum;
+        pictureArr.push(randomCurrentAuthorPictureNumber);
+
+        for (let i = 0; i < TOTAL_QUESTION_BUTTONS - 1; i++) {
+            const randomNum = pushRandomItem(minAnotherPicturesCount, maxAnotherPicturesCount);
+            pictureArr.push(falseAuthorData[randomNum].imageNum);
+        }
+
+        shuffle(pictureArr);
+
+        main.append(questionBlock);
+            questionBlock.append(question);
+            questionBlock.append(answerButtons);
+            
+            for (let i = 0; i < TOTAL_QUESTION_BUTTONS; i++) {
+                const questionImg = document.createElement('DIV');
+                questionImg.classList.add('question-img');
+                await setImage(pictureArr[i], questionImg);
+                answerButtons.append(questionImg);
+            }
+
+            questionBlock.append(indicators);
+
+    
     }
 
     if (currentCategory === 'Artist') generateArtistQuestion();
@@ -144,7 +199,6 @@ export const generateAnswerInfo = async (currentQuestion, questionGroup) => {
     const questionIndex = currentQuestion + (questionGroup * TOTAL_QUESTIONS_IN_ROUND);
     let sessionStorage = JSON.parse(localStorage.getItem('sessionStorage'));
     const questionData = data[questionIndex];
-    console.log(sessionStorage);
     
     const resultAnswerDiv = document.createElement('DIV');
     const questionImg = document.createElement('DIV');

@@ -34,7 +34,7 @@ const handler = () => {
             main.removeEventListener('click', createCategoriesRounds);
         }
     }
-
+        
     const createQuestion = (e) => {
         let sessionStorage = JSON.parse(localStorage.getItem('sessionStorage'));
         if (e.target.closest('.category-item')) {
