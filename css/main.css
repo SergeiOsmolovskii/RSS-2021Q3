@@ -137,6 +137,11 @@ h2 {
     margin: 20px 0px;
 }
 
+.sound-mute {
+    background: url(/assets/icons/sound_mute.svg) no-repeat;
+    background-size: cover;
+}
+
 input[type="range"] {
     height: 10px;
     -webkit-appearance: none;

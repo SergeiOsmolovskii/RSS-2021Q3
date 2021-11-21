@@ -167,24 +167,6 @@ const handler = () => {
         }
     });
 
-    progressTime.addEventListener('input', function () {
-        const value = this.value;
-        selectedGameTime.textContent = value;
-        this.style.background = `linear-gradient(to right, #fd1c1c 0%, #fd1c1c ${value * 3.33}%, #C4C4C4 ${value * 3.33}%, #C4C4C4)`;
-    });
-
-    progress.forEach(item => item.addEventListener('input', function () {
-        const value = this.value;
-        this.style.background = `linear-gradient(to right, #fd1c1c 0%, #fd1c1c ${value}%, #C4C4C4 ${value}%, #C4C4C4)`;
-    }));
-
-
-
-
-
-
-
-
 }
 
 export default handler;
