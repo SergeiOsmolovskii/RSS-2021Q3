@@ -1,4 +1,5 @@
 import {TOTAL_QUESTIONS_IN_ROUND, main} from './variables.js';
+import audioPlay from './audio.js';
 const STARS_COUNT = 5;
 
 const congratulations = () => {
@@ -46,6 +47,8 @@ const congratulations = () => {
         congratulationsDiv.append(roundResultText);
         congratulationsDiv.append(congratulationsButtons);
         congratulationsButtons.append(buttonBack);
+
+        audioPlay('congratulations');
 }
 
 export default congratulations;

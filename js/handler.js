@@ -5,16 +5,16 @@ import generateQuestion, {isTrueAnswer} from './addQuiz.js';
 import generateAnswerInfo from './generateAnswerInfo.js';
 import saveSessionResult from './saveSessionResult.js';
 import congratulations from './congratulations.js';
+import audioPlay from './audio.js';
 
-const progress = document.querySelectorAll('.progress');
-const progressTime = document.querySelector('.progress-time');
-const selectedGameTime = document.querySelector('.selected-time');
+
 const settings = document.querySelector('.settings');
 const settingsBlock = document.querySelector('.settings-block');
 
 const handler = () => {
     settings.addEventListener('click', () => {
         settingsBlock.classList.toggle('hide-settings');
+        audioPlay('click');
     });
 
     const createCategoriesRounds = (e) => {
@@ -31,6 +31,7 @@ const handler = () => {
                 main.style.opacity = 1;
                 score.style.opacity = 1;
             }, 1200);
+            audioPlay('click');
             main.removeEventListener('click', createCategoriesRounds);
         }
     }
@@ -48,6 +49,7 @@ const handler = () => {
                 main.style.opacity = 1;
                 score.style.opacity = 1;
             }, 1200);
+            audioPlay('click');
             main.removeEventListener('click', createQuestion);
         }
     }
@@ -65,13 +67,9 @@ const handler = () => {
             } else {
                 const trueAnswer = document.querySelector('.correct');
                 const trueAnswerNumber = trueAnswer.dataset.number; 
-                console.log(trueAnswerNumber);
                 await generateAnswerInfo(currentQuestionNumber, questionGroup, trueAnswerNumber);
             } 
-
-
             const roundResult = document.querySelector('.result-answer');
-            console.log(roundResult);
             setTimeout(() => {
                 roundResult.style.opacity = 1;
                 roundResult.style.top = 0;
@@ -89,7 +87,6 @@ const handler = () => {
         if (e.target.closest('.next-button')) {
             if (currentQuestion > TOTAL_QUESTIONS_IN_ROUND - 1) {
                 main.style.opacity = 0;
-                
                 setTimeout(() => {
                     main.textContent = '';
                     main.style.opacity = 1;
@@ -104,6 +101,7 @@ const handler = () => {
                     generateQuestion(currentQuestion, currentCategory);
                 }, 1200)
             }
+            audioPlay('click');
         }
         main.addEventListener('click', checkAnswer);
     }
@@ -124,11 +122,11 @@ const handler = () => {
             setTimeout(() => {
                 main.textContent = '';
                 goHome();
-                fixHeader('score', 'home')
+                fixHeader('score', 'home');
                 main.style.opacity = 1;
                 home.style.opacity = 1;
             }, 1200);
-            
+            audioPlay('click'); 
             removeSessionData();
             main.addEventListener('click', createCategoriesRounds);
             main.addEventListener('click', createQuestion);
@@ -149,6 +147,7 @@ const handler = () => {
             }, 1200);
             saveSessionResult();
             removeSessionData();
+            audioPlay('click');
             main.addEventListener('click', createCategoriesRounds);
             main.addEventListener('click', createQuestion);
             main.addEventListener('click', checkAnswer);
@@ -163,10 +162,10 @@ const handler = () => {
     main.addEventListener('click', (e) => {
         const back = document.querySelector('.main .back');
         if (e.target === back) {
+            audioPlay('click');
             backToCategory();
         }
     });
-
 }
 
 export default handler;

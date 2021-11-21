@@ -1,5 +1,6 @@
 import {TOTAL_CATEGORIS, TOTAL_ROUNDS, TOTAL_QUESTIONS_IN_ROUND, TOTAL_QUESTION_BUTTONS, main} from './variables.js';
-import generateAnswerInfo from './generateAnswerInfo.js';
+import audioPlay from './audio.js';
+
 
 export const getData = async () => {
     const url = `./js/data.json`;
@@ -49,6 +50,8 @@ export const isTrueAnswer = (userAnswer, currentQuestion) => {
         userAnswer.classList.add('correct');
         sessionStorage.questionAnswers[currentQuestion] = 'correct';
         localStorage.setItem('sessionStorage', JSON.stringify(sessionStorage));
+        audioPlay('correct');
+
     } else {
         const answerButton = document.querySelectorAll('.answer-button');
         answerButton.forEach(item => {
@@ -57,6 +60,7 @@ export const isTrueAnswer = (userAnswer, currentQuestion) => {
                 item.classList.add('correct');
             }
         });
+        audioPlay('wrong');
         userAnswer.classList.add('wrong');
         sessionStorage.questionAnswers[currentQuestion] = 'wrong';
         localStorage.setItem('sessionStorage', JSON.stringify(sessionStorage));
