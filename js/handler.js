@@ -1,7 +1,8 @@
 import createCategory, {fixHeader, removeMain} from './createCategory.js';
-import {TOTAL_QUESTIONS_IN_ROUND, sessionStorage as sessionData, main, score, header} from './variables.js';
+import {TOTAL_QUESTIONS_IN_ROUND, TOTAL_ROUNDS, sessionStorage as sessionData, main, score, header} from './variables.js';
 import goHome from './home.js';
-import generateQuestion, {isTrueAnswer, generateAnswerInfo} from './addQuiz.js';
+import generateQuestion, {isTrueAnswer} from './addQuiz.js';
+import generateAnswerInfo from './generateAnswerInfo.js';
 import saveSessionResult from './saveSessionResult.js';
 import congratulations from './congratulations.js';
 
@@ -12,10 +13,9 @@ const settings = document.querySelector('.settings');
 const settingsBlock = document.querySelector('.settings-block');
 
 const handler = () => {
-    
     settings.addEventListener('click', () => {
         settingsBlock.classList.toggle('hide-settings');
-    })
+    });
 
     const createCategoriesRounds = (e) => {
         let sessionStorage = JSON.parse(localStorage.getItem('sessionStorage'));
@@ -60,7 +60,16 @@ const handler = () => {
 
             isTrueAnswer(e.target, currentQuestionNumber);
             
-            await generateAnswerInfo(currentQuestionNumber, questionGroup);
+            if (sessionStorage.category === 'Artist') {
+                await generateAnswerInfo(currentQuestionNumber, questionGroup);
+            } else {
+                const trueAnswer = document.querySelector('.correct');
+                const trueAnswerNumber = trueAnswer.dataset.number; 
+                console.log(trueAnswerNumber);
+                await generateAnswerInfo(currentQuestionNumber, questionGroup, trueAnswerNumber);
+            } 
+
+
             const roundResult = document.querySelector('.result-answer');
             console.log(roundResult);
             setTimeout(() => {
@@ -76,7 +85,6 @@ const handler = () => {
         let sessionStorage = JSON.parse(localStorage.getItem('sessionStorage'));
         const currentQuestion = sessionStorage.currentQuestion;
         const currentCategory = sessionStorage.category;
-
 
         if (e.target.closest('.next-button')) {
             if (currentQuestion > TOTAL_QUESTIONS_IN_ROUND - 1) {
@@ -100,6 +108,12 @@ const handler = () => {
         main.addEventListener('click', checkAnswer);
     }
 
+    const removeSessionData = () => {
+        let sessionStorage = JSON.parse(localStorage.getItem('sessionStorage'));
+        sessionStorage = sessionData;
+        localStorage.setItem('sessionStorage', JSON.stringify(sessionStorage));
+    }
+
     const addHomeIcon = (e) => {
         const homeImg = document.querySelector(`.home img`);
         const home = document.querySelector(`.home`);
@@ -115,45 +129,30 @@ const handler = () => {
                 home.style.opacity = 1;
             }, 1200);
             
-            let sessionStorage = JSON.parse(localStorage.getItem('sessionStorage'));
-            sessionStorage = sessionData;
-            localStorage.setItem('sessionStorage', JSON.stringify(sessionStorage));
-            
+            removeSessionData();
             main.addEventListener('click', createCategoriesRounds);
             main.addEventListener('click', createQuestion);
             main.addEventListener('click', checkAnswer);
         }
     }
 
-    const backToCategory = (e) => {
-        const back = document.querySelector('.main .back');
+    const backToCategory = () => {
         let sessionStorage = JSON.parse(localStorage.getItem('sessionStorage'));
         const categoryName = sessionStorage.category;
         const categoryGroup = sessionStorage.categoryGroup;
 
-        if (e.target === back) {
-        
             main.style.opacity = 0;
             setTimeout(() => {
                 main.textContent = '';                
                 createCategory(categoryName, categoryGroup);
                 main.style.opacity = 1;
             }, 1200);
-        }
+            saveSessionResult();
+            removeSessionData();
+            main.addEventListener('click', createCategoriesRounds);
+            main.addEventListener('click', createQuestion);
+            main.addEventListener('click', checkAnswer);
     }
-
-    const nextRound = (e) => {
-        const setNextRound = document.querySelector('.main .next-round');
-        let sessionStorage = JSON.parse(localStorage.getItem('sessionStorage'));
-        const questionGroup = sessionStorage.questionGroup;
-
-        if (e.target === setNextRound) {
-            
-        
-        }
-
-    }
-
 
     main.addEventListener('click', createCategoriesRounds);
     main.addEventListener('click', createQuestion);
@@ -161,7 +160,12 @@ const handler = () => {
     main.addEventListener('click', nextQuestion);
     header.addEventListener('click', addHomeIcon);
     
-    main.addEventListener('click', backToCategory);
+    main.addEventListener('click', (e) => {
+        const back = document.querySelector('.main .back');
+        if (e.target === back) {
+            backToCategory();
+        }
+    });
 
     progressTime.addEventListener('input', function () {
         const value = this.value;

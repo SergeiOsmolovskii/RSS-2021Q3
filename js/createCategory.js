@@ -72,6 +72,8 @@ const createCategory = (category, categoryGroup) => {
         allQuestionsSpan.textContent = TOTAL_QUESTIONS_IN_ROUND;
         starImg.setAttribute('src', '../assets/icons/score.svg');
         starImg.setAttribute('alt', 'star');
+        starImg.classList.add('roundRating');
+
         
             categoryItems.append(categoryItem);
                 categoryItem.append(roundSpan);

@@ -1,8 +1,7 @@
-import {TOTAL_CATEGORIS, TOTAL_ROUNDS, TOTAL_QUESTIONS_IN_ROUND, TOTAL_QUESTION_BUTTONS} from './variables.js';
+import {TOTAL_CATEGORIS, TOTAL_ROUNDS, TOTAL_QUESTIONS_IN_ROUND, TOTAL_QUESTION_BUTTONS, main} from './variables.js';
+import generateAnswerInfo from './generateAnswerInfo.js';
 
-const main = document.querySelector('.main');
-
-const getData = async () => {
+export const getData = async () => {
     const url = `./js/data.json`;
     const res = await fetch(url);  
     const data = await res.json();
@@ -19,7 +18,7 @@ const getUniqueArtist = async () => {
     return uniqueArtist;
 }
 
-const setImage = async (number, item) => {  
+export const setImage = async (number, item) => {  
     const img = new Image();
     img.src = `https://raw.githubusercontent.com/SergeiOsmolovskii/image-data/master/img/${number}.jpg`;
     img.onload = () => {      
@@ -43,18 +42,21 @@ export const isTrueAnswer = (userAnswer, currentQuestion) => {
     let sessionStorage = JSON.parse(localStorage.getItem('sessionStorage'));
     const pictureIndex = currentQuestion + (sessionStorage.questionGroup * TOTAL_QUESTIONS_IN_ROUND);
     const questionData = data[pictureIndex];
-    const author = questionData.author;
-    if (userAnswer.textContent === author) {
+    const author = questionData.author;    
+    const trueAnswers = data.filter(item => item.author === author); 
+    
+    if (userAnswer.textContent === author || trueAnswers.some(item => item.imageNum === userAnswer.dataset.number)) {
         userAnswer.classList.add('correct');
         sessionStorage.questionAnswers[currentQuestion] = 'correct';
         localStorage.setItem('sessionStorage', JSON.stringify(sessionStorage));
     } else {
         const answerButton = document.querySelectorAll('.answer-button');
         answerButton.forEach(item => {
-            if (item.textContent === author) {
+            console.log(trueAnswers);
+            if (item.textContent === author || trueAnswers.some(element => element.imageNum === item.dataset.number)) {
                 item.classList.add('correct');
             }
-        })
+        });
         userAnswer.classList.add('wrong');
         sessionStorage.questionAnswers[currentQuestion] = 'wrong';
         localStorage.setItem('sessionStorage', JSON.stringify(sessionStorage));
@@ -87,7 +89,6 @@ const generateQuestion = async (questionIndex, currentCategory) => {
         const questionData = data[pictureIndex];
         const uniqueArtistArr = [...uniqueArtist];
         const falseUniqueAnswers = uniqueArtistArr.filter(item => item != questionData.author);
-        
         const min = 1;
         const max = falseUniqueAnswers.length;
 
@@ -141,6 +142,7 @@ const generateQuestion = async (questionIndex, currentCategory) => {
         questionBlock.classList.add('question-block');
         question.classList.add('qestion');
         answerButtons.classList.add('answers-buttons');
+
         indicators.classList.add('indicators');       
         createIndicators(indicators);
  
@@ -152,15 +154,19 @@ const generateQuestion = async (questionIndex, currentCategory) => {
         const falseAuthorData = data.filter(item => item.author != data[pictureIndex].author);
 
         const minCurrentAuthorPicturesCount = 0;
-        const maxCurrentAuthorPicturesCount = currentAuthorData.length;
+        const maxCurrentAuthorPicturesCount = currentAuthorData.length - 1;
 
         const minAnotherPicturesCount = 0;
-        const maxAnotherPicturesCount = falseAuthorData.length;
+        const maxAnotherPicturesCount = falseAuthorData.length - 1;
 
         const randomCurrentAuthorPictureIndex = pushRandomItem(minCurrentAuthorPicturesCount, maxCurrentAuthorPicturesCount);
+        console.log(currentAuthorData);
+        console.log(randomCurrentAuthorPictureIndex);
+
         const pictureArr = [];
 
         const randomCurrentAuthorPictureNumber = currentAuthorData[randomCurrentAuthorPictureIndex].imageNum;
+
         pictureArr.push(randomCurrentAuthorPictureNumber);
 
         for (let i = 0; i < TOTAL_QUESTION_BUTTONS - 1; i++) {
@@ -177,13 +183,12 @@ const generateQuestion = async (questionIndex, currentCategory) => {
             for (let i = 0; i < TOTAL_QUESTION_BUTTONS; i++) {
                 const questionImg = document.createElement('DIV');
                 questionImg.classList.add('question-img');
+                questionImg.classList.add('answer-button');
+                questionImg.dataset.number = pictureArr[i]; 
                 await setImage(pictureArr[i], questionImg);
                 answerButtons.append(questionImg);
             }
-
             questionBlock.append(indicators);
-
-    
     }
 
     if (currentCategory === 'Artist') generateArtistQuestion();
@@ -192,52 +197,6 @@ const generateQuestion = async (questionIndex, currentCategory) => {
 
 
 
-
-}
-
-export const generateAnswerInfo = async (currentQuestion, questionGroup) => {
-    const questionIndex = currentQuestion + (questionGroup * TOTAL_QUESTIONS_IN_ROUND);
-    let sessionStorage = JSON.parse(localStorage.getItem('sessionStorage'));
-    const questionData = data[questionIndex];
-    
-    const resultAnswerDiv = document.createElement('DIV');
-    const questionImg = document.createElement('DIV');
-    const pictureName = document.createElement('P');
-    const pictureYear = document.createElement('P');
-    const artistInfo = document.createElement('P');
-    const isCorrectAnswer = document.createElement('DIV');
-    const buttonNext = document.createElement('BUTTON');
-    
-    await setImage(questionIndex, questionImg);
-    
-    pictureName.textContent = questionData.name;
-    pictureYear.textContent = questionData.year;
-    artistInfo.textContent = questionData.author;
-    buttonNext.textContent = 'Next';
-
-    resultAnswerDiv.classList.add('result-answer');
-    questionImg.classList.add('question-img');
-    pictureName.classList.add('picture-name');
-    pictureYear.classList.add('picture-year');
-    artistInfo.classList.add('artist-info');
-    isCorrectAnswer.classList.add('is-correct');
-    buttonNext.classList.add('next-button');
-
-    if (sessionStorage.questionAnswers[currentQuestion] === 'correct') {
-        isCorrectAnswer.style.backgroundImage = `url(./assets/icons/correct_icon.svg)`
-    }
-    if (sessionStorage.questionAnswers[currentQuestion] === 'wrong') {
-        isCorrectAnswer.style.backgroundImage = `url(./assets/icons/wrong_icon.svg)`
-    }
-
-    
-    main.append(resultAnswerDiv);
-        resultAnswerDiv.append(questionImg);
-        resultAnswerDiv.append(pictureName);
-        resultAnswerDiv.append(pictureYear);
-        resultAnswerDiv.append(artistInfo);
-        resultAnswerDiv.append(isCorrectAnswer);
-        resultAnswerDiv.append(buttonNext);
 
 }
 

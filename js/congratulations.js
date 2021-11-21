@@ -10,7 +10,6 @@ const congratulations = () => {
     
     const congratulationsButtons = document.createElement('DIV');
     const buttonBack = document.createElement('BUTTON');
-    const buttonNext = document.createElement('BUTTON');
 
     congratulationsDiv.classList.add('congratulations');
     congratulationsText.textContent = `Congratulations !`;
@@ -19,7 +18,6 @@ const congratulations = () => {
     roundResultText.classList.add('current-round-result');
     congratulationsButtons.classList.add('congratulations-buttons');
     buttonBack.classList.add('back');
-    buttonNext.classList.add('next-round');
 
  
     const roundCorrectAnswers = () => {
@@ -48,7 +46,6 @@ const congratulations = () => {
         congratulationsDiv.append(roundResultText);
         congratulationsDiv.append(congratulationsButtons);
         congratulationsButtons.append(buttonBack);
-        congratulationsButtons.append(buttonNext);
 }
 
 export default congratulations;
