@@ -8,7 +8,7 @@ import congratulations from './congratulations.js';
 import audioPlay from './audio.js';
 import createCurrentRoundStatistick from './ststistick.js';
 import showImgInfo from './showImgInfo.js';
-
+import {startTimer} from './timeGame.js'
 
 const settings = document.querySelector('.settings');
 const settingsBlock = document.querySelector('.settings-block');
@@ -41,6 +41,9 @@ const handler = () => {
     const createQuestion = (e) => {
         let sessionStorage = JSON.parse(localStorage.getItem('sessionStorage'));
         if (e.target.closest('.category-item') && !e.target.classList.contains('roundRating')) {
+            if (localStorage.getItem('timeGame') == 'true') {
+                startTimer();
+            }
             sessionStorage.questionGroup = e.target.closest('.category-item').dataset.round;
             const currentQuestion = sessionStorage.currentQuestion;
             const currentCategory = sessionStorage.category;
@@ -87,6 +90,10 @@ const handler = () => {
         const currentCategory = sessionStorage.category;
 
         if (e.target.closest('.next-button')) {
+            if (localStorage.getItem('timeGame') == 'true') {
+                startTimer();
+            }
+
             if (currentQuestion > TOTAL_QUESTIONS_IN_ROUND - 1) {
                 main.style.opacity = 0;
                 setTimeout(() => {

@@ -55,7 +55,6 @@ export const isTrueAnswer = (userAnswer, currentQuestion) => {
     } else {
         const answerButton = document.querySelectorAll('.answer-button');
         answerButton.forEach(item => {
-            console.log(trueAnswers);
             if (item.textContent === author || trueAnswers.some(element => element.imageNum === item.dataset.number)) {
                 item.classList.add('correct');
             }

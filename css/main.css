@@ -59,6 +59,15 @@ h2 {
     width: 100%;
 }
 
+.time {
+    color: #fff;
+    font-size: 1.5em;
+}
+
+.timer-block {
+    width: 25px;
+}
+
 .wrapper {
     margin: 0 auto;
     padding: 0px 15px;
@@ -366,6 +375,11 @@ input[type="range"] {
     height: 4em;
     margin: 2px;
     background-color: #d5ad68;
+    cursor: pointer;
+}
+
+.answer-button:hover {
+    filter: brightness(0.5);
 }
 
 .correct-dot, .correct {
