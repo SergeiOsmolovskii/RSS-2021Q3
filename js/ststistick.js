@@ -62,26 +62,31 @@ const createCurrentRoundStatistick = (data) => {
         roundResult.append(starImg);
 
         main.append(statisticBlock);
+        
+        const createRoundStatistick = () => {
+            for (let i = 0; i < TOTAL_QUESTIONS_IN_ROUND; i++) {
+                const statisticItem = document.createElement('DIV');
+                statisticItem.classList.add('statistic-item');
+                const number = (dataRound * TOTAL_QUESTIONS_IN_ROUND) + i;
+                statisticItem.style.backgroundImage = `url(https://raw.githubusercontent.com/SergeiOsmolovskii/image-data/master/img/${number}.jpg)`;
+                statisticItem.style.backgroundSize = 'cover';
+                statisticItem.style.backgroundPosition = 'center';
+                statisticItem.dataset.number = number;
+                if (allAnswer[i] === 'correct') {
+                    statisticItem.style.border = '8px solid green';
+                }
 
-        for (let i = 0; i < TOTAL_QUESTIONS_IN_ROUND; i++) {
-            const statisticItem = document.createElement('DIV');
-            statisticItem.classList.add('statistic-item');
-            const number = (dataRound * TOTAL_QUESTIONS_IN_ROUND) + i;
-            statisticItem.style.backgroundImage = `url(https://raw.githubusercontent.com/SergeiOsmolovskii/image-data/master/img/${number}.jpg)`;
-            statisticItem.style.backgroundSize = 'cover';
-            statisticItem.style.backgroundPosition = 'center';
-
-            if (allAnswer[i] === 'correct') {
-                statisticItem.style.border = '8px solid green';
+                if (allAnswer[i] === 'wrong' || allAnswer[i] == null || allAnswer[i] === undefined) {
+                    statisticItem.style.border = '8px solid red';
+                    statisticItem.style.filter = 'grayscale(100%)';
+                }
+                statisticBlock.append(statisticItem);
             }
-
-            if (allAnswer[i] === 'wrong' || allAnswer[i] == null || allAnswer[i] === undefined) {
-                statisticItem.style.border = '8px solid red';
-                statisticItem.style.filter = 'grayscale(100%)';
-            }
-            statisticBlock.append(statisticItem);
         }
 
+    createRoundStatistick();
+
+        
 } 
 
 export default createCurrentRoundStatistick;

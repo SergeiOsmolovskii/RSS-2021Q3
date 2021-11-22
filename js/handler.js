@@ -7,7 +7,7 @@ import saveSessionResult from './saveSessionResult.js';
 import congratulations from './congratulations.js';
 import audioPlay from './audio.js';
 import createCurrentRoundStatistick from './ststistick.js';
-
+import showImgInfo from './showImgInfo.js';
 
 
 const settings = document.querySelector('.settings');
@@ -170,12 +170,44 @@ const handler = () => {
         }
     }
 
+    const showInfo = async (e) => {
+        if (e.target.classList.contains('statistic-item')) {
+            const questionIndex = e.target.dataset.number;
+            audioPlay('click');
+            await showImgInfo(questionIndex); 
+
+            const roundResult = document.querySelector('.result-answer');
+            setTimeout(() => {
+                roundResult.style.opacity = 1;
+                roundResult.style.top = 0;
+            }, 1200);
+            main.removeEventListener('click', await showInfo);
+        }
+    }
+
+    const hideInfo = async (e) => { 
+        if (e.target.classList.contains('back-button')) {
+            const resultAnswer = document.querySelector('.result-answer');
+            resultAnswer.style.transform = 'scale(0) rotate(360deg)'
+            main.addEventListener('click', await showInfo);
+            setTimeout(() => {
+                resultAnswer.remove();
+            }, 1200);
+
+        }
+    }
+
+
     main.addEventListener('click', createCategoriesRounds);
     main.addEventListener('click', createQuestion);
     main.addEventListener('click', checkAnswer);
     main.addEventListener('click', nextQuestion);
 
     main.addEventListener('click', addCurrentRoundStatistick);
+    main.addEventListener('click', showInfo);
+    main.addEventListener('click', hideInfo);
+
+
     header.addEventListener('click', addHomeIcon);
     
     main.addEventListener('click', (e) => {
