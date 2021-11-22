@@ -133,6 +133,8 @@ const handler = () => {
             main.addEventListener('click', createCategoriesRounds);
             main.addEventListener('click', createQuestion);
             main.addEventListener('click', checkAnswer);
+            main.addEventListener('click', showInfo);
+            main.addEventListener('click', hideInfo);
         }
     }
 
@@ -177,11 +179,11 @@ const handler = () => {
             await showImgInfo(questionIndex); 
 
             const roundResult = document.querySelector('.result-answer');
+            main.removeEventListener('click', await showInfo);
             setTimeout(() => {
                 roundResult.style.opacity = 1;
                 roundResult.style.top = 0;
-            }, 1200);
-            main.removeEventListener('click', await showInfo);
+            }, 500);
         }
     }
 

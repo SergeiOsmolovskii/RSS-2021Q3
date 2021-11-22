@@ -29,14 +29,31 @@ const setSettings = () => {
 
 
     timeGame.addEventListener('change', () => {
-        localStorage.setItem(`timeGame`, timeGame.checked);
+        let home = document.querySelector('.home');
+            if (home == null) {
+                localStorage.setItem(`timeGame`, timeGame.checked);
+            } 
+            if (home != null) {
+                timeGame.checked = JSON.parse(localStorage.getItem(`timeGame`));
+            }
     });
 
     roundTime.addEventListener('change', function () {
-        const value = this.value;
-        localStorage.setItem(`roundTime`, roundTime.value);
-        selectedGameTime.textContent = value;
-        this.style.background = `linear-gradient(to right, #fd1c1c 0%, #fd1c1c ${value * 3.33}%, #C4C4C4 ${value * 3.33}%, #C4C4C4)`;
+
+        let home = document.querySelector('.home');
+        if (home == null) {
+            const value = this.value;
+            localStorage.setItem(`roundTime`, roundTime.value);
+            selectedGameTime.textContent = value;
+            this.style.background = `linear-gradient(to right, #fd1c1c 0%, #fd1c1c ${value * 3.33}%, #C4C4C4 ${value * 3.33}%, #C4C4C4)`;
+        }
+
+        if (home != null) {
+            const value = localStorage.getItem(`roundTime`);
+            selectedGameTime.textContent = value;
+            this.style.background = `linear-gradient(to right, #fd1c1c 0%, #fd1c1c ${value * 3.33}%, #C4C4C4 ${value * 3.33}%, #C4C4C4)`;
+        }
+
     });
 
     soundLeavel.addEventListener('change', function () {

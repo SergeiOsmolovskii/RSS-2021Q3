@@ -49,8 +49,6 @@ const createCurrentRoundStatistick = (data) => {
 
     if (trueAnswers() === TOTAL_QUESTIONS_IN_ROUND) starImg.classList.add('all-true');
 
-    console.log(allAnswer)
-
     main.append(statisticInfo);
         statisticInfo.append(roundNumber);
             roundNumber.append(roundNumberSpan);

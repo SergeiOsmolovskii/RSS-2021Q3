@@ -7,7 +7,9 @@ body {
     margin: 0;
     padding: 0;
     background: rgb(131, 58, 180);
-    background: linear-gradient(181deg, rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);
+    background: url(/assets/img/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 button {
@@ -82,6 +84,7 @@ h2 {
     height: 155px;
     margin: 30px 0px;
     box-shadow: 0px 0px 9px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
 }
 
 #pictures {
@@ -97,6 +100,10 @@ h2 {
 
 .score, .home {
     transition: 1s;
+}
+
+.home {
+    cursor: pointer;
 }
 
 .settings {
@@ -257,20 +264,26 @@ input[type="range"] {
 }
 
 .category-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    height: 3em;
-    padding: 0px 20px;
-    margin-bottom: 10px;
-    box-sizing: border-box;
-    background-color: blue;
-    border-radius: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        height: 3em;
+        padding: 0px 20px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+        background-color: coral;
+        border-radius: 10px;
+        cursor: pointer;
+        border: 3px solid;
 }
 
 .category-item span {
     font-size: 1.5em;
+}
+
+.category-item:hover {
+    filter: brightness(1.5);
 }
 
 .category-stat, .round-result {
@@ -352,6 +365,7 @@ input[type="range"] {
     width: calc(50% - 4px);
     height: 4em;
     margin: 2px;
+    background-color: #d5ad68;
 }
 
 .correct-dot, .correct {
@@ -397,6 +411,7 @@ input[type="range"] {
     border-radius: 20px;
     font-size: 1.5em;
     background-color: #00c500;
+    cursor: pointer;
 }
 
 .is-correct {
