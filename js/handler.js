@@ -6,6 +6,8 @@ import generateAnswerInfo from './generateAnswerInfo.js';
 import saveSessionResult from './saveSessionResult.js';
 import congratulations from './congratulations.js';
 import audioPlay from './audio.js';
+import createCurrentRoundStatistick from './ststistick.js';
+
 
 
 const settings = document.querySelector('.settings');
@@ -38,7 +40,7 @@ const handler = () => {
         
     const createQuestion = (e) => {
         let sessionStorage = JSON.parse(localStorage.getItem('sessionStorage'));
-        if (e.target.closest('.category-item')) {
+        if (e.target.closest('.category-item') && !e.target.classList.contains('roundRating')) {
             sessionStorage.questionGroup = e.target.closest('.category-item').dataset.round;
             const currentQuestion = sessionStorage.currentQuestion;
             const currentCategory = sessionStorage.category;
@@ -153,10 +155,27 @@ const handler = () => {
             main.addEventListener('click', checkAnswer);
     }
 
+    const addCurrentRoundStatistick = (e) => {
+        if (e.target.closest('.category-item') && e.target.classList.contains('roundRating')) {
+            const currentData = e.target.closest('.category-item');
+
+            main.style.opacity = 0;
+            setTimeout(() => {
+                main.textContent = '';  
+                createCurrentRoundStatistick(currentData);
+                main.style.opacity = 1;
+            }, 1200);
+            audioPlay('click');
+
+        }
+    }
+
     main.addEventListener('click', createCategoriesRounds);
     main.addEventListener('click', createQuestion);
     main.addEventListener('click', checkAnswer);
     main.addEventListener('click', nextQuestion);
+
+    main.addEventListener('click', addCurrentRoundStatistick);
     header.addEventListener('click', addHomeIcon);
     
     main.addEventListener('click', (e) => {
