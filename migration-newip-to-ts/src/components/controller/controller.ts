@@ -1,6 +1,5 @@
 import AppLoader from './appLoader';
-import { IDarw } from '../view/appView';
-import { IAppData } from '../view/appView';
+import { IDarw, IAppData } from '../interfaces/interface';
 
 export type CallbackType<T> = (data: T) => void;
 class AppController extends AppLoader {
