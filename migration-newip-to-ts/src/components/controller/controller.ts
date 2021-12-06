@@ -4,14 +4,14 @@ import { IAppData } from '../view/appView';
 
 export type CallbackType<T> = (data: T) => void;
 class AppController extends AppLoader {
-    getSources(callback: CallbackType<IDarw>) {
-        super.getResp(
-            {
-                endpoint: 'sources',
-            },
-            callback
-        );
-    }
+  getSources(callback: CallbackType<IDarw>) {
+    super.getResp(
+      {
+        endpoint: 'sources',
+      },
+      callback
+    );
+  }
 
   getNews(e: Event, callback: CallbackType<IAppData>) {
     let target = e.target as HTMLElement;
