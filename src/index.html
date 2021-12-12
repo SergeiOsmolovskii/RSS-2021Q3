@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="./src/css/main.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>Christmas</title>
+</head>
+<body>
+    <header>
+        <div class="wrapper">
+            <div class="header">
+            </div>
+        </div>
+
+    </header>
+    <main>
+        <div class="wrapper">
+            <div class="main">
+
+                <aside class="settings">
+                    <div class="settings__block">
+                        <button class="settings__sound">
+
+                        </button>
+
+                        <label class="settings__search">
+                            <input class="settings__input" id="search" type="search" placeholder="Search">
+                        </label>
+                    </div>
+
+                    <div class="sort-block">
+                        <p class="sort-block__title">Sort</p>
+                        <select class="sort-block__select" id="sort">
+                            <option class="sort-block__option" value="">By name from A to Z</option>
+                            <option class="sort-block__option" value="">By name from Z to A</option>
+                            <option class="sort-block__option" value="">In ascending order of quantity</option>
+                            <option class="sort-block__option" value="">In descending order of quantity</option>
+                        </select>
+                    </div>
+
+                    <div class="categories-block">
+                        <p class="categories-block__title">Categories</p>
+                        <div class="categories-block__categorise">
+                            <label>
+                                <input class="categories-block__input" type="checkbox" id="categories-all"> All
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="shape-block">
+                        <p class="shape-block__title">Shape</p>
+
+                        <div class="shape-block__items">
+
+                            <div class="shape-block-item">
+                                <img class="shape-block-item__img" src="./assets/icons/shape-icons/ball.svg" alt="Ball">
+                                <p class="shape-block-item__name">Ball</p>
+                            </div>
+
+                            <div class="shape-block-item">
+                                <img class="shape-block-item__img" src="./assets/icons/shape-icons/bell.svg" alt="Bell">
+                                <p class="shape-block-item__name">Bell</p>
+                            </div>
+
+                            <div class="shape-block-item">
+                                <img class="shape-block-item__img" src="./assets/icons/shape-icons/pine.svg" alt="Pine">
+                                <p class="shape-block-item__name">Pine</p>
+                            </div>
+
+                            <div class="shape-block-item">
+                                <img class="shape-block-item__img" src="./assets/icons/shape-icons/star.svg" alt="Star">
+                                <p class="shape-block-item__name">Star</p>
+                            </div>
+
+                            <div class="shape-block-item">
+                                <img class="shape-block-item__img" src="./assets/icons/shape-icons/snowflake.svg" alt="Snowflake">
+                                <p class="shape-block-item__name">Snowflake</p>
+                            </div>
+
+                            <div class="shape-block-item">
+                                <img class="shape-block-item__img" src="./assets/icons/shape-icons/statuette.svg" alt="Statuette">
+                                <p class="shape-block-item__name">Statuette</p>
+                            </div>
+                        </div>
+                    </div>
+
+<!--                     <div class="amount-toys">
+                        <p class="amount-toys__title">Amount toys</p>
+                        <div class="amount-toys__input-block">
+                            <span class="amount-toys__span amount-toys__span--left" id="amount-toys-min">0</span>
+                            <div class="amount-toys__input" id="amount-toys-input"></div>
+                            <span class="amount-toys__span amount-toys__span--right" id="amount-toys-max">50</span>
+                        </div>
+
+                    </div> -->
+
+<!--                     <div class="purchase-year">
+                        <p class="purchase-year__title">Purchase year</p>
+
+                        <div class="purchase-year__input-block">
+                            <span class="purchase-year__span purchase-year__span--left" id="purchase-year-min">1940</span>
+                            <div class="purchase-year__input" id="purchase-year-input"></div>
+                            <span class="purchase-year__span purchase-year__span--right" id="purchase-year-max">2021</span>
+                        </div>
+
+                    </div> -->
+
+                    <div class="toys-color">
+                        <p class="toys-color__title">Toys color</p>
+                        <div class="toys-color__block">
+                            <button class="color" id="color-white"></button>
+                            <button class="color" id="color-yellow"></button>
+                            <button class="color" id="color-red"></button>
+                            <button class="color" id="color-blue"></button>
+                            <button class="color" id="color-green"></button>
+                        </div>
+                    </div>
+                    
+                    <div class="size-block">
+                        <p class="size-block__title">Size</p>
+                        <div class="size-block__categorise">
+                            <label class="size-block__label">
+                                <input class="size-block__input" type="checkbox" id="size-big"> Big
+                            </label>
+                            
+                            <label class="size-block__label">
+                                <input class="size-block__input" type="checkbox" id="size-medium"> Medium
+                            </label>
+                            
+                            <label class="size-block__label">
+                                <input class="size-block__input" type="checkbox" id="size-small"> Small
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="favorite-block">
+                        <label class="favorite-block__label">
+                            <input class="favorite-block__input" type="checkbox" id="favorite-only"> Only favorite
+                        </label>
+                    </div>
+
+
+                </aside>
+
+                <aside class="toys-block">
+                    <h2 class="catergy-title">Toys</h2>
+                    <div class="toys-cadr-container">
+                        <div class="toy-card">
+
+                            <p class="toy-card__title">Large ball with a picture of a Flower</p>
+                            <div class="toy-card__image-block">
+                                <img class="toy-card__image" src="./assets/img/test1.png" alt="Large ball with a picture of a Flower">
+                            </div>
+
+                            <div class="toy-card__info">
+
+                                <p class="toy-card__count-title">Count:
+                                    <span class="toy-card__count">2</span>
+                                </p>
+
+                                <p class="toy-card__year-title">Purchase year:
+                                    <span class="toy-card__year">1960</span>
+                                </p>
+
+                                <p class="toy-card__shape-title">Toy shape:
+                                    <span class="toy-card__shape">ball</span>
+                                </p>
+
+                                <p class="toy-card__color-title">Toy color:
+                                    <span class="toy-card__color">yelllow</span>
+                                </p>
+
+                                <p class="toy-card__size-title">Toy size:
+                                    <span class="toy-card__size">large</span>
+                                </p>
+                                
+                                <p class="toy-card__favorite-title">Favorite:
+                                    <span class="toy-card__favorite">no</span>
+                                </p>
+
+                            </div>
+                        </div>
+
+                        <div class="toy-card">
+
+                            <p class="toy-card__title">Large ball with a picture of a Flower</p>
+                            <div class="toy-card__image-block">
+                                <img class="toy-card__image" src="./assets/img/test2.png" alt="Large ball with a picture of a Flower">
+                            </div>
+
+                            <div class="toy-card__info">
+
+                                <p class="toy-card__count-title">Count:
+                                    <span class="toy-card__count">2</span>
+                                </p>
+
+                                <p class="toy-card__year-title">Purchase year:
+                                    <span class="toy-card__year">2010</span>
+                                </p>
+
+                                <p class="toy-card__shape-title">Toy shape:
+                                    <span class="toy-card__shape">ball</span>
+                                </p>
+
+                                <p class="toy-card__color-title">Toy color:
+                                    <span class="toy-card__color">green</span>
+                                </p>
+
+                                <p class="toy-card__size-title">Toy size:
+                                    <span class="toy-card__size">large</span>
+                                </p>
+                                
+                                <p class="toy-card__favorite-title">Favorite:
+                                    <span class="toy-card__favorite">no</span>
+                                </p>
+
+                            </div>
+                        </div>
+
+
+                        <div class="toy-card">
+
+                            <p class="toy-card__title">Large ball with a picture of a Flower</p>
+                            <div class="toy-card__image-block">
+                                <img class="toy-card__image" src="./assets/img/test1.png" alt="Large ball with a picture of a Flower">
+                            </div>
+
+                            <div class="toy-card__info">
+
+                                <p class="toy-card__count-title">Count:
+                                    <span class="toy-card__count">2</span>
+                                </p>
+
+                                <p class="toy-card__year-title">Purchase year:
+                                    <span class="toy-card__year">1960</span>
+                                </p>
+
+                                <p class="toy-card__shape-title">Toy shape:
+                                    <span class="toy-card__shape">ball</span>
+                                </p>
+
+                                <p class="toy-card__color-title">Toy color:
+                                    <span class="toy-card__color">yelllow</span>
+                                </p>
+
+                                <p class="toy-card__size-title">Toy size:
+                                    <span class="toy-card__size">large</span>
+                                </p>
+                                
+                                <p class="toy-card__favorite-title">Favorite:
+                                    <span class="toy-card__favorite">no</span>
+                                </p>
+
+                            </div>
+                        </div>
+
+                        <div class="toy-card">
+
+                            <p class="toy-card__title">Large ball with a picture of a Flower</p>
+                            <div class="toy-card__image-block">
+                                <img class="toy-card__image" src="./assets/img/test2.png" alt="Large ball with a picture of a Flower">
+                            </div>
+
+                            <div class="toy-card__info">
+
+                                <p class="toy-card__count-title">Count:
+                                    <span class="toy-card__count">2</span>
+                                </p>
+
+                                <p class="toy-card__year-title">Purchase year:
+                                    <span class="toy-card__year">2010</span>
+                                </p>
+
+                                <p class="toy-card__shape-title">Toy shape:
+                                    <span class="toy-card__shape">ball</span>
+                                </p>
+
+                                <p class="toy-card__color-title">Toy color:
+                                    <span class="toy-card__color">green</span>
+                                </p>
+
+                                <p class="toy-card__size-title">Toy size:
+                                    <span class="toy-card__size">large</span>
+                                </p>
+                                
+                                <p class="toy-card__favorite-title">Favorite:
+                                    <span class="toy-card__favorite">no</span>
+                                </p>
+
+                            </div>
+                        </div>
+
+                        <div class="toy-card">
+
+                            <p class="toy-card__title">Large ball with a picture of a Flower</p>
+                            <div class="toy-card__image-block">
+                                <img class="toy-card__image" src="./assets/img/test1.png" alt="Large ball with a picture of a Flower">
+                            </div>
+
+                            <div class="toy-card__info">
+
+                                <p class="toy-card__count-title">Count:
+                                    <span class="toy-card__count">2</span>
+                                </p>
+
+                                <p class="toy-card__year-title">Purchase year:
+                                    <span class="toy-card__year">1960</span>
+                                </p>
+
+                                <p class="toy-card__shape-title">Toy shape:
+                                    <span class="toy-card__shape">ball</span>
+                                </p>
+
+                                <p class="toy-card__color-title">Toy color:
+                                    <span class="toy-card__color">yelllow</span>
+                                </p>
+
+                                <p class="toy-card__size-title">Toy size:
+                                    <span class="toy-card__size">large</span>
+                                </p>
+                                
+                                <p class="toy-card__favorite-title">Favorite:
+                                    <span class="toy-card__favorite">no</span>
+                                </p>
+
+                            </div>
+                        </div>
+
+                        <div class="toy-card">
+
+                            <p class="toy-card__title">Large ball with a picture of a Flower</p>
+                            <div class="toy-card__image-block">
+                                <img class="toy-card__image" src="./assets/img/test2.png" alt="Large ball with a picture of a Flower">
+                            </div>
+
+                            <div class="toy-card__info">
+
+                                <p class="toy-card__count-title">Count:
+                                    <span class="toy-card__count">2</span>
+                                </p>
+
+                                <p class="toy-card__year-title">Purchase year:
+                                    <span class="toy-card__year">2010</span>
+                                </p>
+
+                                <p class="toy-card__shape-title">Toy shape:
+                                    <span class="toy-card__shape">ball</span>
+                                </p>
+
+                                <p class="toy-card__color-title">Toy color:
+                                    <span class="toy-card__color">green</span>
+                                </p>
+
+                                <p class="toy-card__size-title">Toy size:
+                                    <span class="toy-card__size">large</span>
+                                </p>
+                                
+                                <p class="toy-card__favorite-title">Favorite:
+                                    <span class="toy-card__favorite">no</span>
+                                </p>
+
+                            </div>
+                        </div>
+
+                        <div class="toy-card">
+
+                            <p class="toy-card__title">Large ball with a picture of a Flower</p>
+                            <div class="toy-card__image-block">
+                                <img class="toy-card__image" src="./assets/img/test1.png" alt="Large ball with a picture of a Flower">
+                            </div>
+
+                            <div class="toy-card__info">
+
+                                <p class="toy-card__count-title">Count:
+                                    <span class="toy-card__count">2</span>
+                                </p>
+
+                                <p class="toy-card__year-title">Purchase year:
+                                    <span class="toy-card__year">1960</span>
+                                </p>
+
+                                <p class="toy-card__shape-title">Toy shape:
+                                    <span class="toy-card__shape">ball</span>
+                                </p>
+
+                                <p class="toy-card__color-title">Toy color:
+                                    <span class="toy-card__color">yelllow</span>
+                                </p>
+
+                                <p class="toy-card__size-title">Toy size:
+                                    <span class="toy-card__size">large</span>
+                                </p>
+                                
+                                <p class="toy-card__favorite-title">Favorite:
+                                    <span class="toy-card__favorite">no</span>
+                                </p>
+
+                            </div>
+                        </div>
+
+                        <div class="toy-card">
+
+                            <p class="toy-card__title">Large ball with a picture of a Flower</p>
+                            <div class="toy-card__image-block">
+                                <img class="toy-card__image" src="./assets/img/test2.png" alt="Large ball with a picture of a Flower">
+                            </div>
+
+                            <div class="toy-card__info">
+
+                                <p class="toy-card__count-title">Count:
+                                    <span class="toy-card__count">2</span>
+                                </p>
+
+                                <p class="toy-card__year-title">Purchase year:
+                                    <span class="toy-card__year">2010</span>
+                                </p>
+
+                                <p class="toy-card__shape-title">Toy shape:
+                                    <span class="toy-card__shape">ball</span>
+                                </p>
+
+                                <p class="toy-card__color-title">Toy color:
+                                    <span class="toy-card__color">green</span>
+                                </p>
+
+                                <p class="toy-card__size-title">Toy size:
+                                    <span class="toy-card__size">large</span>
+                                </p>
+                                
+                                <p class="toy-card__favorite-title">Favorite:
+                                    <span class="toy-card__favorite">no</span>
+                                </p>
+
+                            </div>
+                        </div>
+
+
+                        <div class="toy-card">
+
+                            <p class="toy-card__title">Large ball with a picture of a Flower</p>
+                            <div class="toy-card__image-block">
+                                <img class="toy-card__image" src="./assets/img/test1.png" alt="Large ball with a picture of a Flower">
+                            </div>
+
+                            <div class="toy-card__info">
+
+                                <p class="toy-card__count-title">Count:
+                                    <span class="toy-card__count">2</span>
+                                </p>
+
+                                <p class="toy-card__year-title">Purchase year:
+                                    <span class="toy-card__year">1960</span>
+                                </p>
+
+                                <p class="toy-card__shape-title">Toy shape:
+                                    <span class="toy-card__shape">ball</span>
+                                </p>
+
+                                <p class="toy-card__color-title">Toy color:
+                                    <span class="toy-card__color">yelllow</span>
+                                </p>
+
+                                <p class="toy-card__size-title">Toy size:
+                                    <span class="toy-card__size">large</span>
+                                </p>
+                                
+                                <p class="toy-card__favorite-title">Favorite:
+                                    <span class="toy-card__favorite">no</span>
+                                </p>
+
+                            </div>
+                        </div>
+
+                        <div class="toy-card">
+
+                            <p class="toy-card__title">Large ball with a picture of a Flower</p>
+                            <div class="toy-card__image-block">
+                                <img class="toy-card__image" src="./assets/img/test2.png" alt="Large ball with a picture of a Flower">
+                            </div>
+
+                            <div class="toy-card__info">
+
+                                <p class="toy-card__count-title">Count:
+                                    <span class="toy-card__count">2</span>
+                                </p>
+
+                                <p class="toy-card__year-title">Purchase year:
+                                    <span class="toy-card__year">2010</span>
+                                </p>
+
+                                <p class="toy-card__shape-title">Toy shape:
+                                    <span class="toy-card__shape">ball</span>
+                                </p>
+
+                                <p class="toy-card__color-title">Toy color:
+                                    <span class="toy-card__color">green</span>
+                                </p>
+
+                                <p class="toy-card__size-title">Toy size:
+                                    <span class="toy-card__size">large</span>
+                                </p>
+                                
+                                <p class="toy-card__favorite-title">Favorite:
+                                    <span class="toy-card__favorite">no</span>
+                                </p>
+
+                            </div>
+                        </div>
+
+                        <div class="toy-card">
+
+                            <p class="toy-card__title">Large ball with a picture of a Flower</p>
+                            <div class="toy-card__image-block">
+                                <img class="toy-card__image" src="./assets/img/test1.png" alt="Large ball with a picture of a Flower">
+                            </div>
+
+                            <div class="toy-card__info">
+
+                                <p class="toy-card__count-title">Count:
+                                    <span class="toy-card__count">2</span>
+                                </p>
+
+                                <p class="toy-card__year-title">Purchase year:
+                                    <span class="toy-card__year">1960</span>
+                                </p>
+
+                                <p class="toy-card__shape-title">Toy shape:
+                                    <span class="toy-card__shape">ball</span>
+                                </p>
+
+                                <p class="toy-card__color-title">Toy color:
+                                    <span class="toy-card__color">yelllow</span>
+                                </p>
+
+                                <p class="toy-card__size-title">Toy size:
+                                    <span class="toy-card__size">large</span>
+                                </p>
+                                
+                                <p class="toy-card__favorite-title">Favorite:
+                                    <span class="toy-card__favorite">no</span>
+                                </p>
+
+                            </div>
+                        </div>
+
+                        <div class="toy-card">
+
+                            <p class="toy-card__title">Large ball with a picture of a Flower</p>
+                            <div class="toy-card__image-block">
+                                <img class="toy-card__image" src="./assets/img/test2.png" alt="Large ball with a picture of a Flower">
+                            </div>
+
+                            <div class="toy-card__info">
+
+                                <p class="toy-card__count-title">Count:
+                                    <span class="toy-card__count">2</span>
+                                </p>
+
+                                <p class="toy-card__year-title">Purchase year:
+                                    <span class="toy-card__year">2010</span>
+                                </p>
+
+                                <p class="toy-card__shape-title">Toy shape:
+                                    <span class="toy-card__shape">ball</span>
+                                </p>
+
+                                <p class="toy-card__color-title">Toy color:
+                                    <span class="toy-card__color">green</span>
+                                </p>
+
+                                <p class="toy-card__size-title">Toy size:
+                                    <span class="toy-card__size">large</span>
+                                </p>
+                                
+                                <p class="toy-card__favorite-title">Favorite:
+                                    <span class="toy-card__favorite">no</span>
+                                </p>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </aside>
+
+            </div>
+        </div>
+
+    </main>
+    <footer>
+        <div class="wrapper">
+            <div class="footer">
+                <a href="https://rs.school/">RSS</a>
+                <p>© 2021</p>
+                <a href="https://github.com/sergeiosmolovskii">SergeiOsmolovskii</a>
+            </div>
+        </div>
+    </footer>    
+
+<!--     <script type="module" src="/js/main.js"></script> -->
+</body>
+</html>

@@ -1,0 +1,361 @@
+@import './normalize.css';
+
+:root {
+    --main-bg-color: #192F2D;
+    --text-color: #FFF;
+    --border-color: #24C5DB;
+    --color-wight: #FFF;
+    --color-yellow: #FDD700;
+    --color-red: #F00;
+    --color-blue: #2299EB;
+    --color-green: #08AA05;
+}
+
+html {
+    font-family: cursive;
+    font-size: 20px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--main-bg-color);
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-size: 20px;
+    color: var(--text-color);
+}
+
+button {
+    border: 0;
+    outline: 0;
+    font-family: cursive;
+}
+
+header,
+footer {
+    height: 5vh;
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+main {
+    height: calc(90vh - 0px);
+
+}
+
+p {
+    margin: 0;
+}
+
+option {
+    background-color: var(--main-bg-color);
+}
+
+.main {
+    display: flex;
+    position: relative;
+    padding: 20px 0px;
+    height: 100%;
+    transition: 1s;
+    opacity: 1;
+    max-height: calc(90vh - 40px); 
+}
+
+.settings::-webkit-scrollbar-track, .toys-block::-webkit-scrollbar-track{
+	box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+	border-radius: 10px;
+}
+
+.settings::-webkit-scrollbar, .toys-block::-webkit-scrollbar {
+	width: 10px;
+}
+
+.settings::-webkit-scrollbar-thumb, .toys-block::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: var(--border-color);    
+}
+
+.wrapper {
+    margin: 0 auto;
+    padding: 0px 15px;
+    max-width: 1440px;
+}
+
+.settings {
+    padding: 10px;
+    width: 30%;
+    overflow: auto;
+    transition: 1s;
+}
+
+.toys-block {
+    width: 70%;
+    overflow: auto;
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.settings__block,
+.sort-block {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.settings__input,
+.sort-block__select {
+    width: 100%;
+    height: 100%;
+    padding: 0em 1em;
+    border-radius: 30px;
+    border: 2px solid var(--border-color);
+    background: radial-gradient(118.88% 606.86% at 0% 0%, rgba(36, 197, 219, 0.15) 0%, rgba(36, 197, 219, 0) 100%);
+    color: var(--text-color);
+}
+
+.settings__input {
+    position: relative;
+}
+
+.settings__search,
+.sort-block__select {
+    width: 70%;
+    height: 36px;
+    font-size: 16px;
+}
+
+.sort-block__select,
+.sort-block__option {
+    cursor: pointer;
+}
+
+
+.settings__search {
+    position: relative;
+}
+
+.settings__search::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 93%;
+    width: 24px;
+    height: 24px;
+    background-image: url(../assets/icons/search.svg);
+    transform: translate(-50%, -50%);
+}
+
+.settings__input::placeholder {
+    color: var(--text-color);
+}
+
+.settings__sound {
+    width: 36px;
+    height: 30px;
+    background-image: url(../assets/icons/sound_button.svg);
+    background-color: transparent;
+}
+
+.settings__sound--mute {
+    background-image: url(../assets/icons/sound_mute.svg);
+}
+
+.sort-block {
+    width: 100%;
+}
+
+.categories-block__title,
+.shape-block__title,
+.toys-color__title,
+.amount-toys__title,
+.purchase-year__title,
+.size-block__title,
+.amount-toys,
+.purchase-year,
+.toys-color,
+.size-block,
+.favorite-block {
+    margin-bottom: 20px;
+}
+
+.categories-block {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    align-items: flex-start;
+    justify-content: center;
+    margin-bottom: 20px;
+    flex-direction: column;
+}
+
+.categories-block__input,
+.size-block__input,
+.favorite-block__input {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.shape-block-item__img {
+    margin-bottom: 10px;
+}
+
+.shape-block {
+    display: flex;
+    margin-bottom: 20px;
+    flex-direction: column;
+}
+
+.shape-block__items,
+.toys-color__block,
+.size-block__categorise {
+    display: flex;
+    justify-content: space-between;
+}
+
+.shape-block-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.shape-block-item:hover {
+    transform: scale(1.15);
+    filter: brightness(50%);
+}
+
+.shape-block-item__img {
+    width: 42px;
+    height: 42px;
+}
+
+.shape-block-item__name {
+    font-size: 14px;
+}
+
+.shape-block-item--active {
+    filter: invert(1%) sepia(13%) saturate(6191%) hue-rotate(144deg) brightness(91%) contrast(87%);
+}
+
+.purchase-year__label {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.purchase-year__span {
+    width: 50px;
+}
+
+.purchase-year__input {
+    width: 70%;
+}
+
+.color {
+    width: 24px;
+    height: 24px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.color:hover {
+    transform: scale(1.2);
+}
+
+.color-active {
+    transform: scale(1.5);
+}
+
+#color-white {
+    background-color: var(--color-wight);
+}
+
+#color-yellow {
+    background-color: var(--color-yellow);
+}
+
+#color-red {
+    background-color: var(--color-red);
+}
+
+#color-blue {
+    background-color: var(--color-blue);
+}
+
+#color-green {
+    background-color: var(--color-green);
+}
+
+/*  */
+
+.toys-block {
+    padding: 0px 20px;
+    transition: 1s;
+}
+
+.catergy-title {
+    text-transform: uppercase;
+}
+
+.toys-cadr-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.toy-card {
+    width: 20%;
+    padding: 10px;
+    margin-bottom: 40px; 
+    border-radius: 20px;
+    border: 2px solid var(--border-color);
+    background: radial-gradient(109.56% 109.56% at 0% -2.94%, rgba(255, 255, 255, 0.5) 0%, rgba(179, 246, 255, 0.5) 100%);  
+    cursor: pointer;
+}
+
+.toy-card__count,
+.toy-card__year,
+.toy-card__shape,
+.toy-card__color,
+.toy-card__size,
+.toy-card__favorite {
+    padding: 0px 10px;
+}
+
+.toy-card__count-title,
+.toy-card__year-title,
+.toy-card__shape-title,
+.toy-card__color-title,
+.toy-card__size-title,
+.toy-card__favorite-title {
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+
+.toy-card__image-block {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    padding: 10px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.toy-card__image {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
