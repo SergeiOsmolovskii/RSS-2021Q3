@@ -1,0 +1,48 @@
+.amount-toys__input-block,
+.purchase-year__input-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.amount-toys__span,
+.purchase-year__span {
+    width: 50px;
+}
+
+.amount-toys__input,
+.purchase-year__input {
+    width: 60%;
+}
+
+.amount-toys__span--right,
+.purchase-year__span--right {
+    text-align: right;
+}
+
+.amount-toys__span--left,
+.purchase-year__span--left {
+    text-align: left;
+}
+
+.noUi-connect {
+    background: var(--border-color);
+}
+
+.noUi-horizontal {
+    height: 10px;
+}
+
+.noUi-horizontal .noUi-handle {
+    width: 16px;
+    height: 16px;
+    right: -14px;
+    top: -4px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.noUi-handle:before, 
+.noUi-handle:after {
+    display: none;
+}
