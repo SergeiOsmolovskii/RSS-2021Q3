@@ -29,6 +29,9 @@ const baseConfig = {
       },
     ],
   },
+  experiments: {
+    topLevelAwait: true,
+  },
   resolve: {
     extensions: ['.js', '.ts'],
   },
