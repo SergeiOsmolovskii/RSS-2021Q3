@@ -325,6 +325,11 @@ option {
     cursor: pointer;
 }
 
+.toy-card__title {
+    height: 50px;
+    text-align: center;
+}
+
 .toy-card__count,
 .toy-card__year,
 .toy-card__shape,
@@ -349,8 +354,7 @@ option {
     position: relative;
     width: 100px;
     height: 100px;
-    padding: 10px;
-    margin: 0 auto;
+    margin: 10px auto;
     text-align: center;
 }
 

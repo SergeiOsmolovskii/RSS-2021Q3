@@ -23,6 +23,10 @@ export const createRange =  async (blockID:string, startPointsArr:Array<number>,
     
     toysAmountSlider.noUiSlider.on('update', function (values:string[], handle:number) {
     nodes[handle].textContent = values[handle].slice(0, -3);
+    const currentData = JSON.parse(localStorage.getItem('settings'));
+    //console.log(currentData.amountToys)
+    console.log(values[handle][0])
+
 });
 
 }
