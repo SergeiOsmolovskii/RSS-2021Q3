@@ -10,16 +10,12 @@ export const OPTIONS_NAMES: Array<string> = [
   'In descending order of quantity',
 ];
 
-export const SHAPE_TYPE: Array<string> = ['Ball', 'Bell', 'Pine', 'Star', 'Snowflake', 'Statuette'];
-export const TOYS_COLOR: Array<string> = ['white', 'yellow', 'red', 'blue', 'green'];
-export const TOY_SIZE: Array<string> = ['Big', 'Medium', 'Small'];
-
-
+export const TOYS_COLOR: Array<string> = data.map(item => item.color).filter((item, index, array) => array.indexOf(item) === index);
+export const SHAPE_TYPE: Array<string> = data.map(item => item.shape).filter((item, index, array) => array.indexOf(item) === index);
+export const TOY_SIZE: Array<string> = data.map(item => item.size).filter((item, index, array) => array.indexOf(item) === index);
 const toysCount = data.map(item => Math.max(item.count));
 export const MAX_TOYS_AMOUNT = Math.max(...toysCount);
 export const MIN_TOYS_AMOUNT = 1;
-
 const purchaseYear = data.map(item => Math.max(item.year));
-
 export const MAX_PURCHASE_YEAR = Math.max(...purchaseYear);
 export const MIN_PURCHASE_YEAR = Math.min(...purchaseYear);

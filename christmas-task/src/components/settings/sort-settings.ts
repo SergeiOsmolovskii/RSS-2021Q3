@@ -166,7 +166,7 @@ export const renderSettings = async () => {
     sizeBlockInput.setAttribute('type', 'checkbox');
     sizeBlockInput.setAttribute('value', `${TOY_SIZE[i].toLowerCase()}`);
     const sizeBlockSpan = createElement(['categories-block__span'], 'span', sizeBlockLabel);
-    sizeBlockSpan.textContent = ` ${TOY_SIZE[i]} `;
+    sizeBlockSpan.textContent = ` ${TOY_SIZE[i][0].toUpperCase()}${TOY_SIZE[i].slice(1)} `;
   }
 
   /*  */

@@ -10,15 +10,15 @@ initialSettings();
 const createCards = async () => {
   
   /* fix it */
-  
-  const sortParam = JSON.parse(localStorage.getItem('settings'));
-  const setP = new Set(sortParam.colors); 
-  console.log(sortParam.colors);
-  console.log(data.filter(item => setP.has(item.color)))
+
+  // const sortParam = JSON.parse(localStorage.getItem('settings'));
+  // const setP = new Set(sortParam.colors); 
+  // console.log(sortParam.colors);
+  // console.log(data.filter(item => setP.has(item.color)));
   //console.log(JSON.parse(localStorage.getItem('settings')))
   
   //const card1 = new Card ("Большой шар с рисунком", 1, 2 , 1990, "шар", "красный", "большой", false);
 }
 
-await createCards()
 await renderSettings();
+await createCards()
