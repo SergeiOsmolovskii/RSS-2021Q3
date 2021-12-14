@@ -146,9 +146,14 @@ export const renderSettings = async () => {
   const toysColorBlockTitle = createElement(['toys-color__title'], 'p', toysColor);
   toysColorBlockTitle.textContent = 'Toys color';
   const toysColorBlock = createElement(['toys-color__block'], 'div', toysColor);
-
+ 
   for (let i = 0; i < TOYS_COLOR.length; i++) {
     const toysColorButton = createElement(['color'], 'div', toysColorBlock);
+
+    if (currentSettings.colors.includes(TOYS_COLOR[i])) {
+      toysColorButton.classList.add('color-active');  
+    }
+  
     toysColorButton.setAttribute('id', `color-${TOYS_COLOR[i]}`);
   }
 
