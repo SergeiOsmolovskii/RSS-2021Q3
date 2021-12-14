@@ -21,12 +21,21 @@ export const createRange =  async (blockID:string, startPointsArr:Array<number>,
         document.getElementById(upperValueID) 
     ];
     
-    toysAmountSlider.noUiSlider.on('update', function (values:string[], handle:number) {
+    toysAmountSlider.noUiSlider.on('update', function (values:Array<string>, handle:number) {
     nodes[handle].textContent = values[handle].slice(0, -3);
-    const currentData = JSON.parse(localStorage.getItem('settings'));
-    //console.log(currentData.amountToys)
-    console.log(values[handle][0])
 
+    let currentData = JSON.parse(localStorage.getItem('settings'));
+    
+    if (toysAmountSlider.id === 'amount-toys-input') {
+        currentData.amountToys[0] = parseInt(values[0].slice(0, -3));
+        currentData.amountToys[1] = parseInt(values[1].slice(0, -3));
+    }
+
+    if (toysAmountSlider.id === 'purchase-year-input') {
+        currentData.purchaseYear[0] = parseInt(values[0].slice(0, -3));
+        currentData.purchaseYear[1] = parseInt(values[1].slice(0, -3));
+    }
+
+    localStorage.setItem('settings', JSON.stringify(currentData));
 });
-
 }

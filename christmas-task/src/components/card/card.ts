@@ -74,7 +74,10 @@ export class Card {
     toyCardFavoriteTitle.textContent = 'Favorite: ';
     const toyCardFavorite = createElement(['toy-card__favorite'], 'span', toyCardFavoriteTitle);
 
-    if (this.favorite === true) toyCardFavorite.textContent = 'Yes';
+    if (this.favorite === true) {
+      toyCard.classList.add('toy-card--favorite');
+      toyCardFavorite.textContent = 'Yes';
+    } 
     else toyCardFavorite.textContent = 'No';
   }
 }

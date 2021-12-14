@@ -368,3 +368,7 @@ option {
     top: 50%;
     transform: translate(-50%, -50%);
 }
+
+.toy-card--favorite {
+    background: radial-gradient(109.56% 109.56% at 0% -2.94%, rgb(215 53 53 / 50%) 0%, rgb(12 95 106 / 50%) 100%);
+}
