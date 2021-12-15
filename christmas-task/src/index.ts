@@ -6,7 +6,7 @@ import { initialSettings } from './components/settings/start-settings';
 import { renderSettings } from './components/settings/sort-settings';
 import { Card } from './components/card/card';
 import { sortSettings } from './components/sort-data'
-
+import { handler } from './handler/handler'
 
 initialSettings();
 export const createCards = async () => {
@@ -24,3 +24,5 @@ export const createCards = async () => {
 
 await renderSettings();
 await createCards()
+
+handler();

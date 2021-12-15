@@ -1,6 +1,6 @@
 import { createElement } from '../settings/sort-settings';
 
-const toysCadrContainer = document.querySelector('.toys-cadr-container') as HTMLElement;
+const toysCadrContainer: HTMLElement = document.querySelector('.toys-cadr-container');
 
 export class Card {
   name: string;

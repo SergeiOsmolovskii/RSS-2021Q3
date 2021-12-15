@@ -69,6 +69,12 @@ export const renderSettings = async () => {
 
   for (let i = 0; i < SHAPE_TYPE.length; i++) {
     const shapeBlockItem = createElement(['shape-block-item'], 'div', shapeBlockItems);
+    shapeBlockItem.dataset.shape = SHAPE_TYPE[i].toLowerCase();
+
+    if (currentSettings.shape.includes(SHAPE_TYPE[i].toLowerCase())) {
+      shapeBlockItem.classList.add('shape-block-item--active')
+    }
+
     const shapeBlockItemImg = createElement(['shape-block-item__img'], 'img', shapeBlockItem);
     shapeBlockItemImg.setAttribute('src', `./assets/icons/shape-icons/${SHAPE_TYPE[i].toLowerCase()}.svg`);
     shapeBlockItemImg.setAttribute('alt', `${SHAPE_TYPE[i]}`);
