@@ -4,7 +4,9 @@ export const handler = () => {
     const currentData: Isettings = JSON.parse(localStorage.getItem('settings'));
     const shapeBlock: HTMLTemplateElement = document.querySelector('.shape-block');
     const toysColorBlock: HTMLTemplateElement = document.querySelector('.toys-color__block');
+    const sizeBlock: HTMLElement = document.querySelector('.size-block');
     const toysCadrContainer: HTMLElement = document.querySelector('.toys-cadr-container');
+
     
     toysCadrContainer.textContent = '';
     createCards();
@@ -34,13 +36,31 @@ export const handler = () => {
         createCards(); 
     }
 
+    const setSize = (e: Event) => {
+        if ((e.target as HTMLTemplateElement).closest('.size-block__input')) {
+            const currentSizeArray: Array<string> = [];
+            sizeBlock.querySelectorAll('.size-block__input').forEach(item => {
+                
+                if ((item as HTMLInputElement).checked === true) {
+                    currentSizeArray.push((item as HTMLInputElement).value);
+                } else {
+                    currentSizeArray.push('');
+                } 
+            });
 
-
+            currentData.size = currentSizeArray;
+            localStorage.setItem('settings', JSON.stringify(currentData));
+            toysCadrContainer.textContent = '';
+            createCards(); 
+        }
+    }
 
 
 
 
     shapeBlock.addEventListener('click', setShape);
     toysColorBlock.addEventListener('click', setColor);
+    sizeBlock.addEventListener('change', setSize);
+
 
 }

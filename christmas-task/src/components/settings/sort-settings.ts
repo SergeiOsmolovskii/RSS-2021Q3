@@ -156,7 +156,7 @@ export const renderSettings = async () => {
   for (let i = 0; i < TOYS_COLOR.length; i++) {
     const toysColorButton = createElement(['color'], 'div', toysColorBlock);
     toysColorButton.dataset.color = TOYS_COLOR[i]; 
-    
+
     if (currentSettings.colors.includes(TOYS_COLOR[i])) {
       toysColorButton.classList.add('color-active');  
     }
@@ -174,7 +174,16 @@ export const renderSettings = async () => {
   for (let i = 0; i < TOY_SIZE.length; i++) {
     const sizeBlockLabel = createElement(['size-block__label'], 'label', sizeBlockCategories);
     const sizeBlockInput = createElement(['size-block__input'], 'input', sizeBlockLabel);
+
+    if (currentSettings.size.includes(TOY_SIZE[i])) {
+      (sizeBlockInput as HTMLInputElement).checked = true;
+    } else {
+      (sizeBlockInput as HTMLInputElement).checked = false;
+    }
+
+
     sizeBlockInput.setAttribute('id', `size-${TOY_SIZE[i].toLowerCase()}`);
+    
     sizeBlockInput.setAttribute('type', 'checkbox');
     sizeBlockInput.setAttribute('value', `${TOY_SIZE[i].toLowerCase()}`);
     const sizeBlockSpan = createElement(['categories-block__span'], 'span', sizeBlockLabel);
