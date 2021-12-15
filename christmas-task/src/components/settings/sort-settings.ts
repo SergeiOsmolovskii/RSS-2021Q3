@@ -155,7 +155,8 @@ export const renderSettings = async () => {
  
   for (let i = 0; i < TOYS_COLOR.length; i++) {
     const toysColorButton = createElement(['color'], 'div', toysColorBlock);
-
+    toysColorButton.dataset.color = TOYS_COLOR[i]; 
+    
     if (currentSettings.colors.includes(TOYS_COLOR[i])) {
       toysColorButton.classList.add('color-active');  
     }
