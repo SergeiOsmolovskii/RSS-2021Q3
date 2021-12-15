@@ -13,9 +13,5 @@ export const sortSettings = async () => {
                            .filter(item => sizeSet.has(item.size))
                            .filter(item => shapeSet.has(item.shape))
                            .filter(item => currentData.isFavorite === true ? item.favorite === true : item);
-
-
-
-    console.log(colorsSet);
     return sorterData;
 }

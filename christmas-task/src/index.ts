@@ -23,6 +23,6 @@ export const createCards = async () => {
 
 
 await renderSettings();
-await createCards()
+await createCards();
 
 handler();

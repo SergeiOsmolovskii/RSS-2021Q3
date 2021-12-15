@@ -5,8 +5,9 @@ export const handler = () => {
     const shapeBlock: HTMLTemplateElement = document.querySelector('.shape-block');
     const toysCadrContainer: HTMLElement = document.querySelector('.toys-cadr-container');
     
-    console.log(toysCadrContainer)
-    
+    toysCadrContainer.textContent = '';
+    createCards();
+
     const setShape = (e: Event) => {
 
         if ((e.target as Element).closest('.shape-block-item')) {
@@ -19,6 +20,8 @@ export const handler = () => {
         toysCadrContainer.textContent = '';
         createCards();
     }
+
+
 
 
 

@@ -2,8 +2,11 @@ import noUiSlider from 'nouislider';
 import 'nouislider/dist/nouislider.css';
 import './range-filter.css';
 import { TargeteElement } from '../../interfases/interfaces';
+import { createCards } from '../..';
+
 
 export const createRange =  async (blockID:string, startPointsArr:Array<number>, minRangeValue:number, maxRangeValue:number, step:number, lowerValueID?:string, upperValueID?:string) => {
+    const toysCadrContainer: HTMLElement = document.querySelector('.toys-cadr-container');
     const toysAmountSlider = document.getElementById(blockID) as TargeteElement;
 
     noUiSlider.create(toysAmountSlider, {
@@ -37,5 +40,7 @@ export const createRange =  async (blockID:string, startPointsArr:Array<number>,
     }
 
     localStorage.setItem('settings', JSON.stringify(currentData));
+    toysCadrContainer.textContent = '';
+    createCards();
 });
 }
