@@ -5,8 +5,9 @@ export const handler = () => {
     const shapeBlock: HTMLTemplateElement = document.querySelector('.shape-block');
     const toysColorBlock: HTMLTemplateElement = document.querySelector('.toys-color__block');
     const sizeBlock: HTMLElement = document.querySelector('.size-block');
+    const favoriteBlock: HTMLElement = document.querySelector('.favorite-block');
+    
     const toysCadrContainer: HTMLElement = document.querySelector('.toys-cadr-container');
-
     
     toysCadrContainer.textContent = '';
     createCards();
@@ -55,12 +56,18 @@ export const handler = () => {
         }
     }
 
-
+    const setFavorite = (e: Event) => {
+        if ((e.target as HTMLTemplateElement).closest('.favorite-block')) {   
+            currentData.isFavorite = (e.target as HTMLInputElement).checked
+            localStorage.setItem('settings', JSON.stringify(currentData));
+        }
+        toysCadrContainer.textContent = '';
+        createCards(); 
+    }
 
 
     shapeBlock.addEventListener('click', setShape);
     toysColorBlock.addEventListener('click', setColor);
     sizeBlock.addEventListener('change', setSize);
-
-
+    favoriteBlock.addEventListener('change', setFavorite);
 }

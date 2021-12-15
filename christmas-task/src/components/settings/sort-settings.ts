@@ -175,13 +175,9 @@ export const renderSettings = async () => {
     const sizeBlockLabel = createElement(['size-block__label'], 'label', sizeBlockCategories);
     const sizeBlockInput = createElement(['size-block__input'], 'input', sizeBlockLabel);
 
-    if (currentSettings.size.includes(TOY_SIZE[i])) {
-      (sizeBlockInput as HTMLInputElement).checked = true;
-    } else {
-      (sizeBlockInput as HTMLInputElement).checked = false;
-    }
-
-
+    if (currentSettings.size.includes(TOY_SIZE[i])) (sizeBlockInput as HTMLInputElement).checked = true;
+    else (sizeBlockInput as HTMLInputElement).checked = false;
+    
     sizeBlockInput.setAttribute('id', `size-${TOY_SIZE[i].toLowerCase()}`);
     
     sizeBlockInput.setAttribute('type', 'checkbox');
@@ -195,8 +191,11 @@ export const renderSettings = async () => {
   const favoriteBlock = createElement(['favorite-block'], 'div', settingAside);
   const favoriteBlockLabel = createElement(['favorite-block__label'], 'label', favoriteBlock);
   const favoriteBlockInput = createElement(['favorite-block__input'], 'input', favoriteBlockLabel);
+
   favoriteBlockInput.setAttribute('id', 'favorite-only');
   favoriteBlockInput.setAttribute('type', 'checkbox');
+  (favoriteBlockInput as HTMLInputElement).checked = currentSettings.isFavorite;
+
   const favoriteBlockSpan = createElement(['favorite-categories-block__span'], 'span', favoriteBlockLabel);
   favoriteBlockSpan.textContent = ' Only favorite ';
 };
