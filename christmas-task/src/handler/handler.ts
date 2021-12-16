@@ -7,6 +7,7 @@ export const handler = async () => {
     const sizeBlock: HTMLElement = document.querySelector('.size-block');
     const favoriteBlock: HTMLElement = document.querySelector('.favorite-block');
     const toysCadrContainer: HTMLElement = document.querySelector('.toys-cadr-container');
+    const sortSelect: HTMLElement = document.getElementById('sort');
 
     const setShape = (e: Event) => {
 
@@ -61,7 +62,11 @@ export const handler = async () => {
         createCards(); 
     }
 
-
+    sortSelect.addEventListener('change', () => {
+        toysCadrContainer.textContent = '';
+        createCards();
+    });
+    
     shapeBlock.addEventListener('click', setShape);
     toysColorBlock.addEventListener('click', setColor);
     sizeBlock.addEventListener('change', setSize);

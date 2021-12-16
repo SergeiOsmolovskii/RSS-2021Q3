@@ -2,6 +2,8 @@ import { data } from "../components/settings/constant";
 import { Isettings } from "../interfases/interfaces";
 
 export const sortSettings = async () => {
+    const toysCadrContainer: HTMLElement = document.querySelector('.toys-cadr-container');
+    const sortSelect: HTMLElement = document.getElementById('sort');
     const currentData: Isettings = JSON.parse(localStorage.getItem('settings'));
     const colorsSet = new Set(currentData.colors);
     const shapeSet = new Set(currentData.shape);
@@ -13,5 +15,26 @@ export const sortSettings = async () => {
                            .filter(item => sizeSet.has(item.size))
                            .filter(item => shapeSet.has(item.shape))
                            .filter(item => currentData.isFavorite === true ? item.favorite === true : item);
+
+    switch ((sortSelect as HTMLInputElement).value) {
+      case '0':
+        sorterData.sort((a, b) => {
+            if (a.name > b.name) return 1;
+            if (b.name > a.name) return -1;
+        });
+        break;
+      case '1':
+        sorterData.sort((a, b) => {
+            if (a.name > b.name) return -1;
+            if (b.name > a.name) return 1;
+        });
+        break;
+      case '2':
+        sorterData.sort((a, b) => a.count - b.count);
+        break;
+      case '3':
+        sorterData.sort((a, b) => b.count - a.count);
+        break;
+    }
     return sorterData;
 }
