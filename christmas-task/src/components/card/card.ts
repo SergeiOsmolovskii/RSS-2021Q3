@@ -1,7 +1,5 @@
 import { createElement } from '../settings/sort-settings';
 
-const toysCadrContainer: HTMLElement = document.querySelector('.toys-cadr-container');
-
 export class Card {
   name: string;
   count: number;
@@ -31,8 +29,9 @@ export class Card {
       (this.size = size),
       (this.favorite = favorite);
   }
-
+  
   addCard() {
+    const toysCadrContainer = document.querySelector('.toys-cadr-container') as HTMLElement;
     const toyCard = createElement(['toy-card'], 'div', toysCadrContainer);
     const toyCardTitle = createElement(['toy-card__title'], 'p', toyCard);
     toyCardTitle.textContent = this.name;

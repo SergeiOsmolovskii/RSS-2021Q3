@@ -1,9 +1,6 @@
 import { OPTIONS_COUNT, OPTIONS_NAMES, SHAPE_TYPE, TOYS_COLOR, TOY_SIZE, MAX_TOYS_AMOUNT, MIN_TOYS_AMOUNT, MAX_PURCHASE_YEAR, MIN_PURCHASE_YEAR } from './constant';
 import { createRange } from '../range-filter/range-filter';
-import { Idata, Isettings } from '../../interfases/interfaces';
-
-const main = document.querySelector('.main') as HTMLElement;
-
+import { Isettings } from '../../interfases/interfaces';
 
 export const createElement = (className: Array<string>, tag: string, container: HTMLElement) => {
   const elem = document.createElement(tag);
@@ -15,12 +12,13 @@ export const createElement = (className: Array<string>, tag: string, container: 
 /*  */
 
 export const renderSettings = async () => {
+
+  const settingAside = document.querySelector('.settings') as HTMLElement;
   const currentSettings: Isettings = JSON.parse(localStorage.getItem('settings'));
   const toysCountStep = 1;
   const yearStep = 5;
 
 
-  const settingAside = createElement(['settings'], 'aside', main);
   const settingBlock = createElement(['settings__block'], 'div', settingAside);
   const soundButton = createElement(['settings__sound'], 'button', settingBlock);
   const settingsSearch = createElement(['settings__search'], 'label', settingBlock);
@@ -199,4 +197,3 @@ export const renderSettings = async () => {
   const favoriteBlockSpan = createElement(['favorite-categories-block__span'], 'span', favoriteBlockLabel);
   favoriteBlockSpan.textContent = ' Only favorite ';
 };
-

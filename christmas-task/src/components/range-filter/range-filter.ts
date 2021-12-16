@@ -18,7 +18,6 @@ export const createRange =  async (blockID:string, startPointsArr:Array<number>,
         },
         step: step
     });
-    
     const nodes = [
         document.getElementById(lowerValueID), 
         document.getElementById(upperValueID) 
@@ -40,7 +39,9 @@ export const createRange =  async (blockID:string, startPointsArr:Array<number>,
     }
 
     localStorage.setItem('settings', JSON.stringify(currentData));
+
     toysCadrContainer.textContent = '';
     createCards();
 });
+
 }

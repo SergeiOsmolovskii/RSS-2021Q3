@@ -1,16 +1,12 @@
 import { Isettings } from "../interfases/interfaces";
 import { createCards } from "..";
-export const handler = () => { 
+export const handler = async () => { 
     const currentData: Isettings = JSON.parse(localStorage.getItem('settings'));
     const shapeBlock: HTMLTemplateElement = document.querySelector('.shape-block');
     const toysColorBlock: HTMLTemplateElement = document.querySelector('.toys-color__block');
     const sizeBlock: HTMLElement = document.querySelector('.size-block');
     const favoriteBlock: HTMLElement = document.querySelector('.favorite-block');
-    
     const toysCadrContainer: HTMLElement = document.querySelector('.toys-cadr-container');
-    
-    toysCadrContainer.textContent = '';
-    createCards();
 
     const setShape = (e: Event) => {
 
