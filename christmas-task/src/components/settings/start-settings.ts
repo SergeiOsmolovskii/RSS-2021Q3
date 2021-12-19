@@ -11,13 +11,14 @@ let settings: Isettings = {
   isFavorite: false
 }
 
+let favoriteToys: Array<string> = [];
+
 export const initialSettings = () => {
-
-
-  if (localStorage.getItem('settings') === null || localStorage.getItem('settings') === '') {   
+  if (localStorage.getItem('settings') === null || localStorage.getItem('settings') === '') {
     localStorage.setItem('settings', JSON.stringify(settings));
   }
-  
-  console.log(localStorage.getItem('settings'));
 
-}
+  if (localStorage.getItem('favoriteToys') === null || localStorage.getItem('favoriteToys') === '') {
+    localStorage.setItem('favoriteToys', JSON.stringify(favoriteToys));
+  }
+};

@@ -31,8 +31,11 @@ export class Card {
   }
   
   addCard() {
+
+    const favoriteCards = JSON.parse(localStorage.getItem('favoriteToys'));
     const toysCadrContainer = document.querySelector('.toys-cadr-container') as HTMLElement;
     const toyCard = createElement(['toy-card'], 'div', toysCadrContainer);
+    toyCard.dataset.num = this.num.toString();
     const toyCardTitle = createElement(['toy-card__title'], 'p', toyCard);
     toyCardTitle.textContent = this.name;
     const toyCardImageBlock = createElement(['toy-card__image-block'], 'div', toyCard);
@@ -74,9 +77,10 @@ export class Card {
     const toyCardFavorite = createElement(['toy-card__favorite'], 'span', toyCardFavoriteTitle);
 
     if (this.favorite === true) {
-      toyCard.classList.add('toy-card--favorite');
       toyCardFavorite.textContent = 'Yes';
-    } 
-    else toyCardFavorite.textContent = 'No';
+    } else toyCardFavorite.textContent = 'No';
+    
+    if (favoriteCards.includes(this.num)) toyCard.classList.add('toy-card--favorite');
+
   }
 }

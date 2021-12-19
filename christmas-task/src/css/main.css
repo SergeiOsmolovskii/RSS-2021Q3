@@ -168,6 +168,18 @@ option {
     cursor: pointer;
 }
 
+.favorite-cards-count {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 36px;
+    height: 36px;
+    background: url(https://raw.githubusercontent.com/SergeiOsmolovskii/stage1-tasks/82b5f9f5cc582b762fb64c7cda8dc4a98592e0df/assets/svg/ball.svg) center no-repeat;
+    background-size: cover;
+    color: black;
+
+}
 
 .settings__search {
     position: relative;
@@ -344,6 +356,7 @@ option {
 }
 
 .toy-card {
+    position: relative;
     width: 20%;
     padding: 10px;
     margin-bottom: 40px; 
@@ -351,6 +364,23 @@ option {
     border: 2px solid var(--border-color);
     background: radial-gradient(109.56% 109.56% at 0% -2.94%, rgba(255, 255, 255, 0.5) 0%, rgba(179, 246, 255, 0.5) 100%);  
     cursor: pointer;
+}
+
+.toy-card--error::after {
+    content: 'Sorry, all slots are full';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    background: radial-gradient(109.56% 109.56% at 0% -2.94%, rgb(215 53 53) 0%, rgb(12 95 106) 100%);
+    border-radius: 20px;
+    border: 2px solid var(--border-color);
 }
 
 .toy-card__title {

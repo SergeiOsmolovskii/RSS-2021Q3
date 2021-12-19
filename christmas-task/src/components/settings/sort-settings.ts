@@ -20,7 +20,10 @@ export const renderSettings = async () => {
 
 
   const settingBlock = createElement(['settings__block'], 'div', settingAside);
+  
+  
   const soundButton = createElement(['settings__sound'], 'button', settingBlock);
+  const fivoriteCount = createElement(['favorite-cards-count'], 'div', settingBlock);
   const settingsSearch = createElement(['settings__search'], 'label', settingBlock);
   const settingsInput = createElement(['settings__input'], 'input', settingsSearch);
   settingsInput.setAttribute('id', 'search');

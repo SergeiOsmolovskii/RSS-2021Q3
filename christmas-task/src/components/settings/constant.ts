@@ -3,6 +3,7 @@ import { getData } from "../get-data";
 export const data = await getData();
 
 export const OPTIONS_COUNT: number = 4;
+export const MAX_FAVORITES_TOYS: number = 20;
 export const OPTIONS_NAMES: Array<string> = [
   'By name from A to Z',
   'By name from Z to A',

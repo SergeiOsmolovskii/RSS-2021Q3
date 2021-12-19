@@ -1,5 +1,7 @@
 import { Isettings } from "../interfases/interfaces";
+import { MAX_FAVORITES_TOYS } from "../components/settings/constant";
 import { createCards } from "..";
+import { Card } from "../components/card/card";
 export const handler = async () => { 
     const currentData: Isettings = JSON.parse(localStorage.getItem('settings'));
     const shapeBlock: HTMLTemplateElement = document.querySelector('.shape-block');
@@ -55,7 +57,7 @@ export const handler = async () => {
 
     const setFavorite = (e: Event) => {
         if ((e.target as HTMLTemplateElement).closest('.favorite-block')) {   
-            currentData.isFavorite = (e.target as HTMLInputElement).checked
+            currentData.isFavorite = (e.target as HTMLInputElement).checked;
             localStorage.setItem('settings', JSON.stringify(currentData));
         }
         toysCadrContainer.textContent = '';
@@ -66,7 +68,42 @@ export const handler = async () => {
         toysCadrContainer.textContent = '';
         createCards();
     });
+
+    const errorNotice = (target: HTMLTemplateElement) => {
+        target.classList.add('toy-card--error');
+        setTimeout(() => {
+            target.classList.remove('toy-card--error');
+        }, 3000);
+
+    }
+
+    const currentCard = (e: Event) => {
+        const targetCard = (e.target as HTMLTemplateElement).closest('.toy-card');
+        const targetCardNum = (targetCard as HTMLElement).dataset.num;
+        let favoriteCards = JSON.parse(localStorage.getItem('favoriteToys'));
+        let favoriteCardsSet = new Set (favoriteCards);
+        const favoriteCardsCount = document.querySelector('.favorite-cards-count');
+
+        if (targetCard) {
+            if  (favoriteCardsSet.size >= MAX_FAVORITES_TOYS && !targetCard.classList.contains('toy-card--favorite')) {
+                errorNotice(targetCard as HTMLTemplateElement);
+            } else {
+                targetCard.classList.toggle('toy-card--favorite');
+                
+                if (targetCard.classList.contains('toy-card--favorite')) {
+                    favoriteCardsCount.textContent = (parseInt(favoriteCardsCount.textContent) + 1).toString();
+                    favoriteCardsSet.add(targetCardNum);
+                    localStorage.setItem('favoriteToys', JSON.stringify([...favoriteCardsSet]));
+                } else {
+                    favoriteCardsCount.textContent = (parseInt(favoriteCardsCount.textContent) - 1).toString(); 
+                    favoriteCardsSet.delete(targetCardNum);
+                    localStorage.setItem('favoriteToys', JSON.stringify([...favoriteCardsSet]));
+                }    
+            }
+        }
+    }
     
+    toysCadrContainer.addEventListener('click', currentCard);
     shapeBlock.addEventListener('click', setShape);
     toysColorBlock.addEventListener('click', setColor);
     sizeBlock.addEventListener('change', setSize);

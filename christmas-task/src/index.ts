@@ -10,12 +10,17 @@ const startButton = document.querySelector('.start-game-button') as HTMLElement;
 
 initialSettings();
 export const createCards = async () => {
+  const favoriteCardsCount = document.querySelector('.favorite-cards-count');
+  let favoriteCards = JSON.parse(localStorage.getItem('favoriteToys'));
+  
   const data = await sortSettings();
 
   for (let i = 0; i < data.length; i++) {
     const card = new Card (data[i].name, data[i].num, data[i].count , data[i].year, data[i].shape, data[i].color, data[i].size, data[i].favorite);
     card.addCard();
   }
+
+  favoriteCardsCount.textContent = favoriteCards.length;
 }
 
 startButton.addEventListener('click', startGame, {once: true});
