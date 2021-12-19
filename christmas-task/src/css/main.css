@@ -383,6 +383,11 @@ option {
     border: 2px solid var(--border-color);
 }
 
+.matches-error {
+    margin: 0 auto;
+    font-size: 50px;
+}
+
 .toy-card__title {
     height: 50px;
     text-align: center;
