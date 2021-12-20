@@ -24,6 +24,6 @@ export const initialSettings = () => {
   }
 
   if (localStorage.getItem('sortFilter') === null || localStorage.getItem('sortFilter') === '') {
-    localStorage.setItem('sortFilter', '0');
+    localStorage.setItem('sortFilter', `${sortFilter}`);
   }
 };

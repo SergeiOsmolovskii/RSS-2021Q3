@@ -35,12 +35,10 @@ export const startGame =  () => {
     setTimeout( async() => {
         
         const toysCardContainer = setAsideBlocks();
-        console.log(toysCardContainer)
         await renderSettings();  
         toysCardContainer.textContent = '';
         createCards();
-        
-        handler();
+        await handler();
         document.getElementById('search').focus();
     }, 1100);
 }

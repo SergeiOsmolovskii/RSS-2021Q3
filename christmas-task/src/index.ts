@@ -9,8 +9,8 @@ import { createElement } from './components/settings/sort-settings';
 
 const startButton = document.querySelector('.start-game-button') as HTMLElement;
 
-initialSettings();
 export const createCards = async () => {
+  initialSettings();
   const toysCadrContainer = document.querySelector('.toys-cadr-container') as HTMLElement;
   const favoriteCardsCount = document.querySelector('.favorite-cards-count');
   let favoriteCards = JSON.parse(localStorage.getItem('favoriteToys'));

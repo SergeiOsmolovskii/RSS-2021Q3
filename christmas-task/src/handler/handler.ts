@@ -13,6 +13,7 @@ export const handler = async () => {
     const toysCadrContainer: HTMLElement = document.querySelector('.toys-cadr-container');
     const sortSelect: HTMLElement = document.getElementById('sort');
     const resetSettings: HTMLElement = document.getElementById('reset');
+    const clearSettings: HTMLElement = document.getElementById('clear');
 
 
     const setShape = (e: Event) => {
@@ -94,8 +95,7 @@ export const handler = async () => {
             if  (favoriteCardsSet.size >= MAX_FAVORITES_TOYS && !targetCard.classList.contains('toy-card--favorite')) {
                 errorNotice(targetCard as HTMLTemplateElement);
             } else {
-                targetCard.classList.toggle('toy-card--favorite');
-                
+                targetCard.classList.toggle('toy-card--favorite');               
                 if (targetCard.classList.contains('toy-card--favorite')) {
                     favoriteCardsCount.textContent = (parseInt(favoriteCardsCount.textContent) + 1).toString();
                     favoriteCardsSet.add(targetCardNum);
@@ -115,15 +115,20 @@ export const handler = async () => {
         localStorage.setItem('settings', JSON.stringify(settings));
         settingsBlock.textContent = '';
         await renderSettings();
-        await handler();
         cadrsContainer.textContent = '';
         await createCards();
+        await handler();
+    }
+
+    const clearlocalStorage = () => {
+        localStorage.clear();
     }
     
-    resetSettings.addEventListener('click', reset)
+    clearSettings.addEventListener('click', clearlocalStorage);
     toysCadrContainer.addEventListener('click', currentCard);
     shapeBlock.addEventListener('click', setShape);
     toysColorBlock.addEventListener('click', setColor);
     sizeBlock.addEventListener('change', setSize);
     favoriteBlock.addEventListener('change', setFavorite);
+    resetSettings.addEventListener('click', reset);
 }
