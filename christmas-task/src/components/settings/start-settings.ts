@@ -11,6 +11,7 @@ export let settings: Isettings = {
   isFavorite: false
 }
 
+let sortFilter = 0;
 let favoriteToys: Array<string> = [];
 
 export const initialSettings = () => {
@@ -20,5 +21,9 @@ export const initialSettings = () => {
 
   if (localStorage.getItem('favoriteToys') === null || localStorage.getItem('favoriteToys') === '') {
     localStorage.setItem('favoriteToys', JSON.stringify(favoriteToys));
+  }
+
+  if (localStorage.getItem('sortFilter') === null || localStorage.getItem('sortFilter') === '') {
+    localStorage.setItem('sortFilter', '0');
   }
 };

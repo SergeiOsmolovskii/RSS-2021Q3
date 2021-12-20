@@ -68,8 +68,10 @@ export const handler = async () => {
         createCards(); 
     }
 
-    sortSelect.addEventListener('change', () => {
+    sortSelect.addEventListener('change', (e: Event) => {
         toysCadrContainer.textContent = '';
+        const targetValue = (e.target as HTMLSelectElement).value; 
+        localStorage.setItem('sortFilter', targetValue);
         createCards();
     });
 
