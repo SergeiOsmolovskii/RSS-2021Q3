@@ -2,6 +2,7 @@ import { createElement } from "../settings/sort-settings";
 import { renderSettings } from "../settings/sort-settings";
 import { handler } from "../../handler/handler";
 import { createCards } from "../..";
+import { initialSettings } from "../settings/start-settings";
 
 const body = document.querySelector('body');
 const main = document.querySelector('.main') as HTMLElement;
@@ -30,9 +31,10 @@ const setAsideBlocks =  () => {
   }
 
 export const startGame =  () => {
+    initialSettings();
     setBackgroundImage();
     hideItems();
-    setTimeout( async() => {
+    setTimeout(async() => {
         
         const toysCardContainer = setAsideBlocks();
         await renderSettings();  

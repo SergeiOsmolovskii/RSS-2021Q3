@@ -458,3 +458,19 @@ option {
 .toy-card--favorite {
     background: radial-gradient(109.56% 109.56% at 0% -2.94%, rgb(215 53 53 / 50%) 0%, rgb(12 95 106 / 50%) 100%);
 }
+
+@media (max-width: 768px) {
+    
+    .settings {
+        width: 40%;
+    } 
+
+    .toys-block {
+        width: 60%;
+    }
+    
+    .toy-card {
+        width: 40%;
+    }
+
+}
