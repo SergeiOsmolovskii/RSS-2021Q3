@@ -4,6 +4,8 @@ import { createCards } from "..";
 import { settings } from "../components/settings/start-settings";
 import { renderSettings } from "../components/settings/sort-settings";
 import { Card } from "../components/card/card";
+import { searchCard } from "../components/settings/search";
+
 export const handler = async () => { 
     const currentData: Isettings = JSON.parse(localStorage.getItem('settings'));
     const shapeBlock: HTMLTemplateElement = document.querySelector('.shape-block');
@@ -12,6 +14,7 @@ export const handler = async () => {
     const favoriteBlock: HTMLElement = document.querySelector('.favorite-block');
     const toysCadrContainer: HTMLElement = document.querySelector('.toys-cadr-container');
     const sortSelect: HTMLElement = document.getElementById('sort');
+    const search: HTMLElement = document.getElementById('search');
     const resetSettings: HTMLElement = document.getElementById('reset');
     const clearSettings: HTMLElement = document.getElementById('clear');
 
@@ -124,6 +127,7 @@ export const handler = async () => {
         localStorage.clear();
     }
     
+    search.addEventListener('input', searchCard);
     clearSettings.addEventListener('click', clearlocalStorage);
     toysCadrContainer.addEventListener('click', currentCard);
     shapeBlock.addEventListener('click', setShape);
