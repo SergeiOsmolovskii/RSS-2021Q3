@@ -41,7 +41,7 @@ export const startGame =  () => {
         createCards();
         
         handler();
-        
+        document.getElementById('search').focus();
     }, 1100);
 }
 
