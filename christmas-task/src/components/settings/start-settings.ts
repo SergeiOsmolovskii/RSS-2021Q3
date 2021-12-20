@@ -1,7 +1,7 @@
 import { Isettings } from "../../interfases/interfaces";
 import { SHAPE_TYPE, TOYS_COLOR, TOY_SIZE, MAX_TOYS_AMOUNT, MIN_TOYS_AMOUNT, MAX_PURCHASE_YEAR, MIN_PURCHASE_YEAR } from './constant';
 
-let settings: Isettings = {
+export let settings: Isettings = {
   categories: ['all'] ,
   shape: SHAPE_TYPE,
   colors: TOYS_COLOR,

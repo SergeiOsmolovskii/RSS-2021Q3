@@ -199,4 +199,17 @@ export const renderSettings = async () => {
 
   const favoriteBlockSpan = createElement(['favorite-categories-block__span'], 'span', favoriteBlockLabel);
   favoriteBlockSpan.textContent = ' Only favorite ';
+
+  /*  */
+
+  const resetBlock = createElement(['reset-block'], 'div', settingAside);
+  const resetButton = createElement(['reset-button'], 'button', resetBlock);
+  resetButton.setAttribute('id', 'reset');
+  resetButton.textContent = 'Reset';
+
+  const clearLSButton = createElement(['clear-button'], 'button', resetBlock);
+  clearLSButton.setAttribute('id', 'clear');
+  clearLSButton.textContent = 'Clear';
+
+
 };

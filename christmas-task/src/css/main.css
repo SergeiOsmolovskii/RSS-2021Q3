@@ -340,6 +340,29 @@ option {
 
 /*  */
 
+.reset-block {
+    display: flex;
+    justify-content: space-between;
+}
+
+.reset-button, .clear-button {
+    width: 45%;
+    height: 36px;
+    padding: 0em 1em;
+    background: radial-gradient(118.88% 606.86% at 0% 0%, rgba(36, 197, 219, 0.15) 0%, rgba(36, 197, 219, 0) 100%);
+    color: var(--text-color);
+    font-size: 16px;
+    border-radius: 30px;
+    border: 2px solid var(--border-color);
+}
+
+.reset-button:hover, .clear-button:hover {
+    cursor: pointer;
+    filter: brightness(2);
+}
+
+/*  */
+
 .toys-block {
     padding: 0px 20px;
     transition: 1s;

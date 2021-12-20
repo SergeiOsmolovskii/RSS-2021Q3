@@ -1,6 +1,8 @@
 import { Isettings } from "../interfases/interfaces";
 import { MAX_FAVORITES_TOYS } from "../components/settings/constant";
 import { createCards } from "..";
+import { settings } from "../components/settings/start-settings";
+import { renderSettings } from "../components/settings/sort-settings";
 import { Card } from "../components/card/card";
 export const handler = async () => { 
     const currentData: Isettings = JSON.parse(localStorage.getItem('settings'));
@@ -10,6 +12,8 @@ export const handler = async () => {
     const favoriteBlock: HTMLElement = document.querySelector('.favorite-block');
     const toysCadrContainer: HTMLElement = document.querySelector('.toys-cadr-container');
     const sortSelect: HTMLElement = document.getElementById('sort');
+    const resetSettings: HTMLElement = document.getElementById('reset');
+
 
     const setShape = (e: Event) => {
 
@@ -102,7 +106,19 @@ export const handler = async () => {
             }
         }
     }
+
+    const reset = async () => {
+        const settingsBlock = document.querySelector('.settings');
+        const cadrsContainer = document.querySelector('.toys-cadr-container');
+        localStorage.setItem('settings', JSON.stringify(settings));
+        settingsBlock.textContent = '';
+        await renderSettings();
+        await handler();
+        cadrsContainer.textContent = '';
+        await createCards();
+    }
     
+    resetSettings.addEventListener('click', reset)
     toysCadrContainer.addEventListener('click', currentCard);
     shapeBlock.addEventListener('click', setShape);
     toysColorBlock.addEventListener('click', setColor);
