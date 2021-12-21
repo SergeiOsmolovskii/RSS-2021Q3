@@ -30,10 +30,10 @@ export const sortSettings = async () => {
         });
         break;
       case '2':
-        sorterData.sort((a, b) => a.count - b.count);
+        sorterData.sort((a, b) => a.year - b.year);
         break;
       case '3':
-        sorterData.sort((a, b) => b.count - a.count);
+        sorterData.sort((a, b) => b.year - a.year);
         break;
     }
     return sorterData;

@@ -7,8 +7,8 @@ export const MAX_FAVORITES_TOYS: number = 20;
 export const OPTIONS_NAMES: Array<string> = [
   'By name from A to Z',
   'By name from Z to A',
-  'In ascending order of quantity',
-  'In descending order of quantity',
+  'In ascending order of year',
+  'In descending order of year'
 ];
 
 export const TOYS_COLOR: Array<string> = data.map(item => item.color).filter((item, index, array) => array.indexOf(item) === index);
