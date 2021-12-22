@@ -93,17 +93,17 @@ option {
     max-height: calc(90vh - 40px); 
 }
 
-.settings::-webkit-scrollbar-track, .toys-block::-webkit-scrollbar-track{
+.settings::-webkit-scrollbar-track, .toys-block::-webkit-scrollbar-track, .tree-settings::-webkit-scrollbar-track {
 	box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 	background-color: #F5F5F5;
 	border-radius: 10px;
 }
 
-.settings::-webkit-scrollbar, .toys-block::-webkit-scrollbar {
+.settings::-webkit-scrollbar, .toys-block::-webkit-scrollbar, .tree-settings::-webkit-scrollbar {
 	width: 10px;
 }
 
-.settings::-webkit-scrollbar-thumb, .toys-block::-webkit-scrollbar-thumb {
+.settings::-webkit-scrollbar-thumb, .toys-block::-webkit-scrollbar-thumb, .tree-settings::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background-color: var(--border-color);    
 }
@@ -221,11 +221,19 @@ option {
 .amount-toys__title,
 .purchase-year__title,
 .size-block__title,
+.trees-types__title,
+.background-types__title,
+.garland__title,
 .amount-toys,
 .purchase-year,
 .toys-color,
 .size-block,
-.favorite-block {
+.favorite-block,
+.tree-settings__block,
+.trees-types__block,
+.background-types__block,
+.garland__block
+ {
     margin-bottom: 20px;
 }
 
@@ -461,6 +469,125 @@ option {
 
 .hide {
     display: none;
+}
+
+/*  */
+
+.tree-settings, .toys-settings {
+    width: 20%;
+    overflow: auto;
+    padding: 10px;
+}
+
+.tree-block {
+    width: 60%;
+}
+
+.header-block {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.header-block--active {
+    text-transform: uppercase;
+    text-decoration: underline;
+}
+
+.tree-settings__block, .trees-types__block, .background-types__block, .garland__block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.snow {
+    width: 36px;
+    height: 30px;
+    background: url(../assets/icons/snow.svg) center no-repeat;
+    background-color: transparent;
+    background-position: center;
+    background-size: cover;
+}
+
+.trees-types__block, .background-types__block {
+    flex-wrap: wrap;
+    width: 100%;
+} 
+ 
+.trees-types-item {
+    width: 80px;
+    height: 80px;
+    margin: 10px 0px;
+    background: url(https://raw.githubusercontent.com/SergeiOsmolovskii/stage1-tasks/christmas-task/assets/tree/1.png) center no-repeat;
+    background-size: contain;
+    background-color: var(--color-blue);
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.trees-types-item--active {
+    background-color: var(--border-color);
+}
+
+.trees-types-item:hover, .background-types-item:hover {
+    transform: scale(1.2);
+}
+
+.background-types-item {
+    width: 65px;
+    height: 65px;
+    margin: 10px 0px;
+    background: url(https://raw.githubusercontent.com/SergeiOsmolovskii/stage1-tasks/christmas-task/assets/bg/1.jpg) center no-repeat;
+    background-size: cover;
+    background-color: var(--color-blue);
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.background-types--active {
+    transform: scale(1.1);
+}
+
+.garland__color {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.garland__input {
+    display: none;
+}
+
+.garland__input:checked~.garland__item::after {
+    content: 'On';
+    left: 3.5em;
+    background-color: var(--color-green);
+    text-align: center;
+}
+
+.garland__item::after {
+    content: 'Off';
+    position: absolute;
+    left: 6px;
+    width: 40px;
+    height: 25px;
+    background-color: var(--color-red);
+    border-radius: 20px;
+    transition: 0.5s;
+}
+
+.garland__item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 5em;
+    height: 2em;
+    margin: 0 auto;
+    padding: 0px 10px;
+    background: radial-gradient(118.88% 606.86% at 0% 0%, rgba(36, 197, 219, 0.15) 0%, rgba(36, 197, 219, 0) 100%);
+    border: 2px solid var(--border-color);
+    border-radius: 100px;
+    transition: 0.5s;
 }
 
 @media (max-width: 768px) {
