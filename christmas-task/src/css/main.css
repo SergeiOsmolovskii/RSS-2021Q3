@@ -93,17 +93,17 @@ option {
     max-height: calc(90vh - 40px); 
 }
 
-.settings::-webkit-scrollbar-track, .toys-block::-webkit-scrollbar-track, .tree-settings::-webkit-scrollbar-track {
+.settings::-webkit-scrollbar-track, .toys-block::-webkit-scrollbar-track, .tree-settings::-webkit-scrollbar-track, .selected-toys::-webkit-scrollbar-track {
 	box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 	background-color: #F5F5F5;
 	border-radius: 10px;
 }
 
-.settings::-webkit-scrollbar, .toys-block::-webkit-scrollbar, .tree-settings::-webkit-scrollbar {
+.settings::-webkit-scrollbar, .toys-block::-webkit-scrollbar, .tree-settings::-webkit-scrollbar, .selected-toys::-webkit-scrollbar {
 	width: 10px;
 }
 
-.settings::-webkit-scrollbar-thumb, .toys-block::-webkit-scrollbar-thumb, .tree-settings::-webkit-scrollbar-thumb {
+.settings::-webkit-scrollbar-thumb, .toys-block::-webkit-scrollbar-thumb, .tree-settings::-webkit-scrollbar-thumb, .selected-toys::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background-color: var(--border-color);    
 }
@@ -473,14 +473,14 @@ option {
 
 /*  */
 
-.tree-settings, .toys-settings {
-    width: 20%;
+.tree-settings, .selected-toys {
+    width: 25%;
     overflow: auto;
     padding: 10px;
 }
 
 .tree-block {
-    width: 60%;
+    width: 50%;
 }
 
 .header-block {
@@ -494,7 +494,7 @@ option {
     text-decoration: underline;
 }
 
-.tree-settings__block, .trees-types__block, .background-types__block, .garland__block {
+.tree-settings__block, .trees-types__block, .background-types__block, .garland__block, .selected-toys__block {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -509,14 +509,14 @@ option {
     background-size: cover;
 }
 
-.trees-types__block, .background-types__block {
+.trees-types__block, .background-types__block, .selected-toys__block {
     flex-wrap: wrap;
     width: 100%;
 } 
  
 .trees-types-item {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     margin: 10px 0px;
     background: url(https://raw.githubusercontent.com/SergeiOsmolovskii/stage1-tasks/christmas-task/assets/tree/1.png) center no-repeat;
     background-size: contain;
@@ -534,8 +534,8 @@ option {
 }
 
 .background-types-item {
-    width: 65px;
-    height: 65px;
+    width: 80px;
+    height: 80px;
     margin: 10px 0px;
     background: url(https://raw.githubusercontent.com/SergeiOsmolovskii/stage1-tasks/christmas-task/assets/bg/1.jpg) center no-repeat;
     background-size: cover;
@@ -588,6 +588,51 @@ option {
     border: 2px solid var(--border-color);
     border-radius: 100px;
     transition: 0.5s;
+}
+
+/*  */
+
+.selected-toy {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    position: relative;
+    width: 75px;
+    height: 75px;
+    margin: 10px 0px;
+    background-color: var(--color-blue);
+    border-radius: 20px;
+}
+
+.selected-toy__img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 60px;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+
+.selected-toy__count {
+    height: 25px;
+    width: 25px;
+    z-index: 10;
+    text-align: center;
+    background-color: var(--border-color);
+    border-radius: 50%;
+    border: 1px solid #000;
+}
+
+.main-tree__block {
+    height: 100%;
+    margin: 0 10px;
+    text-align: center;
+    background: url(https://raw.githubusercontent.com/SergeiOsmolovskii/stage1-tasks/christmas-task/assets/bg/1.jpg) center no-repeat;
+    background-size: cover;  
+}
+
+.main-tree {
+
 }
 
 @media (max-width: 768px) {
