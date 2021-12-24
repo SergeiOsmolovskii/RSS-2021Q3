@@ -20,3 +20,7 @@ export const MIN_TOYS_AMOUNT = 1;
 const purchaseYear = data.map(item => Math.max(item.year));
 export const MAX_PURCHASE_YEAR = Math.max(...purchaseYear);
 export const MIN_PURCHASE_YEAR = Math.min(...purchaseYear);
+
+export const MAX_TREES = 6;
+export const MAX_BACKGROUNDS = 8;
+export const MAX_GARLANDS = 5;

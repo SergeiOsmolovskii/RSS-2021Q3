@@ -6,9 +6,9 @@ import { Card } from './components/card/card';
 import { sortSettings } from './components/sort-data'
 import { startGame } from './components/app/start-game';
 import { createElement } from './components/settings/sort-settings';
-
+import { creatTreeBlock } from './components/settings/create-tree-block';
 const startButton = document.querySelector('.start-game-button') as HTMLElement;
-
+creatTreeBlock()
 export const createCards = async () => {
   initialSettings();
   const toysCadrContainer = document.querySelector('.toys-cadr-container') as HTMLElement;

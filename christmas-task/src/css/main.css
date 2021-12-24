@@ -544,8 +544,8 @@ option {
     cursor: pointer;
 }
 
-.background-types--active {
-    transform: scale(1.1);
+.background-types--active, .garland__color--active {
+    border: 2px solid var(--border-color);
 }
 
 .garland__color {
@@ -628,7 +628,10 @@ option {
     margin: 0 10px;
     text-align: center;
     background: url(https://raw.githubusercontent.com/SergeiOsmolovskii/stage1-tasks/christmas-task/assets/bg/1.jpg) center no-repeat;
-    background-size: cover;  
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;  
 }
 
 .main-tree {
