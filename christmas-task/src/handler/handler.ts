@@ -5,6 +5,8 @@ import { settings } from "../components/settings/start-settings";
 import { renderSettings } from "../components/settings/sort-settings";
 import { Card } from "../components/card/card";
 import { searchCard } from "../components/settings/search";
+import { toTheTree } from "../components/app/goToTheTree";
+import { toTheSettings } from "../components/app/goToTheSettings";
 
 export const handler = async () => { 
     const currentData: Isettings = JSON.parse(localStorage.getItem('settings'));
@@ -126,7 +128,13 @@ export const handler = async () => {
     const clearlocalStorage = () => {
         localStorage.clear();
     }
+
+    const goToTheTree = document.querySelector('.header-block__tree');
+    goToTheTree.addEventListener('click', toTheTree);
     
+    const goToTheSettings = document.querySelector('.header-block__toys');
+    goToTheSettings.addEventListener('click', toTheSettings);
+
     search.addEventListener('input', searchCard);
     clearSettings.addEventListener('click', clearlocalStorage);
     toysCadrContainer.addEventListener('click', currentCard);
@@ -135,4 +143,5 @@ export const handler = async () => {
     sizeBlock.addEventListener('change', setSize);
     favoriteBlock.addEventListener('change', setFavorite);
     resetSettings.addEventListener('click', reset);
+
 }

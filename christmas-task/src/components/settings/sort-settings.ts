@@ -19,10 +19,14 @@ export const renderSettings = async () => {
   const toysCountStep = 1;
   const yearStep = 5;
 
+  const headerBlock = createElement(['header-block'], 'div', settingAside);
+  const headerBlockToys = createElement(['header-block__toys', 'header-block--active'], 'div', headerBlock);
+  headerBlockToys.textContent = 'Toys';
+  const headerBlockTree = createElement(['header-block__tree'], 'div', headerBlock);
+  headerBlockTree.textContent = 'Tree';
 
-  const settingBlock = createElement(['settings__block'], 'div', settingAside);
-  
-  
+
+  const settingBlock = createElement(['settings__block'], 'div', settingAside); 
   const soundButton = createElement(['settings__sound'], 'button', settingBlock);
   const fivoriteCount = createElement(['favorite-cards-count'], 'div', settingBlock);
   const settingsSearch = createElement(['settings__search'], 'label', settingBlock);

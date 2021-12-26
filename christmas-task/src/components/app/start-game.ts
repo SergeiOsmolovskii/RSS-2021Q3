@@ -10,17 +10,17 @@ const title = document.querySelector('h1');
 const startButton = document.querySelector('.start-game-button') as HTMLElement;
 
 
-const setBackgroundImage = () => {  
+export const setBackgroundImage = () => {  
     body.style.background = '#192F2D';
     body.style.opacity = '0';
 }
 
-const hideItems = () => {
+export const hideItems = () => {
     title.style.visibility = 'hidden';
     startButton.style.visibility = 'hidden';
 }
 
-const setAsideBlocks =  () => { 
+export const setAsideBlocks =  () => { 
     const settingAside = createElement(['settings'], 'aside', main);
     const toysBlock = createElement(['toys-block'], 'aside', main);
     const categoryTitle = createElement(['catergy-title'], 'h2', toysBlock);
@@ -28,20 +28,23 @@ const setAsideBlocks =  () => {
     const toysCardContainer = createElement(['toys-cadr-container'], 'div', toysBlock);
     body.style.opacity = '1';
     return toysCardContainer;
-  }
+}
 
 export const startGame =  () => {
     initialSettings();
     setBackgroundImage();
     hideItems();
     setTimeout(async() => {
-        
-        const toysCardContainer = setAsideBlocks();
-        await renderSettings();  
-        toysCardContainer.textContent = '';
-        createCards();
-        await handler();
-        document.getElementById('search').focus();
+        addSettingBlock();
     }, 1100);
+}
+
+export const addSettingBlock = async () => {
+    const toysCardContainer = setAsideBlocks();
+    await renderSettings();  
+    toysCardContainer.textContent = '';
+    createCards();
+    await handler();
+    document.getElementById('search').focus();
 }
 

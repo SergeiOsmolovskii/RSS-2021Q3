@@ -8,7 +8,7 @@ import { startGame } from './components/app/start-game';
 import { createElement } from './components/settings/sort-settings';
 import { creatTreeBlock } from './components/settings/create-tree-block';
 const startButton = document.querySelector('.start-game-button') as HTMLElement;
-creatTreeBlock()
+// creatTreeBlock()
 export const createCards = async () => {
   initialSettings();
   const toysCadrContainer = document.querySelector('.toys-cadr-container') as HTMLElement;
@@ -28,7 +28,7 @@ export const createCards = async () => {
 
   favoriteCardsCount.textContent = favoriteCards.length;
 }
-
+/* 
 console.log(`
 
 Добрый день, если есть какие-нибудь вопросы или спорные моменты, пожалуйста свяжитесь со мной. Заранее спасибо, хорошего дня.
@@ -76,6 +76,6 @@ console.log(`
 при вводе поискового запроса на странице остаются только те игрушки, в которых есть указанные в поиске буквы в указанном порядке. При этом не обязательно, чтобы буквы были в начале слова. Регистр символов при поиске не учитывается +10
 Поиск ведётся только среди игрушек, которые в данный момент отображаются на странице.
 если очистить поле поиска, на странице отображаются игрушки, соответствующие всем выбранным фильтрам и настройкам сортировки +10
-`);
+`); */
 
 startButton.addEventListener('click', startGame, {once: true});

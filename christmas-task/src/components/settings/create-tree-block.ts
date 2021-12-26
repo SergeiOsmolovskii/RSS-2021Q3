@@ -1,7 +1,10 @@
 import { MAX_TREES } from "./constant";
 import { MAX_BACKGROUNDS } from "./constant";
 import { MAX_GARLANDS } from "./constant";
+import { MAX_FAVORITES_TOYS } from "./constant";
 import { createElement } from "./sort-settings"
+import { data } from "./constant";
+import { Idata } from "../../interfases/interfaces";
 export const creatTreeBlock = () => {
 
     if (localStorage.getItem('treeNumber') === '' || localStorage.getItem('treeNumber') === null) {
@@ -16,20 +19,24 @@ export const creatTreeBlock = () => {
         localStorage.setItem('garlandNumber', '0');
     }
 
+    let favoriteCardsNums = JSON.parse(localStorage.getItem('favoriteToys'));
+
+
     const main = document.querySelector('.main') as HTMLElement;
     main.textContent = '';
 
     const treeSettingAside = createElement(['tree-settings'], 'aside', main);
-    const headerBlock = createElement(['tree-settings'], 'div', treeSettingAside);
+    const headerBlock = createElement(['header-block'], 'div', treeSettingAside);
     const headerBlockToys = createElement(['header-block__toys'], 'div', headerBlock);
     headerBlockToys.textContent = 'Toys';
-    const headerBlockTree = createElement(['header-block__tree'], 'div', headerBlock);
-
+    const headerBlockTree = createElement(['header-block__tree', 'header-block--active'], 'div', headerBlock);
+    headerBlockTree.textContent = 'Tree';
     const treeSettingsBlock = createElement(['tree-settings__block'], 'div', treeSettingAside);
 
     const settingsSound = createElement(['settings__sound'], 'button', treeSettingsBlock);
     const snow = createElement(['snow'], 'button', treeSettingsBlock);
     const favoriteCardsCount = createElement(['favorite-cards-count'], 'div', treeSettingsBlock);
+    favoriteCardsCount.textContent = favoriteCardsNums.length;
 
     const treesTypes = createElement(['trees-types'], 'div', treeSettingAside);
     const treesTypesTitle = createElement(['trees-types__title'], 'p', treesTypes);
@@ -110,16 +117,33 @@ export const creatTreeBlock = () => {
     selectedToysTitle.textContent = 'Toys';
 
     const selectedToysBlock = createElement(['selected-toys__block'], 'div', selectedToys);
-    const selectedToy = createElement(['selected-toy'], 'div', selectedToysBlock);
     
+    
+    /* TO fix */
 
-/* TO fix */
+    let onlyFavorite: Idata[];
+    
+    if (favoriteCardsNums.length > 0) {
+        onlyFavorite = data.filter(item => favoriteCardsNums.includes(item.num));
+    } else {
+        onlyFavorite = data.filter(item => item.num <= MAX_FAVORITES_TOYS);
+    }
 
-    // for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < onlyFavorite.length; i++) {
         
-    // }
+        const selectedToy = createElement(['selected-toy'], 'div', selectedToysBlock);
+        selectedToy.dataset.imgNum = onlyFavorite[i].num.toString();
+        const selectedToyCount = createElement(['selected-toy__count'], 'div', selectedToy);
+        selectedToyCount.textContent = onlyFavorite[i].count.toString();
+        for (let j = 0; j < onlyFavorite[i].count; j++) {
+            const toy = createElement(['selected-toy__img'], 'img', selectedToy);
+            toy.setAttribute('alt', 'toy-img'); 
+            toy.setAttribute('draggable', 'true');
+            toy.dataset.cardNum = onlyFavorite[i].num.toString();
+            toy.setAttribute('src', `https://raw.githubusercontent.com/SergeiOsmolovskii/stage1-tasks/christmas-task/assets/toys/${onlyFavorite[i].num}.png`);
+        }
+    }
 
-    // const selectedToyCount = createElement(['selected-toy__count'], 'div', selectedToy);
 
 
 

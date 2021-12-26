@@ -494,10 +494,19 @@ option {
     text-decoration: underline;
 }
 
-.tree-settings__block, .trees-types__block, .background-types__block, .garland__block, .selected-toys__block {
+.tree-settings__block, .trees-types__block, .background-types__block, .garland__block {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.selected-toys__block {
+    display: flex;
+    align-items: center;
+}
+
+.header-block__toys, .header-block__tree {
+    cursor: pointer;
 }
 
 .snow {
@@ -599,7 +608,7 @@ option {
     position: relative;
     width: 75px;
     height: 75px;
-    margin: 10px 0px;
+    margin: 10px 10px;
     background-color: var(--color-blue);
     border-radius: 20px;
 }
@@ -634,8 +643,9 @@ option {
     align-items: center;  
 }
 
-.main-tree {
-
+.main-tree__img {
+    /* max-width: 70%; */
+    max-height: 90%;
 }
 
 @media (max-width: 768px) {
