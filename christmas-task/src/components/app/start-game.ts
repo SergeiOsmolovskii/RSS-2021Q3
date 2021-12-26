@@ -3,6 +3,7 @@ import { renderSettings } from "../settings/sort-settings";
 import { handler } from "../../handler/handler";
 import { createCards } from "../..";
 import { initialSettings } from "../settings/start-settings";
+import { audioStartSetting } from "../audio/audio";
 
 const body = document.querySelector('body') as HTMLElement;
 const main = document.querySelector('.main') as HTMLElement;
@@ -35,6 +36,7 @@ export const startGame =  () => {
     setBackgroundImage();
     hideItems();
     setTimeout(async() => {
+        await audioStartSetting();
         addSettingBlock();
     }, 1100);
 }

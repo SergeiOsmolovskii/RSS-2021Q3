@@ -7,6 +7,7 @@ import { Card } from "../components/card/card";
 import { searchCard } from "../components/settings/search";
 import { toTheTree } from "../components/app/goToTheTree";
 import { toTheSettings } from "../components/app/goToTheSettings";
+import { playAudio } from "../components/audio/audio";
 
 export const handler = async () => { 
     const currentData: Isettings = JSON.parse(localStorage.getItem('settings') !);
@@ -19,7 +20,7 @@ export const handler = async () => {
     const search = document.getElementById('search') as HTMLElement;
     const resetSettings = document.getElementById('reset') as HTMLElement;
     const clearSettings = document.getElementById('clear') as HTMLElement;
-
+    const soundButton = document.querySelector('.settings__sound') as HTMLElement;
 
     const setShape = (e: Event) => {
         const currentTargetItem = (e.target as Element).closest('.shape-block-item'); 
@@ -143,4 +144,5 @@ export const handler = async () => {
     sizeBlock.addEventListener('change', setSize);
     favoriteBlock.addEventListener('change', setFavorite);
     resetSettings.addEventListener('click', reset);
+    soundButton.addEventListener('click', playAudio);    
 }

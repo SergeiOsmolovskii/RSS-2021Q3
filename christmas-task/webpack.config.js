@@ -24,6 +24,13 @@ const baseConfig = {
         type: 'asset/inline',
       },
       {
+        test: /.mp3$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/sounds/[name][ext]',
+        },
+      },
+      {
         test: /.css$/i,
         use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },

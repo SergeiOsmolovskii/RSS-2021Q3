@@ -1,4 +1,5 @@
-const setCurrentTree = (e:Event) => {
+import { playAudio } from "../components/audio/audio";
+  const setCurrentTree = (e:Event) => {
   const curretnTreeNumber: string | undefined = (e.target as HTMLElement).dataset.treeNumder; 
   const allTrees = document.querySelectorAll('.trees-types-item');
   const mainTree = document.querySelector('.main-tree__img') as HTMLElement;
@@ -33,7 +34,8 @@ const setCurrentBackground = (e:Event) => {
 export const treeHandler = () => {
   const treesTypesBlock = document.querySelector('.trees-types__block') as HTMLElement;
   const backgroundTypesBlock = document.querySelector('.background-types__block') as HTMLElement;
+  const soundButton = document.querySelector('.settings__sound') as HTMLElement;
   treesTypesBlock.addEventListener('click', setCurrentTree);
   backgroundTypesBlock.addEventListener('click', setCurrentBackground);
-  console.log('Handler');
+  soundButton.addEventListener('click', playAudio);    
 }

@@ -20,6 +20,7 @@ export const creatTreeBlock = () => {
     }
 
     let favoriteCardsNums: string = JSON.parse(localStorage.getItem('favoriteToys') !);
+    const isPlay: string = localStorage.getItem('isPlay')!;
 
 
     const main = document.querySelector('.main') as HTMLElement;
@@ -34,6 +35,10 @@ export const creatTreeBlock = () => {
     const treeSettingsBlock = createElement(['tree-settings__block'], 'div', treeSettingAside);
 
     const settingsSound = createElement(['settings__sound'], 'button', treeSettingsBlock);
+    if (isPlay === 'false') {
+        settingsSound.classList.add('settings__sound--mute');
+    }
+
     const snow = createElement(['snow'], 'button', treeSettingsBlock);
     const favoriteCardsCount = createElement(['favorite-cards-count'], 'div', treeSettingsBlock);
     favoriteCardsCount.textContent = favoriteCardsNums.length.toString();

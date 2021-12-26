@@ -26,4 +26,8 @@ export const initialSettings = () => {
   if (localStorage.getItem('sortFilter') === null || localStorage.getItem('sortFilter') === '') {
     localStorage.setItem('sortFilter', `${sortFilter}`);
   }
+
+  if (localStorage.getItem('isPlay') === null || localStorage.getItem('isPlay') === '') {
+    localStorage.setItem('isPlay', 'true');
+  }
 };

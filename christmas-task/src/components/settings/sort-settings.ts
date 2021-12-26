@@ -12,9 +12,9 @@ export const createElement = (className: Array<string>, tag: string, container: 
 /*  */
 
 export const renderSettings = async () => {
-
+  const isPlay: string = localStorage.getItem('isPlay')!;
   const settingAside = document.querySelector('.settings') as HTMLElement;
-  const currentSettings: Isettings = JSON.parse(localStorage.getItem('settings') !);
+  const currentSettings: Isettings = JSON.parse(localStorage.getItem('settings')!);
   const sortFilterValue: string = localStorage.getItem('sortFilter')!;
   const toysCountStep = 1;
   const yearStep = 5;
@@ -28,6 +28,10 @@ export const renderSettings = async () => {
 
   const settingBlock = createElement(['settings__block'], 'div', settingAside); 
   const soundButton = createElement(['settings__sound'], 'button', settingBlock);
+  if (isPlay === 'false') {
+    soundButton.classList.add('settings__sound--mute');
+  }
+
   const fivoriteCount = createElement(['favorite-cards-count'], 'div', settingBlock);
   const settingsSearch = createElement(['settings__search'], 'label', settingBlock);
   const settingsInput = createElement(['settings__input'], 'input', settingsSearch);
