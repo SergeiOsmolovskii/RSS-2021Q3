@@ -31,8 +31,7 @@ export class Card {
   }
   
   addCard() {
-
-    const favoriteCards = JSON.parse(localStorage.getItem('favoriteToys'));
+    const favoriteCards:string = JSON.parse(localStorage.getItem('favoriteToys')!);
     const toysCadrContainer = document.querySelector('.toys-cadr-container') as HTMLElement;
     const toyCard = createElement(['toy-card'], 'div', toysCadrContainer);
     toyCard.dataset.num = this.num.toString();
@@ -80,7 +79,7 @@ export class Card {
       toyCardFavorite.textContent = 'Yes';
     } else toyCardFavorite.textContent = 'No';
     
-    if (favoriteCards.includes(this.num)) toyCard.classList.add('toy-card--favorite');
+    if (favoriteCards.includes(this.num.toString())) toyCard.classList.add('toy-card--favorite');
 
   }
 }

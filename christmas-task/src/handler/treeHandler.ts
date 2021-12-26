@@ -1,10 +1,10 @@
 const setCurrentTree = (e:Event) => {
-  const curretnTreeNumber = (e.target as HTMLElement).dataset.treeNumder; 
+  const curretnTreeNumber: string | undefined = (e.target as HTMLElement).dataset.treeNumder; 
   const allTrees = document.querySelectorAll('.trees-types-item');
-  const mainTree = document.querySelector('.main-tree__img');
+  const mainTree = document.querySelector('.main-tree__img') as HTMLElement;
 
   allTrees.forEach(item => item.classList.remove('trees-types-item--active'));
-  localStorage.setItem('treeNumber', curretnTreeNumber);
+  localStorage.setItem('treeNumber', curretnTreeNumber as string);
 
   if ((e.target as HTMLElement).classList.contains('trees-types-item')) {
     (e.target as HTMLElement).classList.add('trees-types-item--active');
@@ -14,7 +14,7 @@ const setCurrentTree = (e:Event) => {
 }
 
 const setCurrentBackground = (e:Event) => {
-  const curretnBackgroundNumber = (e.target as HTMLElement).dataset.backgroundNumder; 
+  const curretnBackgroundNumber = (e.target as HTMLElement).dataset.backgroundNumder as string; 
   const allBackground = document.querySelectorAll('.background-types-item');
   const mainBackground = document.querySelector('.main-tree__block') as HTMLElement;
 
@@ -31,15 +31,9 @@ const setCurrentBackground = (e:Event) => {
 
 
 export const treeHandler = () => {
-  const treesTypesBlock = document.querySelector('.trees-types__block');
-  const backgroundTypesBlock = document.querySelector('.background-types__block');
-
-
-
-  
-  
+  const treesTypesBlock = document.querySelector('.trees-types__block') as HTMLElement;
+  const backgroundTypesBlock = document.querySelector('.background-types__block') as HTMLElement;
   treesTypesBlock.addEventListener('click', setCurrentTree);
   backgroundTypesBlock.addEventListener('click', setCurrentBackground);
-
   console.log('Handler');
 }

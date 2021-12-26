@@ -4,9 +4,9 @@ import { handler } from "../../handler/handler";
 import { createCards } from "../..";
 import { initialSettings } from "../settings/start-settings";
 
-const body = document.querySelector('body');
+const body = document.querySelector('body') as HTMLElement;
 const main = document.querySelector('.main') as HTMLElement;
-const title = document.querySelector('h1');
+const title = document.querySelector('h1') as HTMLElement;
 const startButton = document.querySelector('.start-game-button') as HTMLElement;
 
 
@@ -45,6 +45,7 @@ export const addSettingBlock = async () => {
     toysCardContainer.textContent = '';
     createCards();
     await handler();
-    document.getElementById('search').focus();
+    const search = document.getElementById('search') as HTMLElement;
+    search.focus();
 }
 

@@ -19,7 +19,7 @@ export const creatTreeBlock = () => {
         localStorage.setItem('garlandNumber', '0');
     }
 
-    let favoriteCardsNums = JSON.parse(localStorage.getItem('favoriteToys'));
+    let favoriteCardsNums: string = JSON.parse(localStorage.getItem('favoriteToys') !);
 
 
     const main = document.querySelector('.main') as HTMLElement;
@@ -36,7 +36,7 @@ export const creatTreeBlock = () => {
     const settingsSound = createElement(['settings__sound'], 'button', treeSettingsBlock);
     const snow = createElement(['snow'], 'button', treeSettingsBlock);
     const favoriteCardsCount = createElement(['favorite-cards-count'], 'div', treeSettingsBlock);
-    favoriteCardsCount.textContent = favoriteCardsNums.length;
+    favoriteCardsCount.textContent = favoriteCardsNums.length.toString();
 
     const treesTypes = createElement(['trees-types'], 'div', treeSettingAside);
     const treesTypesTitle = createElement(['trees-types__title'], 'p', treesTypes);
@@ -52,17 +52,6 @@ export const creatTreeBlock = () => {
             treesTypesItem.classList.add('trees-types-item--active');
         }
     }
-/* 
-        function test() {
-            const num = (this.dataset.treeNumder - 1).toString(); 
-            localStorage.setItem('treeNumber', num);
-            this.classList.toggle('trees-types-item--active');
-        }
-
-        treesTypesItem.addEventListener('click', test); */
-
-
-            
 
     const backgroundTypes = createElement(['background-types'], 'div', treeSettingAside);
     const backgroundTypesTitle = createElement(['background-types__title'], 'p', backgroundTypes);
@@ -127,7 +116,7 @@ export const creatTreeBlock = () => {
     let onlyFavorite: Idata[];
     
     if (favoriteCardsNums.length > 0) {
-        onlyFavorite = data.filter(item => favoriteCardsNums.includes(item.num));
+        onlyFavorite = data.filter(item => favoriteCardsNums.includes(item.num.toString()));
     } else {
         onlyFavorite = data.filter(item => item.num <= MAX_FAVORITES_TOYS);
     }

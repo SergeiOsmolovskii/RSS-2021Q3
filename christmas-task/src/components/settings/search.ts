@@ -3,7 +3,7 @@ export const searchCard = (e: Event) => {
   const searchValue = (e.target as HTMLInputElement).value;
   const allCards = document.querySelectorAll('.toy-card__title');
 
-  allCards.forEach((item: HTMLTemplateElement) => {
+  allCards.forEach((item) => {
     if (!item.textContent.toLowerCase().includes(searchValue.toLowerCase())) {
       item.closest('.toy-card').classList.add('hide');
     } else {

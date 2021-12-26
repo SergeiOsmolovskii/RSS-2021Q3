@@ -3,7 +3,7 @@ import { toTheTree } from "./goToTheTree";
 import { initialSettings } from "../settings/start-settings";
 import { addSettingBlock } from "./start-game";
 
-const body = document.querySelector('body');
+const body = document.querySelector('body') as HTMLElement;
 const main = document.querySelector('.main') as HTMLElement;
 
 export const toTheSettings = () => {
@@ -14,10 +14,10 @@ export const toTheSettings = () => {
     main.textContent = '';
     await addSettingBlock();  
 
-    const goToTheSettings = document.querySelector('.header-block__toys');
+    const goToTheSettings = document.querySelector('.header-block__toys') as HTMLElement;
     goToTheSettings.addEventListener('click', toTheSettings);
 
-    const goToTheTree = document.querySelector('.header-block__tree');
+    const goToTheTree = document.querySelector('.header-block__tree') as HTMLElement;
     goToTheTree.addEventListener('click', toTheTree);
 }, 1100);
 }

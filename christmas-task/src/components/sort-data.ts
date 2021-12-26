@@ -2,9 +2,9 @@ import { data } from "../components/settings/constant";
 import { Isettings } from "../interfases/interfaces";
 
 export const sortSettings = async () => {
-    const toysCadrContainer: HTMLElement = document.querySelector('.toys-cadr-container');
-    const sortSelect: HTMLElement = document.getElementById('sort');
-    const currentData: Isettings = JSON.parse(localStorage.getItem('settings'));
+    const toysCadrContainer: HTMLElement | null = document.querySelector('.toys-cadr-container');
+    const sortSelect: HTMLElement | null = document.getElementById('sort');
+    const currentData: Isettings = JSON.parse(localStorage.getItem('settings')!);
     const colorsSet = new Set(currentData.colors);
     const shapeSet = new Set(currentData.shape);
 

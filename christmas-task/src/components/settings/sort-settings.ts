@@ -14,8 +14,8 @@ export const createElement = (className: Array<string>, tag: string, container: 
 export const renderSettings = async () => {
 
   const settingAside = document.querySelector('.settings') as HTMLElement;
-  const currentSettings: Isettings = JSON.parse(localStorage.getItem('settings'));
-  const sortFilterValue = localStorage.getItem('sortFilter');
+  const currentSettings: Isettings = JSON.parse(localStorage.getItem('settings') !);
+  const sortFilterValue: string = localStorage.getItem('sortFilter')!;
   const toysCountStep = 1;
   const yearStep = 5;
 
@@ -41,7 +41,7 @@ export const renderSettings = async () => {
   const sortBlock = createElement(['sort-block'], 'div', settingAside);
   const sortBlockTitle = createElement(['sort-block__title'], 'p', sortBlock);
   sortBlockTitle.textContent = 'Sort';
-  const sortBlockSelect = createElement(['sort-block__select'], 'select', sortBlock);
+  const sortBlockSelect = createElement(['sort-block__select'], 'select', sortBlock) as HTMLSelectElement;
   sortBlockSelect.setAttribute('id', 'sort');
 
 
@@ -51,7 +51,7 @@ export const renderSettings = async () => {
     sortBlockOption.textContent = `${OPTIONS_NAMES[i]}`;
   }
 
-  (sortBlockSelect as HTMLSelectElement).value = sortFilterValue;
+  sortBlockSelect.value = sortFilterValue;
 
   /*  */
 

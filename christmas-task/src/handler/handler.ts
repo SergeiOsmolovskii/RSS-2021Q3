@@ -9,22 +9,22 @@ import { toTheTree } from "../components/app/goToTheTree";
 import { toTheSettings } from "../components/app/goToTheSettings";
 
 export const handler = async () => { 
-    const currentData: Isettings = JSON.parse(localStorage.getItem('settings'));
-    const shapeBlock: HTMLTemplateElement = document.querySelector('.shape-block');
-    const toysColorBlock: HTMLTemplateElement = document.querySelector('.toys-color__block');
-    const sizeBlock: HTMLElement = document.querySelector('.size-block');
-    const favoriteBlock: HTMLElement = document.querySelector('.favorite-block');
-    const toysCadrContainer: HTMLElement = document.querySelector('.toys-cadr-container');
-    const sortSelect: HTMLElement = document.getElementById('sort');
-    const search: HTMLElement = document.getElementById('search');
-    const resetSettings: HTMLElement = document.getElementById('reset');
-    const clearSettings: HTMLElement = document.getElementById('clear');
+    const currentData: Isettings = JSON.parse(localStorage.getItem('settings') !);
+    const shapeBlock = document.querySelector('.shape-block') as HTMLTemplateElement;
+    const toysColorBlock = document.querySelector('.toys-color__block') as HTMLTemplateElement;
+    const sizeBlock = document.querySelector('.size-block') as HTMLElement;
+    const favoriteBlock = document.querySelector('.favorite-block') as HTMLElement;
+    const toysCadrContainer = document.querySelector('.toys-cadr-container') as HTMLElement;
+    const sortSelect = document.getElementById('sort') as HTMLElement;
+    const search = document.getElementById('search') as HTMLElement;
+    const resetSettings = document.getElementById('reset') as HTMLElement;
+    const clearSettings = document.getElementById('clear') as HTMLElement;
 
 
     const setShape = (e: Event) => {
-
-        if ((e.target as Element).closest('.shape-block-item')) {
-            (e.target as Element).closest('.shape-block-item').classList.toggle('shape-block-item--active');
+        const currentTargetItem = (e.target as Element).closest('.shape-block-item'); 
+        if (currentTargetItem) {
+            currentTargetItem.classList.toggle('shape-block-item--active');
             const currentShapeArray: Array<string> = [];
             shapeBlock.querySelectorAll('.shape-block-item--active').forEach(item => currentShapeArray.push((item as HTMLElement).dataset.shape));
             currentData.shape = currentShapeArray;
@@ -92,7 +92,7 @@ export const handler = async () => {
     const currentCard = (e: Event) => {
         const targetCard = (e.target as HTMLTemplateElement).closest('.toy-card');
         const targetCardNum = (targetCard as HTMLElement).dataset.num;
-        let favoriteCards = JSON.parse(localStorage.getItem('favoriteToys'));
+        let favoriteCards: Array<string> = JSON.parse(localStorage.getItem('favoriteToys')!);
         let favoriteCardsSet = new Set (favoriteCards);
         const favoriteCardsCount = document.querySelector('.favorite-cards-count');
 
@@ -102,12 +102,12 @@ export const handler = async () => {
             } else {
                 targetCard.classList.toggle('toy-card--favorite');               
                 if (targetCard.classList.contains('toy-card--favorite')) {
-                    favoriteCardsCount.textContent = (parseInt(favoriteCardsCount.textContent) + 1).toString();
-                    favoriteCardsSet.add(targetCardNum);
+                    favoriteCardsCount!.textContent = (parseInt(favoriteCardsCount.textContent) + 1).toString();
+                    favoriteCardsSet.add(targetCardNum!);
                     localStorage.setItem('favoriteToys', JSON.stringify([...favoriteCardsSet]));
                 } else {
-                    favoriteCardsCount.textContent = (parseInt(favoriteCardsCount.textContent) - 1).toString(); 
-                    favoriteCardsSet.delete(targetCardNum);
+                    favoriteCardsCount!.textContent = (parseInt(favoriteCardsCount.textContent) - 1).toString(); 
+                    favoriteCardsSet.delete(targetCardNum!);
                     localStorage.setItem('favoriteToys', JSON.stringify([...favoriteCardsSet]));
                 }    
             }
@@ -129,10 +129,10 @@ export const handler = async () => {
         localStorage.clear();
     }
 
-    const goToTheTree = document.querySelector('.header-block__tree');
+    const goToTheTree = document.querySelector('.header-block__tree') as HTMLElement;
     goToTheTree.addEventListener('click', toTheTree);
     
-    const goToTheSettings = document.querySelector('.header-block__toys');
+    const goToTheSettings = document.querySelector('.header-block__toys') as HTMLElement;
     goToTheSettings.addEventListener('click', toTheSettings);
 
     search.addEventListener('input', searchCard);
@@ -143,5 +143,4 @@ export const handler = async () => {
     sizeBlock.addEventListener('change', setSize);
     favoriteBlock.addEventListener('change', setFavorite);
     resetSettings.addEventListener('click', reset);
-
 }
