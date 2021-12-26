@@ -1,5 +1,6 @@
 import { creatTreeBlock } from "../settings/create-tree-block";
 import { toTheSettings } from "./goToTheSettings";
+import { treeHandler } from "../../handler/treeHandler";
 const body = document.querySelector('body');
 
 const setBackground = () => {
@@ -14,7 +15,7 @@ export const toTheTree = () => {
 
     body.style.opacity = '1';
     creatTreeBlock();
-
+    treeHandler();
     const goToTheTree = document.querySelector('.header-block__tree');
     goToTheTree.addEventListener('click', toTheTree);
 

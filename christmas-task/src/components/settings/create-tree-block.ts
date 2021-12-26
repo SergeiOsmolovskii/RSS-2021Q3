@@ -8,11 +8,11 @@ import { Idata } from "../../interfases/interfaces";
 export const creatTreeBlock = () => {
 
     if (localStorage.getItem('treeNumber') === '' || localStorage.getItem('treeNumber') === null) {
-        localStorage.setItem('treeNumber', '0');
+        localStorage.setItem('treeNumber', '1');
     }
 
     if (localStorage.getItem('backgroundNumber') === '' || localStorage.getItem('backgroundNumber') === null) {
-        localStorage.setItem('backgroundNumber', '0');
+        localStorage.setItem('backgroundNumber', '1');
     }
 
     if (localStorage.getItem('garlandNumber') === '' || localStorage.getItem('garlandNumber') === null) {
@@ -43,10 +43,10 @@ export const creatTreeBlock = () => {
     treesTypesTitle.textContent = 'Select the tree';
     const treesTypesBlock = createElement(['trees-types__block'], 'div', treesTypes);
 
-    for (let i = 0; i < MAX_TREES; i++) {
+    for (let i = 1; i <= MAX_TREES; i++) {
         const treesTypesItem = createElement(['trees-types-item'], 'div', treesTypesBlock);
-        treesTypesItem.style.backgroundImage = `url(https://raw.githubusercontent.com/SergeiOsmolovskii/stage1-tasks/christmas-task/assets/tree/${i + 1}.png)`;
-        treesTypesItem.dataset.treeNumder = `${i + 1}`;
+        treesTypesItem.style.backgroundImage = `url(https://raw.githubusercontent.com/SergeiOsmolovskii/stage1-tasks/christmas-task/assets/tree/${i}.png)`;
+        treesTypesItem.dataset.treeNumder = `${i}`;
 
         if (i.toString() === localStorage.getItem('treeNumber')) {
             treesTypesItem.classList.add('trees-types-item--active');
@@ -69,10 +69,10 @@ export const creatTreeBlock = () => {
     backgroundTypesTitle.textContent = 'Select background';
     const backgroundTypesBlock = createElement(['background-types__block'], 'div', backgroundTypes);
 
-    for (let i = 0; i < MAX_BACKGROUNDS; i++) {
+    for (let i = 1; i <= MAX_BACKGROUNDS; i++) {
         const backgroundTypesItem = createElement(['background-types-item'], 'div', backgroundTypesBlock);
-        backgroundTypesItem.style.backgroundImage = `url(https://raw.githubusercontent.com/SergeiOsmolovskii/stage1-tasks/christmas-task/assets/bg/${i + 1}.jpg)`;
-        backgroundTypesItem.dataset.backgroundNumder = `${i + 1}`;
+        backgroundTypesItem.style.backgroundImage = `url(https://raw.githubusercontent.com/SergeiOsmolovskii/stage1-tasks/christmas-task/assets/bg/${i}.jpg)`;
+        backgroundTypesItem.dataset.backgroundNumder = `${i}`;
 
         if (i.toString() === localStorage.getItem('backgroundNumber')) {
             backgroundTypesItem.classList.add('background-types--active');
@@ -105,10 +105,13 @@ export const creatTreeBlock = () => {
 
     const treeBlock = createElement(['tree-block'], 'section', main);
     const mainTreeBlock = createElement(['main-tree__block'], 'div', treeBlock);
+    const currentBackground = localStorage.getItem('backgroundNumber');
+    mainTreeBlock.style.background = `url('https://raw.githubusercontent.com/SergeiOsmolovskii/stage1-tasks/christmas-task/assets/bg/${currentBackground}.jpg') center no-repeat`;
+    mainTreeBlock.style.backgroundSize = 'cover';
+
     const mainTreeImg = createElement(['main-tree__img'], 'img', mainTreeBlock);
     
     const currentTree = localStorage.getItem('treeNumber');
-
     mainTreeImg.setAttribute('src', `https://raw.githubusercontent.com/SergeiOsmolovskii/stage1-tasks/christmas-task/assets/tree/${currentTree}.png`);
     mainTreeImg.setAttribute('alt', 'Christmas-tree');
 
