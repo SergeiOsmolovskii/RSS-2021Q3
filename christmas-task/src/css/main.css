@@ -1,4 +1,5 @@
 @import './normalize.css';
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
 
 :root {
     --main-bg-color: #192F2D;
@@ -518,6 +519,23 @@ option {
     background-size: cover;
 }
 
+.snow--active {
+    filter: invert(1%) sepia(13%) saturate(6191%) hue-rotate(144deg) brightness(91%) contrast(87%);
+}
+
+@keyframes fall {
+	to {
+		transform: translateY(90vh);
+	}
+}
+
+.fa-snowflake {
+	color: #fff;
+	position: absolute;
+	top: 0px;
+	animation: fall linear forwards;
+}
+
 .trees-types__block, .background-types__block, .selected-toys__block {
     flex-wrap: wrap;
     width: 100%;
@@ -630,22 +648,22 @@ option {
     text-align: center;
     background-color: var(--border-color);
     border-radius: 50%;
-    border: 1px solid #000;
+    border: 1px solid rgb(126, 52, 52);
 }
 
 .main-tree__block {
     height: 100%;
     margin: 0 10px;
     text-align: center;
-    /* background: url(https://raw.githubusercontent.com/SergeiOsmolovskii/stage1-tasks/christmas-task/assets/bg/1.jpg) center no-repeat; */
+    position: relative;
     background-size: cover;
     display: flex;
     justify-content: center;
-    align-items: center;  
+    align-items: center;
+    overflow: hidden;  
 }
 
 .main-tree__img {
-    /* max-width: 70%; */
     max-height: 90%;
 }
 

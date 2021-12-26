@@ -30,4 +30,8 @@ export const initialSettings = () => {
   if (localStorage.getItem('isPlay') === null || localStorage.getItem('isPlay') === '') {
     localStorage.setItem('isPlay', 'true');
   }
+
+  if (localStorage.getItem('isSnow') === null || localStorage.getItem('isSnow') === '') {
+    localStorage.setItem('isSnow', 'false');
+  }
 };

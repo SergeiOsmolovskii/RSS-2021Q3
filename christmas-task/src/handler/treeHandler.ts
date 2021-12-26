@@ -1,4 +1,5 @@
 import { playAudio } from "../components/audio/audio";
+import { addSnow } from "../components/snow/addSnow";
   const setCurrentTree = (e:Event) => {
   const curretnTreeNumber: string | undefined = (e.target as HTMLElement).dataset.treeNumder; 
   const allTrees = document.querySelectorAll('.trees-types-item');
@@ -30,12 +31,26 @@ const setCurrentBackground = (e:Event) => {
 
 }
 
+const updateSnow = (e: Event) => {
+  const snowIcon = e.target as HTMLElement;
+  const isSnow = localStorage.getItem('isSnow')!;
+  if (isSnow === 'true') {
+    snowIcon.classList.add('snow--active');
+    setInterval(addSnow, 50);
+  } else {
+    snowIcon.classList.remove('snow--active');
+    // clearInterval(addSnow);
+  }
+}
 
 export const treeHandler = () => {
   const treesTypesBlock = document.querySelector('.trees-types__block') as HTMLElement;
   const backgroundTypesBlock = document.querySelector('.background-types__block') as HTMLElement;
   const soundButton = document.querySelector('.settings__sound') as HTMLElement;
+  const snow = document.querySelector('.snow') as HTMLElement;
+
   treesTypesBlock.addEventListener('click', setCurrentTree);
   backgroundTypesBlock.addEventListener('click', setCurrentBackground);
   soundButton.addEventListener('click', playAudio);    
+  snow.addEventListener('click', updateSnow);    
 }
