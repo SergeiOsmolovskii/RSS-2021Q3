@@ -517,6 +517,7 @@ option {
     background-color: transparent;
     background-position: center;
     background-size: cover;
+    cursor: pointer;
 }
 
 .snow--active {
@@ -625,8 +626,8 @@ option {
     align-items: flex-end;
     justify-content: flex-end;
     position: relative;
-    width: 75px;
-    height: 75px;
+    width: 65px;
+    height: 65px;
     margin: 10px 10px;
     background-color: var(--color-blue);
     border-radius: 20px;

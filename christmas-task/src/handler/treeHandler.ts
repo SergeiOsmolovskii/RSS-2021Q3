@@ -33,14 +33,13 @@ const setCurrentBackground = (e:Event) => {
 
 const updateSnow = (e: Event) => {
   const snowIcon = e.target as HTMLElement;
-  const isSnow = localStorage.getItem('isSnow')!;
-  if (isSnow === 'true') {
-    snowIcon.classList.add('snow--active');
-    setInterval(addSnow, 50);
-  } else {
-    snowIcon.classList.remove('snow--active');
-    // clearInterval(addSnow);
-  }
+  snowIcon.classList.toggle('snow--active');
+
+  let snowInterval = setInterval(() => {
+    addSnow();
+    if (snowIcon.classList.contains('snow--active')) snowInterval;
+    else clearInterval(snowInterval);
+  }, 50);
 }
 
 export const treeHandler = () => {
