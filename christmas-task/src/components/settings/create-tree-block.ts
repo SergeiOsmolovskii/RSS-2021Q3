@@ -5,6 +5,7 @@ import { MAX_FAVORITES_TOYS } from "./constant";
 import { createElement } from "./sort-settings"
 import { data } from "./constant";
 import { Idata } from "../../interfases/interfaces";
+import { mapCoords } from "../../data/mapCoors";
 export const creatTreeBlock = () => {
 
     if (localStorage.getItem('treeNumber') === '' || localStorage.getItem('treeNumber') === null) {
@@ -103,8 +104,17 @@ export const creatTreeBlock = () => {
     mainTreeBlock.style.background = `url('https://raw.githubusercontent.com/SergeiOsmolovskii/stage1-tasks/christmas-task/assets/bg/${currentBackground}.jpg') center no-repeat`;
     mainTreeBlock.style.backgroundSize = 'cover';
 
+/* to fix */
+
+    const treeMap = createElement(['tree-map'], 'map', mainTreeBlock);
+    const treeMapArea = createElement(['tree-area'], 'area', treeMap);
+    treeMapArea.setAttribute('shape', 'poly');
+    treeMapArea.setAttribute('coords', mapCoords[1]);
+    treeMap.setAttribute('name', 'tree-map');
+    treeMapArea.dataset.dropTarget = 'true';
+
+
     const mainTreeImg = createElement(['main-tree__img'], 'img', mainTreeBlock);
-    
     const currentTree = localStorage.getItem('treeNumber');
     mainTreeImg.setAttribute('src', `https://raw.githubusercontent.com/SergeiOsmolovskii/stage1-tasks/christmas-task/assets/tree/${currentTree}.png`);
     mainTreeImg.setAttribute('alt', 'Christmas-tree');
@@ -116,7 +126,7 @@ export const creatTreeBlock = () => {
     const selectedToysBlock = createElement(['selected-toys__block'], 'div', selectedToys);
     
     
-    /* TO fix */
+    /*  */
 
     let onlyFavorite: Idata[];
     

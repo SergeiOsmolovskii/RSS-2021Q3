@@ -1,5 +1,6 @@
 import { playAudio } from "../components/audio/audio";
 import { addSnow } from "../components/snow/addSnow";
+import { dragEvents } from "../components/drag";
   const setCurrentTree = (e:Event) => {
   const curretnTreeNumber: string | undefined = (e.target as HTMLElement).dataset.treeNumder; 
   const allTrees = document.querySelectorAll('.trees-types-item');
@@ -51,5 +52,6 @@ export const treeHandler = () => {
   treesTypesBlock.addEventListener('click', setCurrentTree);
   backgroundTypesBlock.addEventListener('click', setCurrentBackground);
   soundButton.addEventListener('click', playAudio);    
-  snow.addEventListener('click', updateSnow);    
+  snow.addEventListener('click', updateSnow);
+  dragEvents();    
 }
