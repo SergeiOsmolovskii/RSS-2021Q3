@@ -111,13 +111,14 @@ export const creatTreeBlock = () => {
     treeMapArea.setAttribute('shape', 'poly');
     treeMapArea.setAttribute('coords', mapCoords[1]);
     treeMap.setAttribute('name', 'tree-map');
-    treeMapArea.dataset.dropTarget = 'true';
+    treeMap.dataset.dropTarget = 'true';
 
 
     const mainTreeImg = createElement(['main-tree__img'], 'img', mainTreeBlock);
     const currentTree = localStorage.getItem('treeNumber');
     mainTreeImg.setAttribute('src', `https://raw.githubusercontent.com/SergeiOsmolovskii/stage1-tasks/christmas-task/assets/tree/${currentTree}.png`);
     mainTreeImg.setAttribute('alt', 'Christmas-tree');
+    mainTreeImg.setAttribute('usemap', '#tree-map');
 
     const selectedToys = createElement(['selected-toys'], 'aside', main);
     const selectedToysTitle = createElement(['selected-toys__title'], 'p', selectedToys);
@@ -145,6 +146,7 @@ export const creatTreeBlock = () => {
         for (let j = 0; j < onlyFavorite[i].count; j++) {
             const toy = createElement(['selected-toy__img'], 'img', selectedToy);
             toy.setAttribute('alt', 'toy-img'); 
+            toy.setAttribute('id', `${i}-${j}`); 
             toy.setAttribute('draggable', 'true');
             toy.dataset.cardNum = onlyFavorite[i].num.toString();
             toy.setAttribute('src', `https://raw.githubusercontent.com/SergeiOsmolovskii/stage1-tasks/christmas-task/assets/toys/${onlyFavorite[i].num}.png`);

@@ -43,7 +43,7 @@ const updateSnow = (e: Event) => {
   }, 50);
 }
 
-export const treeHandler = () => {
+export const treeHandler = async () => {
   const treesTypesBlock = document.querySelector('.trees-types__block') as HTMLElement;
   const backgroundTypesBlock = document.querySelector('.background-types__block') as HTMLElement;
   const soundButton = document.querySelector('.settings__sound') as HTMLElement;
@@ -53,5 +53,5 @@ export const treeHandler = () => {
   backgroundTypesBlock.addEventListener('click', setCurrentBackground);
   soundButton.addEventListener('click', playAudio);    
   snow.addEventListener('click', updateSnow);
-  dragEvents();    
+  await dragEvents();    
 }
