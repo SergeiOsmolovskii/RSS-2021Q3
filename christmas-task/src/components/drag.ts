@@ -3,14 +3,10 @@ export const dragEvents = async () => {
 
     const draggable = document.querySelectorAll('[draggable]');
     const targets = document.querySelectorAll('[data-drop-target]');
-
     const handleDragStart = (e: DragEvent) => {
         const currentElement = (e.target as HTMLElement);
         e.dataTransfer.setData('ID', currentElement.id);
-
-
     }
-    
     
     const handleDragEnterLeave = (e: Event) => {
         const currentElement = (e.target as HTMLElement);
@@ -24,50 +20,28 @@ export const dragEvents = async () => {
     const handleOverDrop = (e: DragEvent) => {
         const currentElement = (e.target as HTMLElement);
         e.preventDefault(); 
-        console.log(e.offsetX)
-        console.log(e.offsetY)
-
 
         if (e.type != 'drop') {
             return; 
         }
-
-        if (e.type == 'drop') {
-            
-            currentElement.classList.add('111');
-            
-        }
         
         const draggedId = e.dataTransfer.getData('ID');
         const draggedEl = document.getElementById(draggedId);
-        let x: number;
-        let y: number;
-
-        draggedEl.addEventListener('dragstart', (e) => {
-            x = e.offsetX;
-            y = e.offsetY;
-        });
 
         if (draggedEl.parentNode == e.target) {
             currentElement.classList.remove('drag-enter');
             return;
         }
 
+        /* to fix */
 
         draggedEl.style.left = `${e.offsetX}px`;
-        draggedEl.style.top = `${e.offsetY - 50}px`;
-
-        // draggedEl.style.top = `${(e.clientY)}px`;
-
+        draggedEl.style.top = `${e.offsetY}px`;
 
         draggedEl.parentNode.removeChild(draggedEl);
         currentElement.appendChild(draggedEl); 
         currentElement.classList.remove('drag-enter');
-
     }
-    
-
-
     
     for (let i = 0; i < draggable.length; i++) {
         draggable[i].addEventListener("dragstart", handleDragStart);
