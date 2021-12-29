@@ -1,11 +1,8 @@
-import { MAX_TREES } from "./constant";
-import { MAX_BACKGROUNDS } from "./constant";
-import { MAX_GARLANDS } from "./constant";
-import { MAX_FAVORITES_TOYS } from "./constant";
+import { MAX_TREES, MAX_BACKGROUNDS, MAX_GARLANDS, MAX_FAVORITES_TOYS, GARLAND_COLORS, data } from "./constant";
 import { createElement } from "./sort-settings"
-import { data } from "./constant";
 import { Idata } from "../../interfases/interfaces";
 import { mapCoords } from "../../data/mapCoors";
+import { addGarland } from "../garland/garland";
 export const creatTreeBlock = () => {
 
     if (localStorage.getItem('treeNumber') === '' || localStorage.getItem('treeNumber') === null) {
@@ -82,7 +79,7 @@ export const creatTreeBlock = () => {
     for (let i = 0; i < MAX_GARLANDS; i++) {
         const garlandItem = createElement(['garland__color'], 'button', garlandBlock);
         garlandItem.dataset.garlandNumder = `${i + 1}`;
-
+        garlandItem.dataset.garlandColor = GARLAND_COLORS[i];
         if (i.toString() === localStorage.getItem('garlandNumber')) {
             garlandItem.classList.add('garland__color--active');
         }
@@ -104,6 +101,9 @@ export const creatTreeBlock = () => {
     mainTreeBlock.style.background = `url('https://raw.githubusercontent.com/SergeiOsmolovskii/stage1-tasks/christmas-task/assets/bg/${currentBackground}.jpg') center no-repeat`;
     mainTreeBlock.style.backgroundSize = 'cover';
 
+
+    const mainGarland = createElement(['main-tree__garland'], 'div', mainTreeBlock);
+    addGarland('multicolor');
 /* to fix */
 
     const treeMap = createElement(['tree-map'], 'map', mainTreeBlock);

@@ -35,8 +35,8 @@ export const dragEvents = async () => {
 
         /* to fix */
 
-        draggedEl.style.left = `${e.offsetX}px`;
-        draggedEl.style.top = `${e.offsetY}px`;
+        draggedEl.style.left = `${e.offsetX - draggedEl.offsetWidth / 2}px`;
+        draggedEl.style.top = `${e.offsetY - draggedEl.offsetHeight / 2}px`;
 
         draggedEl.parentNode.removeChild(draggedEl);
         currentElement.appendChild(draggedEl); 

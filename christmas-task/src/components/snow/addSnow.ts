@@ -16,5 +16,4 @@ export const addSnow = () => {
   setTimeout(() => {
 		snowFlake.remove();
 	}, 3000);
-  console.log(mainTreeBlock.offsetWidth);
 }

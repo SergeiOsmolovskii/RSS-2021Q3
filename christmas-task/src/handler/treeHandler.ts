@@ -1,6 +1,9 @@
 import { playAudio } from "../components/audio/audio";
 import { addSnow } from "../components/snow/addSnow";
 import { dragEvents } from "../components/drag";
+
+import { addGarland } from "../components/garland/garland";
+  
   const setCurrentTree = (e:Event) => {
   const curretnTreeNumber: string | undefined = (e.target as HTMLElement).dataset.treeNumder; 
   const allTrees = document.querySelectorAll('.trees-types-item');
@@ -16,7 +19,7 @@ import { dragEvents } from "../components/drag";
   }
 }
 
-const setCurrentBackground = (e:Event) => {
+const setCurrentBackground = (e: Event) => {
   const curretnBackgroundNumber = (e.target as HTMLElement).dataset.backgroundNumder as string; 
   const allBackground = document.querySelectorAll('.background-types-item');
   const mainBackground = document.querySelector('.main-tree__block') as HTMLElement;
@@ -29,7 +32,6 @@ const setCurrentBackground = (e:Event) => {
     mainBackground.style.background = `url('https://raw.githubusercontent.com/SergeiOsmolovskii/stage1-tasks/christmas-task/assets/bg/${curretnBackgroundNumber}.jpg') center no-repeat`;
     mainBackground.style.backgroundSize = 'cover';
   }
-
 }
 
 const updateSnow = (e: Event) => {
@@ -43,15 +45,46 @@ const updateSnow = (e: Event) => {
   }, 50);
 }
 
+const setGarkand = (e: Event) => {
+  const currentItem = e.target as HTMLElement; 
+  const garlandContainer = document.querySelector('.main-tree__garland') as HTMLElement;
+  const garlandInput = document.querySelector('.garland__input') as HTMLInputElement;
+  const allGarlandButtons = document.querySelectorAll('.garland__color');
+  
+  if (currentItem.classList.contains('garland__color')) {
+    garlandContainer.textContent = '';
+    allGarlandButtons.forEach(item => item.classList.remove('garland__color--active'));
+    currentItem.classList.add('garland__color--active');
+    addGarland(currentItem.dataset.garlandColor);
+    garlandInput.checked = true;
+    garlandContainer.style.opacity = '1';
+  }
+}
+
+const turnOnGarland = (e: Event) => {
+  const currentItem = e.target as HTMLInputElement; 
+  const garlandContainer = document.querySelector('.main-tree__garland') as HTMLElement;
+  if (currentItem.checked === true) {
+    garlandContainer.style.opacity = '1';
+  } else {
+    garlandContainer.style.opacity = '0';
+  }
+}
+
 export const treeHandler = async () => {
   const treesTypesBlock = document.querySelector('.trees-types__block') as HTMLElement;
   const backgroundTypesBlock = document.querySelector('.background-types__block') as HTMLElement;
   const soundButton = document.querySelector('.settings__sound') as HTMLElement;
   const snow = document.querySelector('.snow') as HTMLElement;
-
+  const garlandBlock = document.querySelector('.garland__block') as HTMLElement;
+  const garlandInput = document.querySelector('.garland__input') as HTMLInputElement;
+  
   treesTypesBlock.addEventListener('click', setCurrentTree);
   backgroundTypesBlock.addEventListener('click', setCurrentBackground);
   soundButton.addEventListener('click', playAudio);    
   snow.addEventListener('click', updateSnow);
+  garlandBlock.addEventListener('click', setGarkand);
+  garlandInput.addEventListener('change', turnOnGarland);
+
   await dragEvents();    
 }

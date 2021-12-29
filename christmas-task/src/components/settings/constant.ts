@@ -1,7 +1,5 @@
 import { getData } from "../get-data";
-
 export const data = await getData();
-
 export const OPTIONS_COUNT: number = 4;
 export const MAX_FAVORITES_TOYS: number = 20;
 export const OPTIONS_NAMES: Array<string> = [
@@ -24,3 +22,5 @@ export const MIN_PURCHASE_YEAR = Math.min(...purchaseYear);
 export const MAX_TREES = 6;
 export const MAX_BACKGROUNDS = 8;
 export const MAX_GARLANDS = 5;
+export const GARLAND_SIZE = 6;
+export const GARLAND_COLORS: Array<string> = ['multicolor', 'red', 'green' , 'blue', 'yellow'];
