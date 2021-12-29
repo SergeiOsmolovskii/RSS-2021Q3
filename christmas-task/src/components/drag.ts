@@ -1,3 +1,11 @@
+const reCalcCount = () => {
+    const selectedToys = document.querySelectorAll('.selected-toy');
+    selectedToys.forEach(item => {
+        const itemToyСount = item.querySelector('.selected-toy__count');
+        itemToyСount.textContent = item.querySelectorAll('img').length.toString(); 
+    });
+}
+
 
 export const dragEvents = async () => {
 
@@ -19,28 +27,38 @@ export const dragEvents = async () => {
     
     const handleOverDrop = (e: DragEvent) => {
         const currentElement = (e.target as HTMLElement);
+        let elemBelow = document.elementFromPoint(e.clientX, e.clientY) as HTMLElement;
         e.preventDefault(); 
-
         if (e.type != 'drop') {
             return; 
         }
-        
         const draggedId = e.dataTransfer.getData('ID');
         const draggedEl = document.getElementById(draggedId);
+        
+        if (currentElement.tagName == 'IMG') {
+            return;
+        }
 
+        if (e.type == 'drop') {
+            draggedEl.style.left = `${(e.offsetX - draggedEl.offsetWidth / 2) + 30}px`;
+            draggedEl.style.top = `${(e.offsetY - draggedEl.offsetHeight / 2) + 30}px`;
+        }
+
+        if (e.type == 'drop' && elemBelow.dataset.imgNum == draggedEl.dataset.cardNum) {
+            draggedEl.style.left = `50%`;
+            draggedEl.style.top = `50%`;
+        }
+        
         if (draggedEl.parentNode == e.target) {
             currentElement.classList.remove('drag-enter');
             return;
         }
 
-        /* to fix */
-
-        draggedEl.style.left = `${e.offsetX - draggedEl.offsetWidth / 2}px`;
-        draggedEl.style.top = `${e.offsetY - draggedEl.offsetHeight / 2}px`;
-
         draggedEl.parentNode.removeChild(draggedEl);
+
         currentElement.appendChild(draggedEl); 
         currentElement.classList.remove('drag-enter');
+        reCalcCount();
     }
     
     for (let i = 0; i < draggable.length; i++) {

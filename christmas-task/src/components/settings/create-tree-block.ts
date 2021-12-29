@@ -111,7 +111,7 @@ export const creatTreeBlock = () => {
     treeMapArea.setAttribute('shape', 'poly');
     treeMapArea.setAttribute('coords', mapCoords[1]);
     treeMap.setAttribute('name', 'tree-map');
-    treeMap.dataset.dropTarget = 'true';
+    treeMapArea.dataset.dropTarget = 'true';
 
 
     const mainTreeImg = createElement(['main-tree__img'], 'img', mainTreeBlock);
@@ -121,11 +121,11 @@ export const creatTreeBlock = () => {
     mainTreeImg.setAttribute('usemap', '#tree-map');
 
     const selectedToys = createElement(['selected-toys'], 'aside', main);
+
     const selectedToysTitle = createElement(['selected-toys__title'], 'p', selectedToys);
     selectedToysTitle.textContent = 'Toys';
 
-    const selectedToysBlock = createElement(['selected-toys__block'], 'div', selectedToys);
-    
+    const selectedToysBlock = createElement(['selected-toys__block'], 'div', selectedToys);  
     
     /*  */
 
@@ -140,6 +140,9 @@ export const creatTreeBlock = () => {
     for (let i = 0; i < onlyFavorite.length; i++) {
         
         const selectedToy = createElement(['selected-toy'], 'div', selectedToysBlock);
+        
+        selectedToy.dataset.dropTarget = 'true';
+
         selectedToy.dataset.imgNum = onlyFavorite[i].num.toString();
         const selectedToyCount = createElement(['selected-toy__count'], 'div', selectedToy);
         selectedToyCount.textContent = onlyFavorite[i].count.toString();

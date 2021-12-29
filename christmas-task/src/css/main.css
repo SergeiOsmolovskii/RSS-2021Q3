@@ -528,6 +528,12 @@ option {
     z-index: 10;
 }
 
+.tree-area {
+    max-width: 90%;
+    position: relative;
+    cursor: pointer;
+}
+
 .main-tree__garland {
     position: absolute;
     display: flex;
@@ -537,6 +543,7 @@ option {
     height: 100%;
     transition: 1s;
     opacity: 0;
+    pointer-events: none;
 }
 
 .garland-ul {
