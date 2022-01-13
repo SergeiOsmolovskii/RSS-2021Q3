@@ -1,0 +1,83 @@
+@import './normalize.css';
+
+body {
+  background-color: black;
+}
+
+h1 {
+  margin: 5px;
+  text-align: center;
+  color: #ffffff;
+}
+
+main {
+  padding: 20px;
+}
+
+button {
+  font-size: 14px;
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(0.8);
+}
+
+h2, h3 {
+  color: #ffffff;
+}
+
+.setting-block {
+  width: 400px;
+}
+
+.switch-buttons, .create-car__button, .update-car__button, .race-button-block__button {
+  height: 25px;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  text-transform: uppercase;
+}
+
+.create-car__button, .update-car__button {
+  background-color: #004dae;
+}
+
+.switch-buttons {
+  width: 150px;
+  margin-right: 10px;
+  background-color: #00ae07;
+}
+
+.switch-buttons-block {
+  margin-bottom: 10px;
+}
+
+.create-car-block, .update-car-block {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.create-car__button, .update-car__button {
+  width: 100px;
+}
+
+.car-name-input, .car-color-input {
+  height: 25px;
+  box-sizing: border-box;
+}
+
+.car-color-input {
+  margin: 0 10px;
+} 
+
+.race-button-block__button {
+  margin-right: 10px;
+  background-color: #004dae;
+}
+
+.race-button-block__button:nth-child(1), .race-button-block__button:nth-child(2) { 
+  width: 93px;
+}
+.race-button-block__button:nth-child(3) { 
+  width: 158px;
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Async race</h1>
+  <main>
+    <div class="setting-block">
+
+      <div class="switch-buttons-block">
+        <button class="switch-buttons switch-buttons__garage">To garage</button>
+        <button class="switch-buttons switch-buttons__winners">To winners</button>
+      </div>
+    
+      <div class="create-car-block">
+        <label class="car-name-label">
+          <input id="add-name" class="car-name-input" type="text">
+        </label>
+        <label class="car-color-label">
+          <input id="add-color" class="car-color-input" type="color">
+        </label>
+        <button class="create-car__button">Create</button>
+      </div>
+
+      <div class="update-car-block">
+        <label class="car-name-label">
+          <input id="update-name" class="car-name-input" type="text">
+        </label>
+        <label class="car-color-label">
+          <input id="update-color" class="car-color-input" type="color">
+        </label>
+        <button class="update-car__button">Update</button>
+      </div>
+
+      <div class="race-button-block">
+        <button class="race-button-block__button">Race</button>
+        <button class="race-button-block__button">Reset</button>
+        <button class="race-button-block__button">Generate cars</button>
+      </div>
+
+    </div>
+
+    <section class="cars-section">
+      <h2>Garage (<span id="cars-count"> 1 </span>) </h2>
+      <h3>Page #<span id="page-number"> 2 </span> </h3>
+    </section>
+
+  </main>
+</body>
+</html>
