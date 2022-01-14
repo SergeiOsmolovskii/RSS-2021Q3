@@ -23,16 +23,20 @@ button:hover {
   filter: brightness(0.8);
 }
 
-h2, h3 {
+h2, h3, h4 {
   color: #ffffff;
+}
+
+h4 {
+  margin: 0;
 }
 
 .setting-block {
   width: 400px;
 }
 
-.switch-buttons, .create-car__button, .update-car__button, .race-button-block__button {
-  height: 25px;
+.switch-buttons, .create-car__button, .update-car__button, .race-button-block__button, .car-select, .car-remove {
+  height: 20px;
   color: #ffffff;
   border: 1px solid #ffffff;
   text-transform: uppercase;
@@ -44,17 +48,17 @@ h2, h3 {
 
 .switch-buttons {
   width: 150px;
-  margin-right: 10px;
+  margin-right: 5px;
   background-color: #00ae07;
 }
 
 .switch-buttons-block {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .create-car-block, .update-car-block {
   display: flex;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .create-car__button, .update-car__button {
@@ -62,22 +66,68 @@ h2, h3 {
 }
 
 .car-name-input, .car-color-input {
-  height: 25px;
+  height: 20px;
   box-sizing: border-box;
 }
 
 .car-color-input {
-  margin: 0 10px;
+  margin: 0 5px;
 } 
 
-.race-button-block__button {
-  margin-right: 10px;
+.race-button-block__button, .car-select, .car-remove {
+  margin-right: 5px;
   background-color: #004dae;
 }
 
 .race-button-block__button:nth-child(1), .race-button-block__button:nth-child(2) { 
-  width: 93px;
+  width: 95px;
 }
+
 .race-button-block__button:nth-child(3) { 
-  width: 158px;
+  width: 154px;
+}
+
+.cars-block__info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.cars-block {
+  margin: 10px 0px;
+}
+
+.car-controls__start, .car-controls__back {
+  height: 25px;
+  width: 25px;
+  color:#ffffff;
+  background: transparent;
+}
+
+.car-controls__start {
+  color: #00ae07;
+  border: 1px solid #00ae07;
+}
+
+.car-controls__back {
+  color: red;
+  border: 1px solid red;
+}
+
+.car-controls__back:disabled, .car-controls__start:disabled {
+  color: gray;
+  border: 1px solid gray;
+}
+
+.car-controls {
+  margin-bottom: 15px;
+}
+
+.road {
+  border-bottom: 5px dotted #ffffff;
+}
+
+.car {
+  height: 20px;
+  filter: contrast(0.5);
 }
