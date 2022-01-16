@@ -10,7 +10,7 @@
       "sourceMap": true,
       "skipLibCheck": true,
       "forceConsistentCasingInFileNames": true,
-/*       "strict": true   */
+      "strict": true  
     },
     "lib": ["es2015"]
   }

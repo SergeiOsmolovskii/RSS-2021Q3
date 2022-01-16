@@ -31,6 +31,27 @@ h4 {
   margin: 0;
 }
 
+table {
+  margin-bottom: 20px;
+  border-collapse: collapse;
+  color: #fff;
+}
+
+thead tr {
+  background-color: #004dae;
+}
+
+th {
+  min-width: 60px;
+  height: 25px;
+  padding: 0 20px;
+  border: 1px solid #fff;
+}
+
+.display--none {
+  display: none;
+}
+
 .setting-block {
   width: 400px;
 }
@@ -87,6 +108,10 @@ h4 {
   width: 154px;
 }
 
+.cars-section {
+  margin-bottom: 20px;
+}
+
 .cars-block__info {
   display: flex;
   align-items: center;
@@ -130,4 +155,16 @@ h4 {
 .car {
   height: 20px;
   filter: contrast(0.5);
+}
+
+.pagination-button {
+  height: 25px;
+  padding: 0 15px;
+  border: 1px solid #fff;
+  color: #fff;
+  background-color: #004dae;
+}
+
+.pagination-button:disabled {
+  background-color: gray;
 }
