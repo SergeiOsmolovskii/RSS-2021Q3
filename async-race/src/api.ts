@@ -4,8 +4,13 @@ import { MAX_WINNERS_PER_PAGE } from "./constants";
 
 const url = 'http://127.0.0.1:3000';
 const garage = `${url}/garage`;
-const engine = `${url}/engine`;
 const winners = `${url}/winners`;
+const engine = `${url}/engine`;
+
+export const getCar = async (id: number) => {
+  const response = await fetch (`${garage}?id=${id}`);
+  return await response.json();
+}
 
 export const getCars = async (page: number) => {
   const response = await fetch (`${garage}?_page=${page}&_limit=${MAX_ITEM_PER_PAGE}`);
@@ -22,3 +27,11 @@ export const getWinners = async (page: number, sort: string, order: string) => {
     count: response.headers.get('X-Total-Count')
   }
 };
+
+
+export const removeCar = async (id: number) => {
+  const response = await fetch (`${garage}/${id}`, {
+    method: 'DELETE'
+  });
+  return await response.json();
+}

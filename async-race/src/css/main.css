@@ -96,16 +96,16 @@ th {
 } 
 
 .race-button-block__button, .car-select, .car-remove {
-  margin-right: 5px;
+  margin-right: 6px;
   background-color: #004dae;
 }
 
 .race-button-block__button:nth-child(1), .race-button-block__button:nth-child(2) { 
-  width: 95px;
+  width: 96px;
 }
 
 .race-button-block__button:nth-child(3) { 
-  width: 154px;
+  width: 158px;
 }
 
 .cars-section {
@@ -167,4 +167,12 @@ th {
 
 .pagination-button:disabled {
   background-color: gray;
+}
+
+.winners-table__car svg {
+  height: 15px;
+}
+
+.winners-table__car {
+  vertical-align: bottom;
 }

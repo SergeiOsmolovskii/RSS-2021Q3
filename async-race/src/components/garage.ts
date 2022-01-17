@@ -10,6 +10,7 @@ export const createGarageSettingBlock = () => `
     </div>
 
     <div class="create-car-block">
+    <form class="create-new-car" action="">
       <label class="car-name-label">
         <input id="add-name" class="car-name-input" type="text">
       </label>
@@ -17,16 +18,19 @@ export const createGarageSettingBlock = () => `
         <input id="add-color" class="car-color-input" type="color">
       </label>
       <button class="create-car__button">Create</button>
+    </form>
     </div>
 
     <div class="update-car-block">
-      <label class="car-name-label">
-        <input id="update-name" class="car-name-input" type="text">
-      </label>
-      <label class="car-color-label">
-        <input id="update-color" class="car-color-input" type="color">
-      </label>
-      <button class="update-car__button">Update</button>
+      <form class="upadte-car" action="">
+        <label class="car-name-label">
+          <input id="update-name" class="car-name-input" type="text">
+        </label>
+        <label class="car-color-label">
+          <input id="update-color" class="car-color-input" type="color">
+        </label>
+        <button class="update-car__button">Update</button>
+      </form>
     </div>
 
     <div class="race-button-block">
