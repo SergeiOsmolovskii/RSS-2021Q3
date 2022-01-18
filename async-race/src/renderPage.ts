@@ -38,6 +38,14 @@ export const updateGaragePagination = async () => {
   garageSection.append(garagePaginationBlock)
 }
 
+export const updateWinnersPagination = async () => {
+  const winners = await getWinners(store.winnersPage, store.winnersSortType, store.winnersOrder);
+  const totalWinnersPage = Math.ceil(Number(winners.count) / MAX_WINNERS_PER_PAGE)
+  const winnerSection = document.querySelector('.winners-section') as HTMLElement;  
+  const winnersPaginationBlock = document.createRange().createContextualFragment(createPagitation('winners', totalWinnersPage, store.winnersPage));
+  winnerSection.append(winnersPaginationBlock)
+}
+
 export const updateGarage = async () => {
   const carsHeaders = document.querySelector('.cars-headers') as HTMLElement;
   const pageCars = document.querySelector('.page-cars') as HTMLElement;
@@ -52,10 +60,7 @@ export const updateGarage = async () => {
 
 
 export const renderGaragePage = async () => {
-/*   const cars = await getCars(store.page);
-  const totalCarsPages = Math.ceil(Number(cars.count) / MAX_CARS_PER_PAGE); */
   const garageSettingsBlock = document.createRange().createContextualFragment(createGarageSettingBlock());
-  // const garagePaginationBlock = document.createRange().createContextualFragment(createPagitation('garage', totalCarsPages, store.page));
   const garageSection = document.querySelector('.garage-section');  
   const carsSection = document.createElement('section');
   carsSection.classList.add('cars-section');
@@ -76,20 +81,16 @@ export const renderGaragePage = async () => {
 
 export const renderWinnersPage = async () => {
   const winners = await getWinners(store.winnersPage, store.winnersSortType, store.winnersOrder);
-  const totalWinnersPage = Math.ceil(Number(winners.count) / MAX_WINNERS_PER_PAGE)
-
   const winnersSection = document.querySelector('.winners-section');
   const winnersSwitchButtonsBlock = document.createRange().createContextualFragment(createWinnersSwitchButtons());
-  const winnersSectionBlock = document.createRange().createContextualFragment(await createWinnersSection(Number(winners.count), store.winnersPage));
   const winnersTable = document.createRange().createContextualFragment(createWinnersTable());
-  const winnersPagination = createPagitation('winners', totalWinnersPage, store.winnersPage);
-  const winnersPaginationBlock = document.createRange().createContextualFragment(winnersPagination);
+  const winnersSectionBlock = document.createRange().createContextualFragment(await createWinnersSection(Number(winners.count), store.winnersPage));
 
   if (winnersSection !== null) {
     winnersSection?.append(winnersSwitchButtonsBlock);
     winnersSection?.append(winnersSectionBlock);
     winnersSection?.append(winnersTable);
-    winnersSection?.append(winnersPaginationBlock);
+    await updateWinnersPagination();
   }
 
   const tabelHead = document.querySelector('.winners-table__body');
