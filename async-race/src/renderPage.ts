@@ -92,7 +92,11 @@ export const renderWinnersPage = async () => {
     winnersSection?.append(winnersTable);
     await updateWinnersPagination();
   }
+  await updateWinnersTable();
+}
 
+export const updateWinnersTable = async () => {
+  const winners = await getWinners(store.winnersPage, store.winnersSortType, store.winnersOrder);
   const tabelHead = document.querySelector('.winners-table__body');
   for (let i = 0; i < Number(winners.count); i++) {
     const currentCar = await getCar(winners.winners[i].id);

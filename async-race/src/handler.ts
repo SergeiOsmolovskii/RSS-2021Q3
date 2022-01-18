@@ -1,6 +1,7 @@
-import { addCar } from "./api";
+import { addCar, removeCar, removeWinner, getAllWinners } from "./api";
 import { ICarBody } from "./components/interfaces";
-import { updateGarage } from "./renderPage";
+import { store } from "./components/store";
+import { updateGarage, updateWinnersTable } from "./renderPage";
 
 export const handler = async () => {
   const garageSection = document.querySelector('.garage-section');
@@ -47,5 +48,58 @@ export const handler = async () => {
 
   const createCarButton = document.getElementById('create-car');
   createCarButton?.addEventListener('click', createCar);
-  console.log(createCarButton);
+
+  const nextCarPage = async (e: Event) => {
+    if ((e.target as HTMLTemplateElement).closest('.garage__next')) {
+      store.page++;
+      await updateGarage();
+    }
+  }
+
+  const prevCarPage = async (e: Event) => {
+    if ((e.target as HTMLTemplateElement).closest('.garage__prev')) {
+      store.page--;
+      await updateGarage();
+    }
+  }
+
+  const nextWinnersPage = async (e: Event) => {
+    if ((e.target as HTMLTemplateElement).closest('.winners__next')) {
+      store.winnersPage++;
+      /* update winners */
+    }
+  }
+
+  const prevWinnersPage = async (e: Event) => {
+    if ((e.target as HTMLTemplateElement).closest('.winners__prev')) {
+      store.winnersPage--;
+      /* update winners */
+    }
+  }
+
+  const removeCurrentCar = async (e: Event) => {
+    const currentButton = (e.target as HTMLTemplateElement).closest('.car-remove') 
+    if (currentButton) {
+      const allWinnewrs = await getAllWinners();
+      const currentCarID = currentButton.closest('.cars-block')?.id; 
+      allWinnewrs.winners.includes(Number(currentCarID));
+      /* to fix
+      console.log(allWinnewrs.winners.forEach((item => item.id.includes(Number(currentCarID)))));
+       */
+      removeCar(Number(currentCarID));
+      if (Number(currentCarID)) {
+        removeWinner(Number(currentCarID));
+      }
+      updateGarage();
+      updateWinnersTable();
+    }
+  }
+
+
+  garageSection?.addEventListener('click', nextCarPage);
+  garageSection?.addEventListener('click', prevCarPage);
+  garageSection?.addEventListener('click', nextWinnersPage);
+  garageSection?.addEventListener('click', prevWinnersPage);
+  garageSection?.addEventListener('click', removeCurrentCar);
+
 } 

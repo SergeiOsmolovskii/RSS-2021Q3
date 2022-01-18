@@ -29,9 +29,24 @@ export const getWinners = async (page: number, sort: string, order: string) => {
   }
 };
 
+export const getAllWinners = async () => {
+  const response = await fetch (`${winners}`);
+  return {
+    winners: await response.json(),
+    count: response.headers.get('X-Total-Count')
+  }
+};
+
 
 export const removeCar = async (id: number) => {
   const response = await fetch (`${garage}/${id}`, {
+    method: 'DELETE'
+  });
+  return await response.json();
+}
+
+export const removeWinner = async (id: number) => {
+  const response = await fetch (`${winners}/${id}`, {
     method: 'DELETE'
   });
   return await response.json();
