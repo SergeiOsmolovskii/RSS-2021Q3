@@ -1,5 +1,6 @@
-import { MAX_ITEM_PER_PAGE } from "./constants";
+import { MAX_CARS_PER_PAGE } from "./constants";
 import { MAX_WINNERS_PER_PAGE } from "./constants";
+import { ICarBody } from "./components/interfaces";
 
 
 const url = 'http://127.0.0.1:3000';
@@ -13,7 +14,7 @@ export const getCar = async (id: number) => {
 }
 
 export const getCars = async (page: number) => {
-  const response = await fetch (`${garage}?_page=${page}&_limit=${MAX_ITEM_PER_PAGE}`);
+  const response = await fetch (`${garage}?_page=${page}&_limit=${MAX_CARS_PER_PAGE}`);
   return {
     item: await response.json(),
     count: response.headers.get('X-Total-Count')
@@ -32,6 +33,17 @@ export const getWinners = async (page: number, sort: string, order: string) => {
 export const removeCar = async (id: number) => {
   const response = await fetch (`${garage}/${id}`, {
     method: 'DELETE'
+  });
+  return await response.json();
+}
+
+export const addCar = async (body: ICarBody) => {
+  const response = await fetch (`${garage}`, {
+    method: 'POST',
+    body: JSON.stringify(body),
+    headers: {
+      'Content-Type': 'application/json'
+    },
   });
   return await response.json();
 }

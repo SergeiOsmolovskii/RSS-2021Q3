@@ -1,3 +1,4 @@
+import { store } from "./store";
 export const generateColor = () => {
   return `#${Math.random().toString(16).slice(2,8)}`;
 }
@@ -10,24 +11,24 @@ export const createGarageSettingBlock = () => `
     </div>
 
     <div class="create-car-block">
-    <form class="create-new-car" action="">
+    <form class="create-new-car">
       <label class="car-name-label">
-        <input id="add-name" class="car-name-input" type="text">
+        <input id="add-name" class="car-name-input" type="text" required>
       </label>
       <label class="car-color-label">
-        <input id="add-color" class="car-color-input" type="color">
+        <input id="add-color" class="car-color-input" type="color" required>
       </label>
-      <button class="create-car__button">Create</button>
+      <button type="submit" id="create-car" class="create-car__button">Create</button>
     </form>
     </div>
 
     <div class="update-car-block">
       <form class="upadte-car" action="">
         <label class="car-name-label">
-          <input id="update-name" class="car-name-input" type="text">
+          <input id="update-name" class="car-name-input" type="text" required>
         </label>
         <label class="car-color-label">
-          <input id="update-color" class="car-color-input" type="color">
+          <input id="update-color" class="car-color-input" type="color" required>
         </label>
         <button class="update-car__button">Update</button>
       </form>
@@ -42,9 +43,11 @@ export const createGarageSettingBlock = () => `
 `;
 
 export const createCarsSection = async (carsCount: number, page: number) => `
-  <h2>Garage (<span id="cars-count"> ${carsCount} </span>) </h2>
-  <h3>Page #<span id="page-number"> ${page} </span> </h3>
-`;
+  <div class="cars-headers">
+    <h2>Garage (<span id="cars-count"> ${carsCount} </span>) </h2>
+    <h3>Page #<span id="page-number"> ${page} </span> </h3>
+  </div>
+  `;
 
 export const createCar = (color: string) => `
 <?xml version="1.0" encoding="UTF-8"?>
@@ -74,9 +77,9 @@ export const createCarBlock = async (name: string, color: string, id: number) =>
   </div>
 `;
 
-export const createPagitation = (pageName: string) => `
+export const createPagitation = (pageName: string, totalPages: number, currentPage: number) => `
   <div class="${pageName}-pagination" >
-    <button class="pagination-button ${pageName}__prev" disabled>Prev</button>
-    <button class="pagination-button ${pageName}__next">Next</button>
+    <button class="pagination-button ${pageName}__prev" ${currentPage <= 1 || totalPages <= 1 ? 'disabled' : ''}>Prev</button>
+    <button class="pagination-button ${pageName}__next" ${totalPages <= 1 || totalPages === currentPage ? 'disabled' : ''}>Next</button>
   </div>
 `;
