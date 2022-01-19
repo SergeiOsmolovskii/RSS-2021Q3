@@ -1,8 +1,3 @@
-import { store } from "./store";
-export const generateColor = () => {
-  return `#${Math.random().toString(16).slice(2,8)}`;
-}
-
 export const createGarageSettingBlock = () => `
   <div class="setting-block">
     <div class="switch-buttons-block">
@@ -37,7 +32,7 @@ export const createGarageSettingBlock = () => `
     <div class="race-button-block">
       <button class="race-button-block__button">Race</button>
       <button class="race-button-block__button">Reset</button>
-      <button class="race-button-block__button">Generate cars</button>
+      <button id="generate-random-cars" class="race-button-block__button">Generate cars</button>
     </div>
   </div>
 `;

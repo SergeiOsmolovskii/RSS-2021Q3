@@ -2,7 +2,8 @@ import { addCar, updateCar, removeCar, removeWinner, getAllWinners } from "./api
 import { ICarBody } from "./components/interfaces";
 import { store } from "./components/store";
 import { updateGarage, updateWinnersTable } from "./renderPage";
-
+import { generateRandomCars } from "./secondaryFunctions";
+import { CARS_TO_GENERATE } from "./constants";
 export const handler = async () => {
   const garageSection = document.querySelector('.garage-section');
   const winnersSection = document.querySelector('.winners-section');
@@ -94,7 +95,6 @@ export const handler = async () => {
     }
   }
 
-
   const updateCurrentCar = async (e: Event) => {
     e.preventDefault();
     if (store.selectedCarID !== 0) {
@@ -124,7 +124,6 @@ export const handler = async () => {
     }
   }
 
-
   garageSection?.addEventListener('click', nextCarPage);
   garageSection?.addEventListener('click', prevCarPage);
   garageSection?.addEventListener('click', nextWinnersPage);
@@ -134,5 +133,8 @@ export const handler = async () => {
 
   const updateButton = document.getElementById('update-car') as HTMLElement;
   updateButton.addEventListener('click', updateCurrentCar);
+
+  const addRandomCars = document.getElementById('generate-random-cars') as HTMLElement;
+  addRandomCars?.addEventListener('click', () => generateRandomCars(CARS_TO_GENERATE));
 
 } 
