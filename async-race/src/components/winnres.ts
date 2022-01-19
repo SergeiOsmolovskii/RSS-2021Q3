@@ -7,8 +7,10 @@ export const createWinnersSwitchButtons = () => `
 `;
 
 export const createWinnersSection = async (winnersCount: number, winnersPage: number) => `
-  <h2>Winners (<span id="winners-count"> ${winnersCount} </span>) </h2>
-  <h3>Page #<span id="page-number"> ${winnersPage} </span> </h3>
+  <div class="winners-headers">
+    <h2>Winners (<span id="winners-count"> ${winnersCount} </span>) </h2>
+    <h3>Page #<span id="page-number"> ${winnersPage} </span> </h3>
+  </div>
 `;
 
 export const createWinnersTable = () => `

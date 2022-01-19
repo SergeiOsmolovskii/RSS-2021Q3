@@ -62,3 +62,14 @@ export const addCar = async (body: ICarBody) => {
   });
   return await response.json();
 }
+
+export const updateCar = async (id:number, body: ICarBody) => {
+  const response = await fetch (`${garage}/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(body),
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  });
+  return await response.json();
+}

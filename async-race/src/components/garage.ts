@@ -23,14 +23,14 @@ export const createGarageSettingBlock = () => `
     </div>
 
     <div class="update-car-block">
-      <form class="upadte-car" action="">
+      <form class="upadte-car">
         <label class="car-name-label">
           <input id="update-name" class="car-name-input" type="text" required>
         </label>
         <label class="car-color-label">
           <input id="update-color" class="car-color-input" type="color" required>
         </label>
-        <button class="update-car__button">Update</button>
+        <button id="update-car" class="update-car__button">Update</button>
       </form>
     </div>
 

@@ -30,6 +30,12 @@ export const createHeaders = async (parent: HTMLElement) => {
   parent.append(garageHeaders);
 }
 
+export const createWinnersHeaders = async (parent: HTMLElement) => {
+  const winners = await getWinners(store.winnersPage, store.winnersSortType, store.winnersOrder);
+  const winnersSectionBlock = document.createRange().createContextualFragment(await createWinnersSection(Number(winners.count), store.winnersPage));
+  parent.append(winnersSectionBlock);
+}
+
 export const updateGaragePagination = async () => {
   const cars = await getCars(store.page);
   const garageSection = document.querySelector('.garage-section') as HTMLElement;  
@@ -40,10 +46,10 @@ export const updateGaragePagination = async () => {
 
 export const updateWinnersPagination = async () => {
   const winners = await getWinners(store.winnersPage, store.winnersSortType, store.winnersOrder);
-  const totalWinnersPage = Math.ceil(Number(winners.count) / MAX_WINNERS_PER_PAGE)
+  const totalWinnersPage = Math.ceil(Number(winners.count) / MAX_WINNERS_PER_PAGE);
   const winnerSection = document.querySelector('.winners-section') as HTMLElement;  
   const winnersPaginationBlock = document.createRange().createContextualFragment(createPagitation('winners', totalWinnersPage, store.winnersPage));
-  winnerSection.append(winnersPaginationBlock)
+  winnerSection.append(winnersPaginationBlock);
 }
 
 export const updateGarage = async () => {
@@ -77,18 +83,14 @@ export const renderGaragePage = async () => {
   }
 }
 
-
-
 export const renderWinnersPage = async () => {
-  const winners = await getWinners(store.winnersPage, store.winnersSortType, store.winnersOrder);
-  const winnersSection = document.querySelector('.winners-section');
+  const winnersSection = document.querySelector('.winners-section') as HTMLElement;
   const winnersSwitchButtonsBlock = document.createRange().createContextualFragment(createWinnersSwitchButtons());
   const winnersTable = document.createRange().createContextualFragment(createWinnersTable());
-  const winnersSectionBlock = document.createRange().createContextualFragment(await createWinnersSection(Number(winners.count), store.winnersPage));
 
   if (winnersSection !== null) {
     winnersSection?.append(winnersSwitchButtonsBlock);
-    winnersSection?.append(winnersSectionBlock);
+    await createWinnersHeaders(winnersSection)
     winnersSection?.append(winnersTable);
     await updateWinnersPagination();
   }
@@ -98,12 +100,11 @@ export const renderWinnersPage = async () => {
 export const updateWinnersTable = async () => {
   const winners = await getWinners(store.winnersPage, store.winnersSortType, store.winnersOrder);
   const tabelHead = document.querySelector('.winners-table__body');
+  const winnersHeaders = document.querySelector('.winners-headers') as HTMLElement;
   for (let i = 0; i < Number(winners.count); i++) {
     const currentCar = await getCar(winners.winners[i].id);
-    const winnerTable = document.createRange().createContextualFragment(
-        createWinners(i + 1, currentCar[0].name, currentCar[0].color, Number(winners.winners[i].wins), winners.winners[i].time)
-      );
-      console.log(winnerTable)
     tabelHead?.insertAdjacentHTML('afterbegin', createWinners(i + 1, currentCar[0].name, currentCar[0].color, Number(winners.winners[i].wins), winners.winners[i].time));
   }
+  winnersHeaders.textContent = '';
+  await createWinnersHeaders(winnersHeaders);
 }

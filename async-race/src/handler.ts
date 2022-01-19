@@ -1,4 +1,4 @@
-import { addCar, removeCar, removeWinner, getAllWinners } from "./api";
+import { addCar, updateCar, removeCar, removeWinner, getAllWinners } from "./api";
 import { ICarBody } from "./components/interfaces";
 import { store } from "./components/store";
 import { updateGarage, updateWinnersTable } from "./renderPage";
@@ -78,20 +78,49 @@ export const handler = async () => {
   }
 
   const removeCurrentCar = async (e: Event) => {
-    const currentButton = (e.target as HTMLTemplateElement).closest('.car-remove') 
+    const currentButton = (e.target as HTMLTemplateElement).closest('.car-remove');
     if (currentButton) {
+      const winnersTableBody = document.querySelector('.winners-table__body') as HTMLElement;
       const allWinnewrs = await getAllWinners();
       const currentCarID = currentButton.closest('.cars-block')?.id; 
       allWinnewrs.winners.includes(Number(currentCarID));
-      /* to fix
-      console.log(allWinnewrs.winners.forEach((item => item.id.includes(Number(currentCarID)))));
-       */
       removeCar(Number(currentCarID));
       if (Number(currentCarID)) {
         removeWinner(Number(currentCarID));
       }
       updateGarage();
+      winnersTableBody.textContent = '';
       updateWinnersTable();
+    }
+  }
+
+
+  const updateCurrentCar = async (e: Event) => {
+    e.preventDefault();
+    if (store.selectedCarID !== 0) {
+      const newCarName = document.getElementById('update-name') as HTMLInputElement;
+      const newCarColor = document.getElementById('update-color') as HTMLInputElement;
+      const body: ICarBody = {
+        name: newCarName.value,
+        color: newCarColor.value
+      };
+      
+      if (newCarName.value && newCarColor.value) {
+        const tabelHead = document.querySelector('.winners-table__body') as HTMLElement;
+        await updateCar(store.selectedCarID, body);
+        await updateGarage();
+        tabelHead.textContent = '';
+        await updateWinnersTable();
+        store.selectedCarID = 0;
+      }
+    }
+  }
+
+  const updateCurrentCarID = async (e: Event) => {
+    const selectedCar = (e.target as HTMLTemplateElement).closest('.car-select');
+    if (selectedCar) {
+      const currentCarID = selectedCar.closest('.cars-block')?.id;
+      store.selectedCarID = Number(currentCarID);
     }
   }
 
@@ -101,5 +130,9 @@ export const handler = async () => {
   garageSection?.addEventListener('click', nextWinnersPage);
   garageSection?.addEventListener('click', prevWinnersPage);
   garageSection?.addEventListener('click', removeCurrentCar);
+  garageSection?.addEventListener('click', updateCurrentCarID);
+
+  const updateButton = document.getElementById('update-car') as HTMLElement;
+  updateButton.addEventListener('click', updateCurrentCar);
 
 } 
