@@ -1,7 +1,6 @@
-import { MAX_CARS_PER_PAGE } from "./constants";
-import { MAX_WINNERS_PER_PAGE } from "./constants";
+import { MAX_CARS_PER_PAGE, MAX_WINNERS_PER_PAGE } from "./constants";
 import { ICarBody } from "./components/interfaces";
-
+import { stopDriving } from "./animation";
 
 const url = 'http://127.0.0.1:3000';
 const garage = `${url}/garage`;
@@ -72,4 +71,28 @@ export const updateCar = async (id:number, body: ICarBody) => {
     },
   });
   return await response.json();
+}
+
+export const startEngine = async (id: number) => {
+  const response = await fetch (`${engine}?id=${id}&status=started`, {
+    method: 'PATCH'
+  });
+  return response.json();
+}
+
+export const stopEngine = async (id: number) => {
+  const response = await fetch (`${engine}?id=${id}&status=stopped`, {
+    method: 'PATCH'
+  });
+  return response.json();
+}
+
+export const drive = async (id: number) => {
+  const response = await fetch (`${engine}?id=${id}&status=drive`, {
+    method: 'PATCH'
+  });
+  if (response.status === 500) {
+    stopDriving(id);
+  }
+  return response.status !== 200 ? { 'success': false } : response.json();
 }

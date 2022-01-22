@@ -13,13 +13,25 @@ export const generateCarName = () => {
 }
 
 export const generateRandomCars = async (count: number) => {
+  let promisesArr = [];
   for (let i = 0; i < count; i++) { 
     const body = {
       name: generateCarName(),
       color: generateColor() 
     }
+    promisesArr.push(body);
     await addCar(body);
   }
+  console.log(promisesArr);
   await updateGarage();
+}
 
+export const disableButton = (id: number, selector: string) => {
+  const button = document.getElementById(`${selector}${id}`) as HTMLInputElement;
+  button.disabled = false;
+}
+
+export const activateButton = (id: number, selector: string) => {
+  const button = document.getElementById(`${selector}${id}`) as HTMLInputElement;
+  button.disabled = true;
 }

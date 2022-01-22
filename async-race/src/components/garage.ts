@@ -63,8 +63,8 @@ export const createCarBlock = async (name: string, color: string, id: number) =>
       <h4 class="car-name">${name}</h4>
     </div>
     <div class="car-controls">
-      <button class="car-controls__start">A</button>
-      <button class="car-controls__back" disabled>B</button>
+      <button id="start-car-${id}" class="car-controls__start">A</button>
+      <button id="stop-car-${id}" class="car-controls__back" disabled>B</button>
     </div>
     <div class="road">
       ${createCar(color)}

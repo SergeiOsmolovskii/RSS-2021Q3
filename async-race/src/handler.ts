@@ -1,9 +1,10 @@
-import { addCar, updateCar, removeCar, removeWinner, getAllWinners } from "./api";
+import { addCar, updateCar, removeCar, removeWinner, getAllWinners, stopEngine } from "./api";
 import { ICarBody } from "./components/interfaces";
 import { store } from "./components/store";
 import { updateGarage, updateWinnersTable } from "./renderPage";
 import { generateRandomCars } from "./secondaryFunctions";
 import { CARS_TO_GENERATE } from "./constants";
+import { startDriving, stopDriving, backCar } from "./animation";
 export const handler = async () => {
   const garageSection = document.querySelector('.garage-section');
   const winnersSection = document.querySelector('.winners-section');
@@ -124,17 +125,36 @@ export const handler = async () => {
     }
   }
 
+  const startAnimation = async (e: Event) => {
+    const startButton = (e.target as HTMLTemplateElement).closest('.car-controls__start');
+    if (startButton) {
+      const currentCarID = startButton.closest('.cars-block')?.id;
+      await startDriving(Number(currentCarID));
+    }
+  } 
+
+  const stopAnimation = async (e:Event) => {
+    const stopButton = (e.target as HTMLTemplateElement).closest('.car-controls__back');
+    if (stopButton) {
+      const currentCarID = stopButton.closest('.cars-block')?.id;
+      await stopEngine(Number(currentCarID));
+      await stopDriving(Number(currentCarID));
+      await backCar(Number(currentCarID));
+    }
+  }
+
   garageSection?.addEventListener('click', nextCarPage);
   garageSection?.addEventListener('click', prevCarPage);
   garageSection?.addEventListener('click', nextWinnersPage);
   garageSection?.addEventListener('click', prevWinnersPage);
   garageSection?.addEventListener('click', removeCurrentCar);
   garageSection?.addEventListener('click', updateCurrentCarID);
+  garageSection?.addEventListener('click', startAnimation);
+  garageSection?.addEventListener('click', stopAnimation);
 
   const updateButton = document.getElementById('update-car') as HTMLElement;
   updateButton.addEventListener('click', updateCurrentCar);
 
   const addRandomCars = document.getElementById('generate-random-cars') as HTMLElement;
   addRandomCars?.addEventListener('click', () => generateRandomCars(CARS_TO_GENERATE));
-
 } 
