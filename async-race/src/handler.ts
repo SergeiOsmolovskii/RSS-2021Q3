@@ -2,7 +2,7 @@ import { addCar, updateCar, removeCar, removeWinner, getAllWinners, stopEngine, 
 import { ICarBody, ICar, ICarWinner, IWinner, ICarWinnerUpdate } from "./components/interfaces";
 import { store } from "./components/store";
 import { updateGarage, updateWinnersTable } from "./renderPage";
-import { generateRandomCars } from "./secondaryFunctions";
+import { generateRandomCars, changeDisableButtons  } from "./secondaryFunctions";
 import { CARS_TO_GENERATE } from "./constants";
 import { startDriving, stopDriving, backCar } from "./animation";
 import { raceWinner, noWinners } from "./components/winnres";
@@ -154,7 +154,16 @@ export const handler = async () => {
     }
   }
 
+  const removePrevWinner = () => {
+    const newWinner = document.querySelector('.new-winner') as HTMLElement;
+    if (newWinner) newWinner.remove();
+  }
+
   const race = async () => {
+
+    changeDisableButtons(true);
+    removePrevWinner();
+
     const main = document.querySelector('main') as HTMLElement;
     const cars = document.querySelectorAll('.cars-block');
     const noWinnerCar = document.createRange().createContextualFragment(noWinners());
@@ -164,6 +173,8 @@ export const handler = async () => {
     const raceResult = await Promise.all(raceCars);
     const successCars = raceResult.filter(item => item.carResult.success === true);
     
+    if (store.isRaseStoped === true) return;
+
     if (successCars.length === 0) {
       main.append(noWinnerCar);
     } else {
@@ -196,14 +207,26 @@ export const handler = async () => {
           time: Number(`${(carWinnerInfo[0].time < timeInSeconds) ? carWinnerInfo[0].time : timeInSeconds}`)
         }
         await updateWinner(winner.id, infoToWinnersTable);
-        await updateTable()
+        await updateTable();
       }
       const raceWinnerCar = document.createRange().createContextualFragment(raceWinner(carWinnerName[0].name, timeInSeconds));
       main.append(raceWinnerCar);
     }
   }
 
-  
+  const backRace = async () => {
+    store.isRaseStoped = true;
+    changeDisableButtons(false);
+    removePrevWinner();
+
+    const allCars = document.querySelectorAll('.cars-block');
+
+    allCars.forEach(async item => {
+      await stopEngine(Number((item as HTMLElement).id));
+      await stopDriving(Number((item as HTMLElement).id));
+      await backCar(Number((item as HTMLElement).id));
+    });
+  }
 
   garageSection?.addEventListener('click', nextCarPage);
   garageSection?.addEventListener('click', prevCarPage);
@@ -220,7 +243,9 @@ export const handler = async () => {
   const addRandomCars = document.getElementById('generate-random-cars') as HTMLElement;
   addRandomCars?.addEventListener('click', () => generateRandomCars(CARS_TO_GENERATE));
 
-  const raceButton = document.querySelector('.race-button-block__button');
+  const raceButton = document.getElementById('race');
   raceButton?.addEventListener('click', race);
 
+  const backRaceButton = document.getElementById('back');
+  backRaceButton?.addEventListener('click', backRace);
 } 

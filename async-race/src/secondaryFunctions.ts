@@ -35,3 +35,10 @@ export const activateButton = (id: number, selector: string) => {
   const button = document.getElementById(`${selector}${id}`) as HTMLInputElement;
   button.disabled = true;
 }
+
+export const changeDisableButtons = (disable: boolean) => {
+  const raceButton = document.querySelector('.race-button-block__button') as HTMLInputElement;
+  raceButton.disabled = disable;
+  const removeButtons = document.querySelectorAll('.car-remove');
+  removeButtons.forEach((item) => (item as HTMLInputElement).disabled = disable);
+}

@@ -44,7 +44,7 @@ thead tr {
 th {
   min-width: 35px;
   height: 25px;
-  padding: 5px 20px;
+  padding: 5px 15px;
   border: 1px solid #fff;
 }
 
@@ -61,6 +61,10 @@ th {
   color: #ffffff;
   border: 1px solid #ffffff;
   text-transform: uppercase;
+}
+
+.race-button-block__button:disabled, .car-remove:disabled {
+  background-color: gray;
 }
 
 .create-car__button, .update-car__button {

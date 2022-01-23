@@ -30,8 +30,8 @@ export const createGarageSettingBlock = () => `
     </div>
 
     <div class="race-button-block">
-      <button class="race-button-block__button">Race</button>
-      <button class="race-button-block__button">Reset</button>
+      <button id="race" class="race-button-block__button">Race</button>
+      <button id="back" class="race-button-block__button">Reset</button>
       <button id="generate-random-cars" class="race-button-block__button">Generate cars</button>
     </div>
   </div>
