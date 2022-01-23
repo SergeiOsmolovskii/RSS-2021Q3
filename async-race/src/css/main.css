@@ -42,9 +42,9 @@ thead tr {
 }
 
 th {
-  min-width: 60px;
+  min-width: 35px;
   height: 25px;
-  padding: 0 20px;
+  padding: 5px 20px;
   border: 1px solid #fff;
 }
 
@@ -173,6 +173,13 @@ th {
   height: 15px;
 }
 
-.winners-table__car {
-  vertical-align: bottom;
+.new-winner {
+  position: absolute;
+  top: 110px;
+  left: 200px;
+}
+
+.new-winner__text {
+  font-size: 28px;
+  color:#fff;
 }

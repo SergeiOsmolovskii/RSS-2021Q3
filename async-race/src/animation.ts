@@ -1,6 +1,7 @@
 import { startEngine, stopEngine, drive } from "./api";
 import { store } from "./components/store";
 import { disableButton, activateButton } from "./secondaryFunctions";
+import { ICarResult } from "./components/interfaces";
 
 const generateDistanse = () => {
   const road = document.querySelector('.road') as HTMLElement;
@@ -25,6 +26,7 @@ export const animation = (car: HTMLElement, animationTime: number, id: number) =
     }
   }
   store.animations[id] = requestAnimationFrame(step);
+  return {id, animationTime};
 }
 
 export const startDriving = async (id: number) => {
@@ -33,10 +35,22 @@ export const startDriving = async (id: number) => {
   const car = carBlock.querySelector('svg') as SvgInHtml;
   disableButton(id, 'stop-car-');
   activateButton(id,'start-car-');
+
+  const startEngineTime = Date.now();
   const {velocity, distance} = await startEngine(id);
+  const endEngineTime = Date.now();
+  const engineDelay = endEngineTime - startEngineTime; 
+  
   const time = Math.round(distance / velocity);
   animation(car, time, id);
-  await drive(Number(id));
+  const result = await drive(Number(id));
+  const carResult: ICarResult = {
+    success: result.success,
+    id: id,
+    time: time,
+    delay: engineDelay
+  }
+    return {carResult};
 }
 
 export const stopDriving = async (id: number) => {

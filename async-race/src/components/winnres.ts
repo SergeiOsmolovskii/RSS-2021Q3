@@ -38,3 +38,21 @@ export const createWinners = (carNumber: number, carName: string, carColor: stri
     <th class="winners-table__best-time">${carBestTime}</th>
   </tr>
 `;
+
+export const raceWinner = (winnerName: string, winnerTime: number) => `
+  <div class="new-winner">
+    <p class="new-winner__text">
+      <span class="new-winner__name">${winnerName}</span> 
+      <span> came first with the result </span>
+      <span class="new-winner__time">[${winnerTime}s]</span>
+    </p>
+  </div>
+`;
+
+export const noWinners = () => `
+  <div class="new-winner">
+    <p class="new-winner__text">
+      <span> All cars were broken! </span>
+    </p>
+  </div>
+`;
