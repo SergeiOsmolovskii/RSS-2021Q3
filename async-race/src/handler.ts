@@ -1,7 +1,7 @@
 import { addCar, updateCar, removeCar, removeWinner, getAllWinners, stopEngine, getCar, getWinner, createWinner, updateWinner } from "./api";
 import { ICarBody, ICar, ICarWinner, IWinner, ICarWinnerUpdate } from "./components/interfaces";
 import { store } from "./components/store";
-import { updateGarage, updateWinnersTable } from "./renderPage";
+import { createWinnersHeaders, renderWinnersPage, updateGarage, updateWinnersPagination, updateWinnersTable } from "./renderPage";
 import { generateRandomCars, changeDisableButtons  } from "./secondaryFunctions";
 import { CARS_TO_GENERATE } from "./constants";
 import { startDriving, stopDriving, backCar } from "./animation";
@@ -75,18 +75,29 @@ export const handler = async () => {
       await updateGarage();
     }
   }
+  const updateWinnresTablePage = async () => {
+    const tabelBody = document.querySelector('.winners-table__body') as HTMLElement;
+    tabelBody.textContent = '';
+    const pagination = document.querySelector('.winners-pagination') as HTMLElement;
+    pagination.remove();
+    const winnersHeaders = document.querySelector('.winners-headers') as HTMLElement;
+    winnersHeaders.textContent = '';
+    await createWinnersHeaders(winnersHeaders);
+    await updateWinnersTable();
+    await updateWinnersPagination();
+  }
 
   const nextWinnersPage = async (e: Event) => {
     if ((e.target as HTMLTemplateElement).closest('.winners__next')) {
       store.winnersPage++;
-      /* update winners */
+      await updateWinnresTablePage();
     }
   }
 
   const prevWinnersPage = async (e: Event) => {
     if ((e.target as HTMLTemplateElement).closest('.winners__prev')) {
       store.winnersPage--;
-      /* update winners */
+      await updateWinnresTablePage();
     }
   }
 
@@ -248,4 +259,7 @@ export const handler = async () => {
 
   const backRaceButton = document.getElementById('back');
   backRaceButton?.addEventListener('click', backRace);
+
+  winnersSection?.addEventListener('click', nextWinnersPage);
+  winnersSection?.addEventListener('click', prevWinnersPage);
 } 

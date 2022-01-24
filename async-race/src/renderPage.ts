@@ -90,7 +90,7 @@ export const renderWinnersPage = async () => {
 
   if (winnersSection !== null) {
     winnersSection?.append(winnersSwitchButtonsBlock);
-    await createWinnersHeaders(winnersSection)
+    await createWinnersHeaders(winnersSection);
     winnersSection?.append(winnersTable);
     await updateWinnersPagination();
   }
@@ -99,11 +99,15 @@ export const renderWinnersPage = async () => {
 
 export const updateWinnersTable = async () => {
   const winners = await getWinners(store.winnersPage, store.winnersSortType, store.winnersOrder);
-  const tabelHead = document.querySelector('.winners-table__body');
+  const tabelBody = document.querySelector('.winners-table__body');
   const winnersHeaders = document.querySelector('.winners-headers') as HTMLElement;
-  for (let i = 0; i < Number(winners.count); i++) {
+  let carsPerPage = 0;
+  
+  store.winnersPage === 1 ? carsPerPage = 10 : carsPerPage = (Number(winners.count)) - store.winnersPage * 10 + 10;
+
+  for (let i = 0; i < carsPerPage; i++) {
     const currentCar = await getCar(winners.winners[i].id);
-    tabelHead?.insertAdjacentHTML('afterbegin', createWinners(Number(winners.count) - i, currentCar[0].name, currentCar[0].color, Number(winners.winners[i].wins), winners.winners[i].time));
+    tabelBody?.insertAdjacentHTML('afterbegin', createWinners((carsPerPage - i + store.winnersPage * 10 - 10), currentCar[0].name, currentCar[0].color, Number(winners.winners[i].wins), winners.winners[i].time));
   }
   winnersHeaders.textContent = '';
   await createWinnersHeaders(winnersHeaders);

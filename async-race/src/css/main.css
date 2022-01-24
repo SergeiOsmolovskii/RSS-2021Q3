@@ -156,6 +156,14 @@ th {
   border-bottom: 5px dotted #ffffff;
 }
 
+.road::after {
+  position: absolute;
+  left: calc(100% - 120px);
+  content: '\2691';
+  color:#ae0000;
+  transform: scale(3);
+}
+
 .car {
   height: 20px;
   filter: contrast(0.5);
