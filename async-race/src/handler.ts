@@ -13,24 +13,24 @@ export const handler = async () => {
   
   const goToGarage = (e: Event) => {
     if ((e.target as Element ).classList.contains('switch-buttons__garage')) {
-      garageSection?.classList.remove('display--none');
-      winnersSection?.classList.add('display--none');
+      garageSection?.classList.remove('visability--hidden');
+      winnersSection?.classList.add('visability--hidden');
     }
     const newWinner = document.querySelector('.new-winner');
     if (newWinner) {
-      newWinner.classList.remove('display--none');
+      newWinner.classList.remove('visability--hidden');
     }
   }
 
   const goToWinners = (e: Event) => {
     if ((e.target as Element ).classList.contains('switch-buttons__winners')) {
-      garageSection?.classList.add('display--none');
-      winnersSection?.classList.remove('display--none');
+      garageSection?.classList.add('visability--hidden');
+      winnersSection?.classList.remove('visability--hidden');
     }
 
     const newWinner = document.querySelector('.new-winner');
     if (newWinner) {
-      newWinner.classList.add('display--none');
+      newWinner.classList.add('visability--hidden');
     }
   }
 

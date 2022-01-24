@@ -52,8 +52,13 @@ th {
   border: 1px solid #fff;
 }
 
-.display--none {
-  display: none;
+.visability--hidden {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(100% - 40px);
+  opacity: 0;
+  visibility: hidden;
 }
 
 .setting-block {
@@ -213,6 +218,10 @@ th {
 .new-winner__text {
   font-size: 28px;
   color: #fff;
+}
+
+.winners-table__best-time, .winners-table__wins {
+  cursor: pointer;
 }
 
 .winners-table__best-time--sort-asc:after,

@@ -4,6 +4,6 @@ export const createBasicStructure = () => {
   const garageSection = document.createElement('section');
   garageSection.classList.add('garage-section');
   const winnersSection = document.createElement('section');
-  winnersSection.classList.add('winners-section', 'display--none'); 
+  winnersSection.classList.add('winners-section', 'visability--hidden'); 
   main.append(garageSection, winnersSection);
 }
