@@ -11,7 +11,7 @@ h1 {
 }
 
 main {
-  padding: 20px;
+  padding: 10px 20px;
 }
 
 button {
@@ -25,6 +25,7 @@ button:hover {
 
 h2, h3, h4 {
   color: #ffffff;
+  margin: 0.5em 0em;
 }
 
 h4 {
@@ -123,7 +124,7 @@ th {
 }
 
 .cars-block {
-  margin: 10px 0px;
+  margin: 5px 0px;
 }
 
 .car-controls__start, .car-controls__back {
@@ -149,7 +150,7 @@ th {
 }
 
 .car-controls {
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 
 .road {
@@ -187,7 +188,7 @@ th {
 
 .new-winner {
   position: absolute;
-  top: 110px;
+  top: 90px;
   left: 200px;
 }
 

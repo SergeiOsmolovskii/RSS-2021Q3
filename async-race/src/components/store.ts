@@ -6,5 +6,5 @@ export let store = {
   winnersOrder: 'ASC',
   selectedCarID: 0,
   animations: <IAnimations>{},
-  isRaseStoped: false
+  isRaceStoped: false
 }

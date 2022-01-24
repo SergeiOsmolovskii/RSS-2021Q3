@@ -214,23 +214,29 @@ export const handler = async () => {
     }
   }
 
+  const changeRaceState = () => {
+    if (store.isRaceStoped === true) {
+      store.isRaceStoped = false;
+    }
+  }
+
   const race = async () => {
 
     changeDisableButtons(true);
     removePrevWinner();
-
+    changeRaceState();
     const cars = document.querySelectorAll('.cars-block');
     const carsID: number[] = [];
     cars.forEach(item => carsID.push(Number(item.id)));
     let raceCars = carsID.map(item => startDriving(item));
     const raceResult = await Promise.all(raceCars);
     const successCars = raceResult.filter(item => item.carResult.success === true);
-    if (store.isRaseStoped === true) return;
-    addRaceResult(successCars);
+    if (store.isRaceStoped === true) return;
+    addRaceResult(successCars);  
   }
 
   const backRace = async () => {
-    store.isRaseStoped = true;
+    store.isRaceStoped = true;
     changeDisableButtons(false);
     removePrevWinner();
 
