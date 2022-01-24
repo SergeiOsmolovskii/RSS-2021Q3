@@ -1,5 +1,5 @@
 import { addCar, updateCar, removeCar, removeWinner, getAllWinners, stopEngine, getCar, getWinner, createWinner, updateWinner } from "./api";
-import { ICarBody, ICar, ICarWinner, IWinner, ICarWinnerUpdate } from "./components/interfaces";
+import { ICarBody, ICar, ICarWinner, IWinner, ICarWinnerUpdate, ICarResult } from "./components/interfaces";
 import { store } from "./components/store";
 import { createWinnersHeaders, renderWinnersPage, updateGarage, updateWinnersPagination, updateWinnersTable } from "./renderPage";
 import { generateRandomCars, changeDisableButtons  } from "./secondaryFunctions";
@@ -170,21 +170,10 @@ export const handler = async () => {
     if (newWinner) newWinner.remove();
   }
 
-  const race = async () => {
-
-    changeDisableButtons(true);
-    removePrevWinner();
-
+  const addRaceResult = async (successCars: {carResult: ICarResult}[]) => {
     const main = document.querySelector('main') as HTMLElement;
-    const cars = document.querySelectorAll('.cars-block');
     const noWinnerCar = document.createRange().createContextualFragment(noWinners());
-    const carsID: number[] = [];
-    cars.forEach(item => carsID.push(Number(item.id)));
-    let raceCars = carsID.map(item => startDriving(item));
-    const raceResult = await Promise.all(raceCars);
-    const successCars = raceResult.filter(item => item.carResult.success === true);
-    
-    if (store.isRaseStoped === true) return;
+
 
     if (successCars.length === 0) {
       main.append(noWinnerCar);
@@ -223,6 +212,21 @@ export const handler = async () => {
       const raceWinnerCar = document.createRange().createContextualFragment(raceWinner(carWinnerName[0].name, timeInSeconds));
       main.append(raceWinnerCar);
     }
+  }
+
+  const race = async () => {
+
+    changeDisableButtons(true);
+    removePrevWinner();
+
+    const cars = document.querySelectorAll('.cars-block');
+    const carsID: number[] = [];
+    cars.forEach(item => carsID.push(Number(item.id)));
+    let raceCars = carsID.map(item => startDriving(item));
+    const raceResult = await Promise.all(raceCars);
+    const successCars = raceResult.filter(item => item.carResult.success === true);
+    if (store.isRaseStoped === true) return;
+    addRaceResult(successCars);
   }
 
   const backRace = async () => {
