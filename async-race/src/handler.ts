@@ -249,6 +249,45 @@ export const handler = async () => {
     });
   }
 
+  const sortByWins = async (e: Event) => {
+    const winsTableCol = (e.target as HTMLTemplateElement).closest('.winners-table__wins');
+    const bestTimeTableCol = document.querySelector('.winners-table__best-time');
+
+    if (winsTableCol) {
+      bestTimeTableCol?.classList.remove('winners-table__best-time--sort-asc', 'winners-table__best-time--sort-desc');
+      store.winnersSortType = 'wins';
+      if (winsTableCol.classList.contains('winners-table__wins--sort-asc')) {
+        winsTableCol.classList.add('winners-table__wins--sort-desc');
+        winsTableCol.classList.remove('winners-table__wins--sort-asc');
+        store.winnersOrder = 'desc';
+      } else {
+        winsTableCol.classList.add('winners-table__wins--sort-asc');
+        winsTableCol.classList.remove('winners-table__wins--sort-desc');
+        store.winnersOrder = 'asc';
+      }
+      await updateWinnresTablePage();
+    }
+  }
+
+  const sortByBestTime = async (e: Event) => {
+    const bestTimeTableCol = (e.target as HTMLTemplateElement).closest('.winners-table__best-time');
+    const winsTableCol = document.querySelector('.winners-table__wins');
+    if (bestTimeTableCol) {
+      winsTableCol?.classList.remove('winners-table__wins--sort-asc', 'winners-table__wins--sort-desc');
+      store.winnersSortType = 'time';
+      if (bestTimeTableCol.classList.contains('winners-table__best-time--sort-asc')) {
+        bestTimeTableCol.classList.add('winners-table__best-time--sort-desc');
+        bestTimeTableCol.classList.remove('winners-table__best-time--sort-asc');
+        store.winnersOrder = 'desc';
+      } else {
+        bestTimeTableCol.classList.add('winners-table__best-time--sort-asc');
+        bestTimeTableCol.classList.remove('winners-table__best-time--sort-desc');
+        store.winnersOrder = 'asc';
+      }
+      await updateWinnresTablePage();
+    }
+  }
+
   garageSection?.addEventListener('click', nextCarPage);
   garageSection?.addEventListener('click', prevCarPage);
   garageSection?.addEventListener('click', nextWinnersPage);
@@ -272,4 +311,8 @@ export const handler = async () => {
 
   winnersSection?.addEventListener('click', nextWinnersPage);
   winnersSection?.addEventListener('click', prevWinnersPage);
+  
+  winnersSection?.addEventListener('click', sortByWins);
+  winnersSection?.addEventListener('click', sortByBestTime);
+
 } 

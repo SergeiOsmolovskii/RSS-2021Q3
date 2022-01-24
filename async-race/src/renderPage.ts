@@ -103,11 +103,10 @@ export const updateWinnersTable = async () => {
   const winnersHeaders = document.querySelector('.winners-headers') as HTMLElement;
   let carsPerPage = 0;
   
-  store.winnersPage === 1 ? carsPerPage = 10 : carsPerPage = (Number(winners.count)) - store.winnersPage * 10 + 10;
-
+  store.winnersPage === 1 ? carsPerPage = Math.min(Number(winners.count), 10) : carsPerPage = (Number(winners.count)) - store.winnersPage * 10 + 10;
   for (let i = 0; i < carsPerPage; i++) {
     const currentCar = await getCar(winners.winners[i].id);
-    tabelBody?.insertAdjacentHTML('afterbegin', createWinners((carsPerPage - i + store.winnersPage * 10 - 10), currentCar[0].name, currentCar[0].color, Number(winners.winners[i].wins), winners.winners[i].time));
+    tabelBody?.insertAdjacentHTML('beforeend', createWinners(i + 1 + (store.winnersPage * 10 - 10), currentCar[0].name, currentCar[0].color, Number(winners.winners[i].wins), winners.winners[i].time));
   }
   winnersHeaders.textContent = '';
   await createWinnersHeaders(winnersHeaders);

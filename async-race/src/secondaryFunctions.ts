@@ -22,7 +22,6 @@ export const generateRandomCars = async (count: number) => {
     promisesArr.push(body);
     await addCar(body);
   }
-  console.log(promisesArr);
   await updateGarage();
 }
 
